@@ -3,7 +3,6 @@ package com.server.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.server.ai.AiResponseFormat;
 import com.server.constant.AgricultureConstants;
 import com.server.constant.CacheConstants;
 import com.server.constant.Constants;

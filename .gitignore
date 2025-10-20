@@ -41,6 +41,6 @@ build/
 ### Mac OS ###
 .DS_Store
 
-
-.serverlog/**
+### 日志 ###
+.serverlog/
 
