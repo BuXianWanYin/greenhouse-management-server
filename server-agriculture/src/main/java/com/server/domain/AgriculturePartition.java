@@ -23,8 +23,8 @@ public class AgriculturePartition {
     @ApiModelProperty(value = "分区id")
     private String id;
 
-    @ApiModelProperty(value = "大棚", example = "1234567890123456789" , required = true)
-    @NotBlank(message = "所属大棚不能为空")
+    @ApiModelProperty(value = "温室", example = "1234567890123456789" , required = true)
+    @NotBlank(message = "所属温室不能为空")
     private String pastureId;
 
     @ApiModelProperty(value = "合约地址", example = "0x123456789abcdef")

@@ -49,7 +49,7 @@ public class AgriculturePartitionFoodController extends BaseController
     }
 
     /**
-     * 根据溯源码查询溯源详情信息（分区、大棚、批次任务、环境数据等）
+     * 根据溯源码查询溯源详情信息（分区、温室、批次任务、环境数据等）
      */
     @ApiOperation("根据溯源码查询溯源详情信息")
     @GetMapping("/traceDetail")

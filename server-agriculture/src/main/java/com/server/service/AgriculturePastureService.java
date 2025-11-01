@@ -8,7 +8,7 @@ import com.server.domain.AgriculturePasture;
 import com.server.domain.dto.AgriculturePastureDTO;
 
 /**
- * 大棚Service接口
+ * 温室Service接口
  * 
  * @author server
  * @date 2025-05-27
@@ -16,49 +16,49 @@ import com.server.domain.dto.AgriculturePastureDTO;
 public interface AgriculturePastureService  extends IService<AgriculturePasture>
 {
     /**
-     * 查询大棚
+     * 查询温室
      * 
-     * @param id 大棚主键
-     * @return 大棚
+     * @param id 温室主键
+     * @return 温室
      */
     public AgriculturePasture selectAgriculturePastureById(Long id);
 
     /**
-     * 查询大棚列表
+     * 查询温室列表
      * 
-     * @param agriculturePasture 大棚
-     * @return 大棚集合
+     * @param agriculturePasture 温室
+     * @return 温室集合
      */
     public List<AgriculturePasture> selectAgriculturePastureList(AgriculturePasture agriculturePasture);
 
     /**
-     * 新增大棚
+     * 新增温室
      * 
-     * @param agriculturePasture 大棚
+     * @param agriculturePasture 温室
      * @return 结果
      */
     public int insertAgriculturePasture(AgriculturePasture agriculturePasture);
 
     /**
-     * 修改大棚
+     * 修改温室
      * 
-     * @param agriculturePasture 大棚
+     * @param agriculturePasture 温室
      * @return 结果
      */
     public int updateAgriculturePasture(AgriculturePasture agriculturePasture);
 
     /**
-     * 批量删除大棚
+     * 批量删除温室
      * 
-     * @param ids 需要删除的大棚主键集合
+     * @param ids 需要删除的温室主键集合
      * @return 结果
      */
     public int deleteAgriculturePastureByIds(Long[] ids);
 
     /**
-     * 删除大棚信息
+     * 删除温室信息
      * 
-     * @param id 大棚主键
+     * @param id 温室主键
      * @return 结果
      */
     public int deleteAgriculturePastureById(Long id);

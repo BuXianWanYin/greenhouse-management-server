@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiModelProperty;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName(value ="agriculture_pasture")
-@ApiModel(value = "AgriculturePasture" , description="大棚")
+@ApiModel(value = "AgriculturePasture" , description="温室")
 public class AgriculturePasture extends BaseEntityPlus implements Serializable  {
 
     private static final long serialVersionUID = 1L;
@@ -37,7 +37,7 @@ public class AgriculturePasture extends BaseEntityPlus implements Serializable  
 
 
     @TableField(value="address")
-    @ApiModelProperty(value="大棚位置")
+    @ApiModelProperty(value="温室位置")
     private String address;
 
     @TableField(value="description")
@@ -45,7 +45,7 @@ public class AgriculturePasture extends BaseEntityPlus implements Serializable  
     private String description;
 
     @TableField(value="area")
-    @ApiModelProperty(value="大棚面积")
+    @ApiModelProperty(value="温室面积")
     private String area;
 
     @TableField(value="del_flag")

@@ -25,10 +25,7 @@ import com.server.utils.poi.ExcelUtil;
 import com.server.core.page.TableDataInfo;
 
 /**
- * 大棚Controller
- *
- * @author server
- * @date 2025-05-27
+ * 温室Controller
  */
 @RestController
 @RequestMapping("/agriculture/pasture")
@@ -38,7 +35,7 @@ public class AgriculturePastureController extends BaseController
     private AgriculturePastureService agriculturePastureService;
 
     /**
-     * 查询大棚列表
+     * 查询温室列表
      */
     @PreAuthorize("@ss.hasPermi('agriculture:pasture:list')")
     @GetMapping("/list")
@@ -50,20 +47,20 @@ public class AgriculturePastureController extends BaseController
     }
 
     /**
-     * 导出大棚列表
+     * 导出温室列表
      */
     @PreAuthorize("@ss.hasPermi('agriculture:pasture:export')")
-    @Log(title = "大棚", businessType = BusinessType.EXPORT)
+    @Log(title = "温室", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, AgriculturePasture agriculturePasture)
     {
         List<AgriculturePasture> list = agriculturePastureService.selectAgriculturePastureList(agriculturePasture);
         ExcelUtil<AgriculturePasture> util = new ExcelUtil<AgriculturePasture>(AgriculturePasture.class);
-        util.exportExcel(response, list, "大棚数据");
+        util.exportExcel(response, list, "温室数据");
     }
 
     /**
-     * 获取大棚详细信息
+     * 获取温室详细信息
      */
     @PreAuthorize("@ss.hasPermi('agriculture:pasture:query')")
     @GetMapping(value = "/{id}")
@@ -73,10 +70,10 @@ public class AgriculturePastureController extends BaseController
     }
 
     /**
-     * 新增大棚
+     * 新增温室
      */
     @PreAuthorize("@ss.hasPermi('agriculture:pasture:add')")
-    @Log(title = "大棚", businessType = BusinessType.INSERT)
+    @Log(title = "温室", businessType = BusinessType.INSERT)
     @PostMapping
     @SeeRefreshData
     public AjaxResult add(@RequestBody AgriculturePasture agriculturePasture)
@@ -85,10 +82,10 @@ public class AgriculturePastureController extends BaseController
     }
 
     /**
-     * 修改大棚
+     * 修改温室
      */
     @PreAuthorize("@ss.hasPermi('agriculture:pasture:edit')")
-    @Log(title = "大棚", businessType = BusinessType.UPDATE)
+    @Log(title = "温室", businessType = BusinessType.UPDATE)
     @PutMapping
     @SeeRefreshData
     public AjaxResult edit(@RequestBody AgriculturePasture agriculturePasture)
@@ -97,10 +94,10 @@ public class AgriculturePastureController extends BaseController
     }
 
     /**
-     * 删除大棚
+     * 删除温室
      */
     @PreAuthorize("@ss.hasPermi('agriculture:pasture:remove')")
-    @Log(title = "大棚", businessType = BusinessType.DELETE)
+    @Log(title = "温室", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     @SeeRefreshData
     public AjaxResult remove(@PathVariable Long[] ids)

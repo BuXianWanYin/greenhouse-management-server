@@ -44,7 +44,7 @@ public class AgriculturePartitionFoodServiceImpl extends ServiceImpl<Agriculture
     @Autowired
     private AgricultureCropBatchMapper agricultureCropBatchMapper;
 
-    // 注入大棚Mapper，用于操作大棚表
+    // 注入温室Mapper，用于操作温室表
     @Autowired
     private AgriculturePastureMapper pastureMapper;
 
@@ -91,7 +91,7 @@ public class AgriculturePartitionFoodServiceImpl extends ServiceImpl<Agriculture
     private String codepath;
 
     /**
-     * 根据溯源码查询溯源详情信息，包括分区、大棚、批次任务、环境数据等
+     * 根据溯源码查询溯源详情信息，包括分区、温室、批次任务、环境数据等
      *
      * @param traceId 溯源码（溯源id）
      * @param queryIp 查询IP

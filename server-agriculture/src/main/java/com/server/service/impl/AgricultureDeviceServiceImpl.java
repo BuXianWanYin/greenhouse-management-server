@@ -111,27 +111,6 @@ public class AgricultureDeviceServiceImpl extends ServiceImpl<AgricultureDeviceM
     @Override
     public Long insertAgricultureDevice(AgricultureDevice agricultureDevice) {
 
-        // 如果是可控设备，设置状态
-        if ("1".equals(String.valueOf(agricultureDevice.getIsControllable()))) {
-            agricultureDevice.setStatus("1");         // 设备状态
-            agricultureDevice.setControlStatus("0");  // 用户控制状态
-        }
-        if (Convert.toBool(fiscoEnabled)){
-            try {
-                /* 部署合约 拿到合约地址 */
-                AgricultureDeviceFB agricultureDeviceFB = AgricultureDeviceFB.deploy(client, client.getCryptoSuite().getCryptoKeyPair());
-                /* 调用合约 响应交易信息 */
-                agricultureDeviceFB.createDevice(
-                        agricultureDevice.getPastureId(),
-                        agricultureDevice.getBatchId(),
-                        agricultureDevice.getDeviceTypeId(),
-                        agricultureDevice.getDeviceName()
-                );
-                agricultureDevice.setBlockAddress(agricultureDeviceFB.getContractAddress());
-            } catch (ContractException e) {
-                log.error(e.getMessage());
-            }
-        }
         agricultureDeviceMapper.insert(agricultureDevice);
         return agricultureDevice.getId();
     }

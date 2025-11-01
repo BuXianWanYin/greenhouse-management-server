@@ -33,7 +33,7 @@ import com.server.service.AgricultureCropBatchService;
 import static com.server.constant.RabbitMQConstant.*;
 
 /**
- * 大棚Service业务层处理
+ * 温室Service业务层处理
  *
  * @author server
  * @date 2025-05-27
@@ -56,10 +56,10 @@ public class AgriculturePastureServiceImpl extends ServiceImpl<AgriculturePastur
     private AgricultureCropBatchService agricultureCropBatchService;
 
     /**
-     * 查询大棚
+     * 查询温室
      *
-     * @param id 大棚主键
-     * @return 大棚
+     * @param id 温室主键
+     * @return 温室
      */
     @Override
     public AgriculturePasture selectAgriculturePastureById(Long id) {
@@ -67,10 +67,10 @@ public class AgriculturePastureServiceImpl extends ServiceImpl<AgriculturePastur
     }
 
     /**
-     * 查询大棚列表
+     * 查询温室列表
      *
-     * @param agriculturePasture 大棚
-     * @return 大棚
+     * @param agriculturePasture 温室
+     * @return 温室
      */
     @Override
     public List<AgriculturePasture> selectAgriculturePastureList(AgriculturePasture agriculturePasture) {
@@ -79,9 +79,9 @@ public class AgriculturePastureServiceImpl extends ServiceImpl<AgriculturePastur
     }
 
     /**
-     * 新增大棚
+     * 新增温室
      *
-     * @param agriculturePasture 大棚
+     * @param agriculturePasture 温室
      * @return 结果
      */
     @Override
@@ -90,9 +90,9 @@ public class AgriculturePastureServiceImpl extends ServiceImpl<AgriculturePastur
     }
 
     /**
-     * 修改大棚
+     * 修改温室
      *
-     * @param agriculturePasture 大棚
+     * @param agriculturePasture 温室
      * @return 结果
      */
     @Override
@@ -105,9 +105,9 @@ public class AgriculturePastureServiceImpl extends ServiceImpl<AgriculturePastur
     }
 
     /**
-     * 批量删除大棚
+     * 批量删除温室
      *
-     * @param ids 需要删除的大棚主键
+     * @param ids 需要删除的温室主键
      * @return 结果
      */
     @Override
@@ -116,9 +116,9 @@ public class AgriculturePastureServiceImpl extends ServiceImpl<AgriculturePastur
     }
 
     /**
-     * 删除大棚信息
+     * 删除温室信息
      *
-     * @param id 大棚主键
+     * @param id 温室主键
      * @return 结果
      */
     @Override

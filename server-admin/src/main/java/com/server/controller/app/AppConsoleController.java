@@ -45,12 +45,12 @@ public class AppConsoleController {
     }
 
     /**
-     * 获取大棚（选择框）
+     * 获取温室（选择框）
      *
      * @return
      */
     @GetMapping("/pastureDrop")
-    @ApiOperation("获取大棚（选择框）")
+    @ApiOperation("获取温室（选择框）")
     public AjaxResult getPastureDrop() {
         return AjaxResult.success(appConsoleService.listPastureNameMap());
     }

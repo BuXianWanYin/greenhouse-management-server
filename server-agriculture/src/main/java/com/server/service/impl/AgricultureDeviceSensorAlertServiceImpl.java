@@ -65,7 +65,7 @@ public class AgricultureDeviceSensorAlertServiceImpl extends ServiceImpl<Agricul
     public List<AgricultureDeviceSensorAlert> selectAgricultureDeviceSensorAlertList(AgricultureDeviceSensorAlert agricultureDeviceSensorAlert) {
         LambdaQueryWrapper<AgricultureDeviceSensorAlert> queryWrapper = new LambdaQueryWrapper<>();
 
-        //大棚 id 过滤
+        //温室 id 过滤
         if (agricultureDeviceSensorAlert.getPastureId() != null && !agricultureDeviceSensorAlert.getPastureId().isEmpty()) {
             queryWrapper.eq(AgricultureDeviceSensorAlert::getPastureId, agricultureDeviceSensorAlert.getPastureId());
         }

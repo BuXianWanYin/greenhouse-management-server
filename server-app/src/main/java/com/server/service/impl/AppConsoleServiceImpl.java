@@ -85,7 +85,7 @@ public class AppConsoleServiceImpl implements AppConsoleService {
     }
 
     /**
-     * 获取大棚（选择框）
+     * 获取温室（选择框）
      *
      * @return
      */

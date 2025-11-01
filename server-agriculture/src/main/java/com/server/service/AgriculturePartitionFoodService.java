@@ -75,7 +75,7 @@ public interface AgriculturePartitionFoodService extends IService<AgriculturePar
      */
     List<AgriculturePartitionFood> fy(AgriculturePartitionFoodPageDTO baseDTO);
     /**
-     * 根据溯源码查询溯源详情信息，包括分区、大棚、批次任务、环境数据等
+     * 根据溯源码查询溯源详情信息，包括分区、温室、批次任务、环境数据等
      * @param traceId 溯源码（溯源id）
      * @param queryIp 查询IP
      * @param userAgent 用户代理
