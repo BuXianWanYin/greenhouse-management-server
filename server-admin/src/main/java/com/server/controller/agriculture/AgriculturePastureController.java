@@ -108,14 +108,5 @@ public class AgriculturePastureController extends BaseController
         return toAjax(agriculturePastureService.deleteAgriculturePastureByIds(ids));
     }
 
-    /**
-     * 获取大棚剩余面积以及查询大棚之下有多少个分区
-     */
-    @PreAuthorize("@ss.hasPermi('agriculture:pasture:area')")
-    @GetMapping("/area")
-    public TableDataInfo remainingArea(AgriculturePastureDTO agriculturePastureDTO){
-        startPage();
-        List<AgriculturePastureDTO> list = agriculturePastureService.selectRemainingArea(agriculturePastureDTO);
-        return getDataTable(list);
-    }
+
 }

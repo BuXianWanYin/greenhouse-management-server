@@ -95,9 +95,7 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
     @Override
     public int insertAgricultureCropBatch(AgricultureCropBatch agricultureCropBatch)
     {
-        // 获取大棚合约地址
-        AgriculturePasture agriculturePasture = agriculturePastureMapper.selectById(agricultureCropBatch.getPastureId());
-        agricultureCropBatch.setContractAddr(agriculturePasture.getContractAddr());
+
         // 先插入分区，以获取自增主键
         int result = agricultureCropBatchMapper.insert(agricultureCropBatch);
         // 成功插入后，agricultureCropBatch.getBatchId() 将会持有数据库生成的ID
@@ -157,7 +155,6 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
             }
         }
         //  异步处理分区上链操作 清空实体合约地址
-        agriculturePasture.setContractAddr(null);
         rabbitTemplate.convertAndSend(FB_EXCHANGE, "*", agricultureCropBatch);
         // 返回插入作物批次的结果
         return result;
@@ -172,9 +169,6 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
     @Override
     public int updateAgricultureCropBatch(AgricultureCropBatch agricultureCropBatch)
     {
-        // 获取大棚合约地址
-        AgriculturePasture agriculturePasture = agriculturePastureMapper.selectById(agricultureCropBatch.getPastureId());
-        agricultureCropBatch.setContractAddr(agriculturePasture.getContractAddr());
         int update = agricultureCropBatchMapper.updateById(agricultureCropBatch);
         //  异步处理分区上链操作
         rabbitTemplate.convertAndSend(FB_EXCHANGE, "*", agricultureCropBatch);

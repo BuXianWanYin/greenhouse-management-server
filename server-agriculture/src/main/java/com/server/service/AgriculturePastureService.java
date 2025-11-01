@@ -63,8 +63,5 @@ public interface AgriculturePastureService  extends IService<AgriculturePasture>
      */
     public int deleteAgriculturePastureById(Long id);
 
-    /**
-     * 获取大棚剩余面积
-     */
-    List<AgriculturePastureDTO> selectRemainingArea(AgriculturePastureDTO agriculturePastureDTO);
+
 }

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 近一周、近一个月、近三个月、近半年、近一年时间段内日期显示
  *
- * @author 851543
+ * @author bxwy
  * @date 2025年7月16日
  **/
 public class DateIntervalUtils {
