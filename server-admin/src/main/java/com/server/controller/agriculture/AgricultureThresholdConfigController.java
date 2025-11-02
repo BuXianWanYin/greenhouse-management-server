@@ -64,7 +64,6 @@ public class AgricultureThresholdConfigController extends BaseController
         List<AgricultureDevice> devices = agricultureDeviceService.list(
                 new LambdaQueryWrapper<AgricultureDevice>()
                         .eq(AgricultureDevice::getPastureId, pastureId)
-                        .eq(AgricultureDevice::getBatchId, batchId)
         );
         // 2. 过滤设备类型
         if (deviceType != null) {

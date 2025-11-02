@@ -82,9 +82,6 @@ public class AgricultureDeviceServiceImpl extends ServiceImpl<AgricultureDeviceM
         if (agricultureDevice.getPastureId() != null) {
             wrapper.eq("d.pasture_id", agricultureDevice.getPastureId());
         }
-        if (agricultureDevice.getBatchId() != null) {
-            wrapper.eq("d.batch_id", agricultureDevice.getBatchId());
-        }
         if (agricultureDevice.getDeviceTypeId() != null) {
             wrapper.eq("d.device_type_id", agricultureDevice.getDeviceTypeId());
         }
@@ -167,7 +164,6 @@ public class AgricultureDeviceServiceImpl extends ServiceImpl<AgricultureDeviceM
     public List<Long> selectDeviceIdsByPastureAndBatch(Long pastureId, Long batchId) {
         return lambdaQuery()
                 .eq(AgricultureDevice::getPastureId, pastureId)
-                .eq(AgricultureDevice::getBatchId, batchId)
                 .list()
                 .stream()
                 .map(AgricultureDevice::getId)

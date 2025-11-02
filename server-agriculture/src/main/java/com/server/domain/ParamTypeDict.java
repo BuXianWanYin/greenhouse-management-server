@@ -39,6 +39,10 @@ public class ParamTypeDict implements Serializable  {
     @ApiModelProperty(value="参数中文名")
     private String paramTypeCn;
 
+    @TableField(value="unit")
+    @ApiModelProperty(value="单位")
+    private String unit;
+
     @TableField(value = "remark")
     @ApiModelProperty(value = "备注")
     private String remark;
