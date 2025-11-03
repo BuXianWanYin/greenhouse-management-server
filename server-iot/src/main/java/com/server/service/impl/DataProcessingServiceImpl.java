@@ -4,11 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.server.domain.AgricultureAirData;
 import com.server.domain.AgricultureDeviceMqttConfig;
 import com.server.domain.AgricultureSoilData;
-import com.server.gateway.MqttGateway;
 import com.server.service.AgricultureAirDataService;
 import com.server.service.AgricultureDeviceMqttConfigService;
 import com.server.service.AgricultureSoilDataService;
 import com.server.service.DataProcessingService;
+import com.server.service.DynamicMqttService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -39,7 +39,7 @@ public class DataProcessingServiceImpl implements DataProcessingService {
     private AgricultureDeviceMqttConfigService deviceMqttConfigService; //Mqtt配置
 
     @Autowired
-    private MqttGateway mqttGateway; // MQTT消息推送网关
+    private DynamicMqttService dynamicMqttService; // 动态MQTT服务
 
     @Autowired
     private ObjectMapper objectMapper; // Spring Boot自动配置的JSON处理工具
@@ -53,18 +53,14 @@ public class DataProcessingServiceImpl implements DataProcessingService {
                 deviceId = Long.valueOf(parsedData.get("deviceId").toString());
             }
 
-            // 2. 查找该设备的MQTT配置，获取专属topic
+            // 2. 查找该设备的MQTT配置
+            AgricultureDeviceMqttConfig config = null;
             String topic = null;
             if (deviceId != null) {
-                AgricultureDeviceMqttConfig config = deviceMqttConfigService.getByDeviceId(deviceId);
+                config = deviceMqttConfigService.getByDeviceId(deviceId);
                 if (config != null && config.getMqttTopic() != null && !config.getMqttTopic().isEmpty()) {
                     topic = config.getMqttTopic();
                 }
-            }
-            // 兜底：如果没有查到topic，推送到一个默认主题
-            if (topic == null) {
-                topic = "/fish-dish/unknown";
-                log.warn("设备ID {} 未配置MQTT主题，推送到默认主题 {}", deviceId, topic);
             }
 
             // 3. 数据类型（决定存储到哪张表，但推送MQTT只看设备ID）
@@ -84,10 +80,21 @@ public class DataProcessingServiceImpl implements DataProcessingService {
 
                 // 推送到设备专属topic（失败不影响数据保存）
                 try {
-                    mqttGateway.sendToMqtt(objectMapper.writeValueAsString(airData), topic);
-                    log.debug("MQTT消息发送成功: 设备ID={}, 主题={}", deviceId, topic);
+                    if (config != null && config.getMqttBroker() != null && !config.getMqttBroker().trim().isEmpty()) {
+                        // 使用动态MQTT服务，根据设备配置的mqttBroker连接
+                        boolean sent = dynamicMqttService.sendMessage(deviceId, objectMapper.writeValueAsString(airData));
+                        if (sent) {
+                            log.debug("MQTT消息发送成功: 设备ID={}, broker={}, topic={}", 
+                                    deviceId, config.getMqttBroker(), topic);
+                        } else {
+                            log.warn("MQTT消息发送失败: 设备ID={}, broker={}, topic={}", 
+                                    deviceId, config.getMqttBroker(), topic);
+                        }
+                    } else {
+                        log.warn("设备ID={} 未配置MQTT Broker，无法发送MQTT消息", deviceId);
+                    }
                 } catch (Exception e) {
-                    log.error("MQTT消息发送失败: 设备ID={}, 主题={}", deviceId, topic, e);
+                    log.error("MQTT消息发送失败: 设备ID={}, topic={}", deviceId, topic, e);
                     // MQTT发送失败不影响数据保存，只记录错误
                 }
 
@@ -105,17 +112,36 @@ public class DataProcessingServiceImpl implements DataProcessingService {
 
                 // 推送到设备专属topic（失败不影响数据保存）
                 try {
-                    mqttGateway.sendToMqtt(objectMapper.writeValueAsString(soilData), topic);
-                    log.debug("MQTT消息发送成功: 设备ID={}, 主题={}", deviceId, topic);
+                    if (config != null && config.getMqttBroker() != null && !config.getMqttBroker().trim().isEmpty()) {
+                        // 使用动态MQTT服务，根据设备配置的mqttBroker连接
+                        boolean sent = dynamicMqttService.sendMessage(deviceId, objectMapper.writeValueAsString(soilData));
+                        if (sent) {
+                            log.debug("MQTT消息发送成功: 设备ID={}, broker={}, topic={}", 
+                                    deviceId, config.getMqttBroker(), topic);
+                        } else {
+                            log.warn("MQTT消息发送失败: 设备ID={}, broker={}, topic={}", 
+                                    deviceId, config.getMqttBroker(), topic);
+                        }
+                    } else {
+                        log.warn("设备ID={} 未配置MQTT Broker，无法发送MQTT消息", deviceId);
+                    }
                 } catch (Exception e) {
-                    log.error("MQTT消息发送失败: 设备ID={}, 主题={}", deviceId, topic, e);
+                    log.error("MQTT消息发送失败: 设备ID={}, topic={}", deviceId, topic, e);
                     // MQTT发送失败不影响数据保存，只记录错误
                 }
             } else {
                 // 其它类型，直接推送原始数据
                 try {
-                    mqttGateway.sendToMqtt(objectMapper.writeValueAsString(parsedData), topic);
-                    log.warn("收到未知数据类型: {}，原始数据已推送到MQTT主题 {}", type, topic);
+                    if (config != null && config.getMqttBroker() != null && !config.getMqttBroker().trim().isEmpty()) {
+                        boolean sent = dynamicMqttService.sendMessage(deviceId, objectMapper.writeValueAsString(parsedData));
+                        if (sent) {
+                            log.warn("收到未知数据类型: {}，原始数据已推送到MQTT主题 {}", type, topic);
+                        } else {
+                            log.warn("收到未知数据类型: {}，MQTT消息发送失败: 设备ID={}, topic={}", type, deviceId, topic);
+                        }
+                    } else {
+                        log.warn("收到未知数据类型: {}，设备ID={} 未配置MQTT Broker，无法发送MQTT消息", type, deviceId);
+                    }
                 } catch (Exception e) {
                     log.error("MQTT消息发送失败: 设备ID={}, 主题={}, 数据类型={}", deviceId, topic, type, e);
                 }

@@ -194,21 +194,6 @@ xss:
   # 需要过滤的URL路径模式
   urlPatterns: /system/*,/monitor/*,/tool/*
 
-# MQTT消息协议配置（使用RabbitMQ的MQTT插件）
-mqtt:
-  # MQTT服务器连接URI（格式：tcp://host:port）
-  server-url: ${mqtt.server-url}
-  # MQTT客户端ID（唯一标识）
-  client-id: ${mqtt.client-id}
-  # MQTT连接用户名
-  username: ${mqtt.username}
-  # MQTT连接密码
-  password: ${mqtt.password}
-  # 默认订阅/发布的主题
-  default-topic: ${mqtt.default-topic}
-  # MQTT操作完成超时时间（单位：毫秒）
-  completion-timeout: ${mqtt.completion-timeout}
-
 # 溯源系统地址配置
 codepath:
   # 溯源查询页面URL路径

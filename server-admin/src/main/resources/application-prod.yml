@@ -102,21 +102,6 @@ ollama:
   # 在线模型名称
   online-model: qwen3:8b
 
-# MQTT消息协议配置
-mqtt:
-  # MQTT服务器连接URI（生产环境地址，请修改）
-  server-uri: tcp://your-mqtt-server:1883
-  # MQTT客户端ID（生产环境唯一标识，请修改）
-  client-id: fish-dish-server-prod
-  # MQTT连接用户名（生产环境用户名，请修改）
-  username: mqtt-user
-  # MQTT连接密码（生产环境密码，必须修改）
-  password: CHANGE_THIS_TO_PRODUCTION_MQTT_PASSWORD
-  # 默认MQTT主题（生产环境主题，请修改）
-  default-topic: /fish-dish/prod/data
-  # MQTT操作完成超时时间（单位：毫秒）
-  completion-timeout: 5000
-
 # 串口通信配置
 serial:
   # 串口名称（Linux：/dev/ttyUSB0...，Windows：COM1...）
