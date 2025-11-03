@@ -1,6 +1,8 @@
 //package com.server.iot.config;
 //
+//import lombok.extern.slf4j.Slf4j;
 //import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+//import org.springframework.beans.factory.InitializingBean;
 //import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
@@ -12,8 +14,6 @@
 //import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
 //import org.springframework.messaging.MessageChannel;
 //import org.springframework.messaging.MessageHandler;
-//import org.springframework.beans.factory.InitializingBean;
-//import lombok.extern.slf4j.Slf4j;
 //
 //@Slf4j
 //@Configuration
@@ -26,7 +26,7 @@
 //    @Value("${mqtt.password}")
 //    private String password;
 //
-//    @Value("${mqtt.server-uri}")
+//    @Value("${mqtt.server-url}")
 //    private String serverUri;
 //
 //    @Value("${mqtt.client-id}")
@@ -37,12 +37,12 @@
 //
 //    @Override
 //    public void afterPropertiesSet() throws Exception {
-//        log.info("MQTT配置初始化完成 - serverUri: {}, clientId: {}, defaultTopic: {}",
+//        log.info("MQTT配置初始化完成 - serverUrl: {}, clientId: {}, defaultTopic: {}",
 //                serverUri, clientId, defaultTopic);
 //
 //        // 验证配置参数
 //        if (serverUri == null || serverUri.trim().isEmpty()) {
-//            throw new IllegalStateException("MQTT server-uri 配置不能为空");
+//            throw new IllegalStateException("MQTT server-url 配置不能为空");
 //        }
 //        if (clientId == null || clientId.trim().isEmpty()) {
 //            throw new IllegalStateException("MQTT client-id 配置不能为空");
@@ -69,7 +69,7 @@
 //        options.setKeepAliveInterval(60);
 //        options.setAutomaticReconnect(true);
 //
-//        // 设置遗嘱消息（可选）
+//        // 设置遗嘱消息
 //        options.setWill("fish-dish/status", "offline".getBytes(), 1, false);
 //
 //        factory.setConnectionOptions(options);
@@ -89,16 +89,20 @@
 //    @ServiceActivator(inputChannel = "mqttOutboundChannel")
 //    public MessageHandler mqttOutbound() {
 //        try {
-//            String outboundClientId = clientId + "_outbound_" + System.currentTimeMillis();
+//            // 使用固定的客户端ID，避免重复创建连接
+//            String outboundClientId = clientId + "_outbound";
 //            MqttPahoMessageHandler messageHandler = new MqttPahoMessageHandler(
 //                outboundClientId,
 //                mqttClientFactory()
 //            );
-//            messageHandler.setAsync(true);
+//            // 改为同步发送，确保连接建立后再发送消息
+//            messageHandler.setAsync(false);
 //            messageHandler.setDefaultTopic(defaultTopic);
 //            messageHandler.setDefaultQos(1);
+//            // 设置完成超时时间，避免消息发送超时
+//            messageHandler.setCompletionTimeout(5000);
 //
-//            log.info("MQTT消息处理器配置完成: clientId={}, defaultTopic={}",
+//            log.info("MQTT消息处理器配置完成: clientId={}, defaultTopic={}, async=false",
 //                    outboundClientId, defaultTopic);
 //
 //            return messageHandler;

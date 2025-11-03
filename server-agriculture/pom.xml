@@ -12,7 +12,7 @@
     <artifactId>server-agriculture</artifactId>
 
     <description>
-        鱼菜核心
+        核心
     </description>
 
     <dependencies>
@@ -124,6 +124,14 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.6</version>
         </dependency>
+
+        <!-- 串口通信库 -->
+        <dependency>
+            <groupId>com.fazecast</groupId>
+            <artifactId>jSerialComm</artifactId>
+            <version>2.10.4</version>
+        </dependency>
+
 
         <!-- httpmime -->
         <dependency>

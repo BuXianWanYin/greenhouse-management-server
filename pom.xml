@@ -244,7 +244,7 @@
                 <version>${server.version}</version>
             </dependency>
 
-            <!-- 鱼菜核心 -->
+            <!-- 核心 -->
             <dependency>
                 <groupId>com.server</groupId>
                 <artifactId>server-agriculture</artifactId>

@@ -9,8 +9,6 @@ import com.server.domain.dto.AgriculturePartitionFoodPageDTO;
 import com.server.domain.vo.TraceabilityDetailVO;
 import com.server.mapper.AgriculturePartitionFoodMapper;
 import com.server.mapper.AgriculturePastureMapper;
-import com.server.mapper.AgricultureWaterQualityDataMapper;
-import com.server.mapper.AgricultureWeatherDataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

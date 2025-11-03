@@ -4,9 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.server.domain.AgricultureWaterQualityData;
-import com.server.mapper.AgricultureWaterQualityDataMapper;
-import com.server.service.AgricultureWaterQualityDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.server.mapper.ParamTypeDictMapper;

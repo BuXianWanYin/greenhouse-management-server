@@ -1,95 +1,37 @@
-00:00:00.001 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-01T23:00 - 2025-11-02T00:00
-00:00:00.056 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-00:00:00.056 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-01T23:00 - 2025-11-02T00:00
-00:00:00.058 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-01:00:00.039 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityDailyStatsServiceImpl - [calculateDailyStats,41] - 开始计算水质日统计数据，时间范围：2025-11-01T00:00 - 2025-11-01T23:59:59.999999999
-01:00:00.117 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityDailyStatsServiceImpl - [calculateDailyStats,51] - 查询到 0 条原始数据
-01:00:00.117 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T00:00 - 2025-11-02T01:00
-01:00:00.163 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-01:00:00.175 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T00:00 - 2025-11-02T01:00
-01:00:00.176 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-02:00:00.004 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T01:00 - 2025-11-02T02:00
-02:00:00.053 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-02:00:00.053 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T01:00 - 2025-11-02T02:00
-02:00:00.054 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-03:00:00.003 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T02:00 - 2025-11-02T03:00
-03:00:00.008 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-03:00:00.009 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T02:00 - 2025-11-02T03:00
-03:00:00.052 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-04:00:00.015 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T03:00 - 2025-11-02T04:00
-04:00:00.060 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-04:00:00.061 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T03:00 - 2025-11-02T04:00
-04:00:00.062 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-05:00:01.552 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T04:00 - 2025-11-02T05:00
-05:00:01.597 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-05:00:01.597 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T04:00 - 2025-11-02T05:00
-05:00:01.599 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-06:00:00.013 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T05:00 - 2025-11-02T06:00
-06:00:00.019 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-06:00:00.019 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T05:00 - 2025-11-02T06:00
-06:00:00.063 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-07:00:00.003 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T06:00 - 2025-11-02T07:00
-07:00:00.008 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-07:00:00.009 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T06:00 - 2025-11-02T07:00
-07:00:00.050 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-08:00:00.012 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T07:00 - 2025-11-02T08:00
-08:00:00.017 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-08:00:00.018 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T07:00 - 2025-11-02T08:00
-08:00:00.061 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-09:00:00.014 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T08:00 - 2025-11-02T09:00
-09:00:00.019 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-09:00:00.019 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T08:00 - 2025-11-02T09:00
-09:00:00.061 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-10:00:00.010 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T09:00 - 2025-11-02T10:00
-10:00:00.066 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-10:00:00.066 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T09:00 - 2025-11-02T10:00
-10:00:00.067 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-11:00:00.014 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T10:00 - 2025-11-02T11:00
-11:00:00.059 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-11:00:00.060 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T10:00 - 2025-11-02T11:00
-11:00:00.061 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-12:00:00.015 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T11:00 - 2025-11-02T12:00
-12:00:00.021 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-12:00:00.021 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T11:00 - 2025-11-02T12:00
-12:00:00.062 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-13:00:00.007 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T12:00 - 2025-11-02T13:00
-13:00:00.051 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-13:00:00.051 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T12:00 - 2025-11-02T13:00
-13:00:00.052 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-14:00:00.008 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T13:00 - 2025-11-02T14:00
-14:00:00.054 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-14:00:00.054 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T13:00 - 2025-11-02T14:00
-14:00:00.055 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-15:00:00.013 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T14:00 - 2025-11-02T15:00
-15:00:00.018 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-15:00:00.019 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T14:00 - 2025-11-02T15:00
-15:00:00.063 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-16:00:00.010 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T15:00 - 2025-11-02T16:00
-16:00:00.014 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-16:00:00.014 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T15:00 - 2025-11-02T16:00
-16:00:00.057 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-17:00:00.013 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T16:00 - 2025-11-02T17:00
-17:00:00.063 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-17:00:00.063 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T16:00 - 2025-11-02T17:00
-17:00:00.066 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-18:00:00.014 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T17:00 - 2025-11-02T18:00
-18:00:00.020 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-18:00:00.020 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T17:00 - 2025-11-02T18:00
-18:00:00.065 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-18:10:30.441 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-18:16:23.048 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 237992 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
-18:16:23.048 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
-18:16:23.050 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
-18:16:25.692 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
-18:16:25.693 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
-18:16:25.693 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
-18:16:25.877 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
-18:16:27.033 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
-18:16:31.905 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
-18:16:31.927 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-18:16:31.927 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
-18:16:31.928 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
-18:16:31.929 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+01:09:39.194 [http-nio-8080-exec-48] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+01:17:46.477 [http-nio-8080-exec-59] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+01:19:59.444 [http-nio-8080-exec-64] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+01:20:04.177 [schedule-pool-2] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
+01:20:38.019 [http-nio-8080-exec-84] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+01:20:39.405 [http-nio-8080-exec-85] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
+01:20:39.548 [http-nio-8080-exec-85] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=0), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
+01:21:08.049 [http-nio-8080-exec-95] INFO  c.s.h.MyMetaObjectHandler - [insertFill,18] - start insert fill ....
+01:21:08.083 [http-nio-8080-exec-95] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=1), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
+08:07:27.618 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+08:08:52.891 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+08:08:52.893 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 204732 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+08:08:52.894 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+08:08:55.209 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+08:08:55.210 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+08:08:55.210 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+08:08:55.360 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+08:08:56.351 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+08:08:59.749 [main] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
+08:08:59.755 [main] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
+08:08:59.890 [main] INFO  o.a.c.c.StandardService - [log,173] - Stopping service [Tomcat]
+08:09:58.091 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+08:09:58.097 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 203184 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+08:09:58.097 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+08:10:00.302 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+08:10:00.303 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+08:10:00.303 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+08:10:00.445 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+08:10:01.338 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+08:10:04.501 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+08:10:04.511 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+08:10:04.511 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+08:10:04.512 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+08:10:04.513 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
   Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -97,72 +39,41 @@
   Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
   Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
-18:16:31.929 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-18:16:31.929 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
-18:16:31.929 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@740ddb41
-18:16:34.208 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
-18:16:34.408 [http-nio-8080-exec-3] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-18:16:34.502 [http-nio-8080-exec-3] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-18:16:34.502 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-18:16:34.508 [http-nio-8080-exec-4] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-18:16:34.713 [http-nio-8080-exec-5] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-18:16:35.025 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
-18:16:35.041 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 12.393 seconds (JVM running for 13.223)
-18:16:36.365 [http-nio-8080-exec-6] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-18:16:36.614 [http-nio-8080-exec-7] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-18:18:01.047 [http-nio-8080-exec-20] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-18:18:01.047 [http-nio-8080-exec-22] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-18:18:01.047 [http-nio-8080-exec-23] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-18:18:01.047 [http-nio-8080-exec-21] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-18:18:01.047 [http-nio-8080-exec-25] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-18:18:01.047 [http-nio-8080-exec-24] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-18:18:01.951 [http-nio-8080-exec-26] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-18:18:02.242 [http-nio-8080-exec-27] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:18:04.643 [schedule-pool-1] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
-18:18:38.737 [http-nio-8080-exec-64] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:18:46.474 [http-nio-8080-exec-65] INFO  c.s.h.MyMetaObjectHandler - [insertFill,18] - start insert fill ....
-18:18:46.528 [http-nio-8080-exec-65] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=0), ScaleVO(label=土壤传感器, value=1), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
-18:19:19.718 [http-nio-8080-exec-68] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:19:36.014 [http-nio-8080-exec-87] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:19:40.058 [http-nio-8080-exec-88] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:19:43.109 [http-nio-8080-exec-90] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
-18:19:43.303 [http-nio-8080-exec-90] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=0), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
-18:19:43.371 [http-nio-8080-exec-93] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
-18:19:43.417 [http-nio-8080-exec-93] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=0), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
-18:20:20.279 [http-nio-8080-exec-11] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:21:15.183 [http-nio-8080-exec-25] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:22:25.535 [http-nio-8080-exec-44] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:22:28.539 [http-nio-8080-exec-43] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
-18:22:28.576 [http-nio-8080-exec-43] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=0), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
-18:22:29.304 [http-nio-8080-exec-47] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
-18:22:29.337 [http-nio-8080-exec-47] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=0), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
-18:43:46.632 [http-nio-8080-exec-75] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:44:45.829 [http-nio-8080-exec-84] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:55:02.477 [http-nio-8080-exec-42] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:55:13.904 [http-nio-8080-exec-46] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:55:41.388 [http-nio-8080-exec-59] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:56:17.753 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-18:56:20.124 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-18:56:20.133 [http-nio-8080-exec-63] INFO  c.s.sse.SseServer - [lambda$1,35] - [AGRICULTURE]连接超时...................
-18:56:20.136 [http-nio-8080-exec-63] INFO  c.s.sse.SseServer - [lambda$0,31] - [AGRICULTURE]结束连接...................
-18:56:20.152 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
-18:56:20.152 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-18:56:20.152 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
-18:56:20.162 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
-18:56:20.164 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
-18:56:24.811 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 234732 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
-18:56:24.811 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
-18:56:24.813 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
-18:56:27.283 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
-18:56:27.285 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
-18:56:27.285 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
-18:56:27.458 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
-18:56:28.610 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
-18:56:32.588 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
-18:56:32.602 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-18:56:32.602 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
-18:56:32.603 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
-18:56:32.603 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+08:10:04.513 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+08:10:04.513 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+08:10:04.513 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@4c343088
+08:10:06.158 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+08:10:06.725 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+08:10:06.736 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 8.956 seconds (JVM running for 9.652)
+08:10:17.246 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+08:10:17.508 [http-nio-8080-exec-1] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+08:10:20.524 [http-nio-8080-exec-2] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+08:10:22.258 [http-nio-8080-exec-4] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+08:10:26.738 [schedule-pool-1] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
+08:21:29.866 [http-nio-8080-exec-35] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+12:23:24.846 [http-nio-8080-exec-97] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+12:23:39.354 [schedule-pool-3] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
+12:23:59.689 [http-nio-8080-exec-14] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+12:24:41.466 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+12:24:44.093 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+12:24:44.123 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+12:24:44.123 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+12:24:44.123 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+12:24:44.127 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
+12:24:44.131 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
+12:24:47.114 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+12:24:47.117 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 233476 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+12:24:47.117 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+12:24:50.125 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+12:24:50.126 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+12:24:50.127 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+12:24:50.336 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+12:24:51.401 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+12:24:55.502 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+12:24:55.517 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+12:24:55.517 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+12:24:55.518 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+12:24:55.519 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
   Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -170,34 +81,69 @@
   Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
   Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
-18:56:32.603 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-18:56:32.603 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
-18:56:32.604 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@66e6e5e9
-18:56:34.688 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
-18:56:34.918 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-18:56:34.998 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-18:56:34.998 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-18:56:35.395 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
-18:56:35.409 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 10.976 seconds (JVM running for 11.709)
-18:56:35.591 [http-nio-8080-exec-3] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-18:56:35.605 [http-nio-8080-exec-4] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-18:56:37.591 [http-nio-8080-exec-5] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-18:56:37.605 [http-nio-8080-exec-7] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-18:57:11.155 [http-nio-8080-exec-25] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-18:58:34.738 [http-nio-8080-exec-58] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-19:00:00.006 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算水质小时统计数据，时间范围：2025-11-02T18:00 - 2025-11-02T19:00
-19:00:00.079 [scheduling-1] INFO  c.s.s.i.AgricultureWaterQualityHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-19:00:00.081 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,41] - 开始计算小时统计数据，时间范围：2025-11-02T18:00 - 2025-11-02T19:00
-19:00:00.086 [scheduling-1] INFO  c.s.s.i.AgricultureWeatherHourlyStatsServiceImpl - [calculateHourlyStats,51] - 查询到 0 条原始数据
-19:00:35.273 [http-nio-8080-exec-100] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-19:00:35.273 [http-nio-8080-exec-98] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-19:00:35.273 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-19:00:35.273 [http-nio-8080-exec-99] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-19:00:35.273 [http-nio-8080-exec-3] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-19:00:35.273 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-19:00:36.323 [http-nio-8080-exec-4] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-19:00:36.327 [http-nio-8080-exec-5] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-19:00:54.648 [http-nio-8080-exec-13] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-19:01:33.642 [http-nio-8080-exec-19] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-19:01:54.326 [http-nio-8080-exec-20] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-19:02:17.370 [http-nio-8080-exec-23] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+12:24:55.519 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+12:24:55.519 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+12:24:55.520 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@1c5c0d2a
+12:24:57.578 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+12:24:57.855 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:24:57.933 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+12:24:57.933 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+12:24:58.005 [http-nio-8080-exec-3] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+12:24:58.019 [http-nio-8080-exec-4] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+12:24:58.248 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+12:24:58.261 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 11.499 seconds (JVM running for 12.369)
+12:25:00.056 [http-nio-8080-exec-5] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+12:25:00.080 [http-nio-8080-exec-10] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+12:25:52.372 [http-nio-8080-exec-6] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+12:25:52.372 [http-nio-8080-exec-17] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+12:25:52.372 [http-nio-8080-exec-16] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+12:25:52.372 [http-nio-8080-exec-22] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+12:25:52.372 [http-nio-8080-exec-14] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+12:25:52.372 [http-nio-8080-exec-15] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+12:25:52.940 [http-nio-8080-exec-19] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+12:25:53.250 [http-nio-8080-exec-20] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+12:27:54.353 [http-nio-8080-exec-31] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+12:29:29.858 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+12:29:32.196 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+12:29:32.203 [http-nio-8080-exec-36] INFO  c.s.sse.SseServer - [lambda$1,35] - [AGRICULTURE]连接超时...................
+12:29:32.203 [http-nio-8080-exec-35] INFO  c.s.sse.SseServer - [lambda$1,35] - [AGRICULTURE]连接超时...................
+12:29:32.205 [http-nio-8080-exec-36] INFO  c.s.sse.SseServer - [lambda$0,31] - [AGRICULTURE]结束连接...................
+12:29:32.205 [http-nio-8080-exec-35] INFO  c.s.sse.SseServer - [lambda$0,31] - [AGRICULTURE]结束连接...................
+12:29:32.221 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+12:29:32.221 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+12:29:32.222 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+12:29:32.226 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
+12:29:32.233 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
+12:29:35.933 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+12:29:35.934 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 238424 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+12:29:35.936 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+12:29:39.241 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+12:29:39.242 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+12:29:39.242 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+12:29:39.448 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+12:29:40.804 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+12:29:44.794 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+12:29:44.808 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+12:29:44.808 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+12:29:44.809 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+12:29:44.809 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+12:29:44.810 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+12:29:44.810 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+12:29:44.810 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@6e925a46
+12:29:46.874 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+12:29:47.033 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:29:47.129 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+12:29:47.129 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+12:29:47.601 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+12:29:47.614 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 12.07 seconds (JVM running for 12.822)
+12:29:48.728 [http-nio-8080-exec-3] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+12:29:48.743 [http-nio-8080-exec-4] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+12:29:49.542 [http-nio-8080-exec-5] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+12:29:49.804 [http-nio-8080-exec-6] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
