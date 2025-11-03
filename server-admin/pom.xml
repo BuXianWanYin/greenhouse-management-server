@@ -63,7 +63,7 @@
         <!-- app -->
         <dependency>
             <groupId>com.server</groupId>
-            <artifactId>server-app</artifactId>
+            <artifactId>server-iot</artifactId>
         </dependency>
 
         <!-- 代码生成 -->

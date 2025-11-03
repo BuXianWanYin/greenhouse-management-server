@@ -1,17 +1,19 @@
 
-package com.server.iot.util;
+package com.server.util;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.*;
 
 /**
  * 串口命令执行器
-   通过单线程队列机制，将所有串口操作请求串行化执行，确保同一时刻只有一个操作在使用串口。
+  通过单线程队列机制，将所有串口操作请求串行化执行，确保同一时刻只有一个操作在使用串口。
  * 多个传感器设备需要通过同一个串口进行数据采集时，必须通过此执行器提交任务，
  * 避免多个线程同时访问串口造成的数据混乱和通信失败。
  */
 @Component
+@ConditionalOnProperty(name = "iot.enabled", havingValue = "true")
 public class SerialCommandExecutor {
     
     /**

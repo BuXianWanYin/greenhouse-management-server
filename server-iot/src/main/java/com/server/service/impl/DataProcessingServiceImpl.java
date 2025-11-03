@@ -1,14 +1,17 @@
-package com.server.iot.service.impl;
+package com.server.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.server.domain.AgricultureAirData;
 import com.server.domain.AgricultureDeviceMqttConfig;
 import com.server.domain.AgricultureSoilData;
-import com.server.iot.gateway.MqttGateway;
-import com.server.iot.service.DataProcessingService;
-import com.server.service.*;
+import com.server.gateway.MqttGateway;
+import com.server.service.AgricultureAirDataService;
+import com.server.service.AgricultureDeviceMqttConfigService;
+import com.server.service.AgricultureSoilDataService;
+import com.server.service.DataProcessingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,7 @@ import java.util.Objects;
  * 负责对从传感器接收并解析后的数据进行后续处理。
  */
 @Service
+@ConditionalOnProperty(name = "iot.enabled", havingValue = "true")
 public class DataProcessingServiceImpl implements DataProcessingService {
 
     private static final Logger log = LoggerFactory.getLogger(DataProcessingServiceImpl.class);

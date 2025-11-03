@@ -11,11 +11,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.server.constant.RabbitMQConstant;
 import com.server.core.text.Convert;
 import com.server.utils.SecurityUtils;
-import org.fisco.bcos.sdk.client.Client;
-import org.fisco.bcos.sdk.model.TransactionReceipt;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.server.mapper.AgricultureDeviceSensorAlertMapper;
 import com.server.domain.AgricultureDeviceSensorAlert;
@@ -37,9 +34,6 @@ public class AgricultureDeviceSensorAlertServiceImpl extends ServiceImpl<Agricul
 
     @Autowired
     private AgricultureDeviceSensorAlertMapper agricultureDeviceSensorAlertMapper;
-
-    @Autowired(required = false)
-    private Client client;
 
     @Autowired
     private RabbitTemplate rabbitTemplate;

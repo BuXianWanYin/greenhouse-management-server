@@ -1,12 +1,12 @@
-package com.server.iot.service;
+package com.server.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.server.domain.AgricultureDevice;
-import com.server.iot.util.SerialCommandExecutor;
-import com.server.service.AgricultureDeviceService;
+import com.server.util.SerialCommandExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
@@ -28,6 +28,7 @@ import java.util.Map;
  * 5. 将解析后的数据交给DataProcessingService进行后续处理和存储。
  */
 @Service
+@ConditionalOnProperty(name = "iot.enabled", havingValue = "true")
 public class SensorCommunicationService {
 
     private static final Logger log = LoggerFactory.getLogger(SensorCommunicationService.class);

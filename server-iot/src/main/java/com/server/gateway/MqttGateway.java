@@ -1,5 +1,6 @@
-package com.server.iot.gateway;
+package com.server.gateway;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.mqtt.support.MqttHeaders;
 import org.springframework.messaging.handler.annotation.Header;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @MessagingGateway(defaultRequestChannel = "mqttOutboundChannel")
+@ConditionalOnProperty(name = "iot.enabled", havingValue = "true")
 public interface MqttGateway {
 
     void sendToMqtt(String payload);

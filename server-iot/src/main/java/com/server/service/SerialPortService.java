@@ -1,9 +1,10 @@
-package com.server.iot.service;
+package com.server.service;
 
 import com.fazecast.jSerialComm.SerialPort;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@ConditionalOnProperty(name = "iot.enabled", havingValue = "true")
 public class SerialPortService {
 
     private static final Logger log = LoggerFactory.getLogger(SerialPortService.class);

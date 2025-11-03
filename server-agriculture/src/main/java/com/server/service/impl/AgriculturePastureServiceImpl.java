@@ -15,16 +15,11 @@ import com.server.domain.AgricultureClass;
 import com.server.domain.AgricultureCropBatch;
 import com.server.domain.dto.AgriculturePastureDTO;
 import com.server.exception.ServiceException;
-import com.server.fisco.bcos.AgriculturePastureFB;
 import com.server.mapper.AgriculturePastureMapper;
 import com.server.utils.SecurityUtils;
 import org.apache.commons.lang3.ObjectUtils;
-import org.fisco.bcos.sdk.client.Client;
-import org.fisco.bcos.sdk.crypto.keypair.CryptoKeyPair;
-import org.fisco.bcos.sdk.transaction.model.exception.ContractException;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.server.domain.AgriculturePasture;
 import com.server.service.AgriculturePastureService;
@@ -45,12 +40,6 @@ public class AgriculturePastureServiceImpl extends ServiceImpl<AgriculturePastur
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
-
-    @Autowired(required = false)
-    private Client client;
-
-    @Value("${fisco.enabled}")
-    private String fiscoEnabled;
 
     @Autowired
     private AgricultureCropBatchService agricultureCropBatchService;

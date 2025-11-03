@@ -1,4 +1,4 @@
-package com.server.iot.service;
+package com.server.service;
 
 import java.util.Map;
 

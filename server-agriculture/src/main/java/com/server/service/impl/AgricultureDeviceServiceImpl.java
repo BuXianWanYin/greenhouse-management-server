@@ -16,18 +16,14 @@ import com.server.domain.AgricultureDeviceType;
 import com.server.domain.AgriculturePasture;
 import com.server.domain.vo.AgricultureDeviceVO;
 import com.server.exception.ServiceException;
-import com.server.fisco.bcos.AgricultureDeviceFB;
 import com.server.mapper.*;
 import com.server.service.AgricultureDeviceService;
 import com.server.utils.SecurityUtils;
 import com.server.utils.StringUtils;
 import org.apache.commons.lang3.ObjectUtils;
-import org.fisco.bcos.sdk.client.Client;
-import org.fisco.bcos.sdk.transaction.model.exception.ContractException;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import static com.server.constant.RabbitMQConstant.*;
@@ -51,10 +47,6 @@ public class AgricultureDeviceServiceImpl extends ServiceImpl<AgricultureDeviceM
     private AgricultureDeviceTypeMapper agricultureDeviceTypeMapper;
     @Autowired
     private RabbitTemplate rabbitTemplate;
-    @Autowired(required = false)
-    private Client client;
-    @Value("${fisco.enabled}")
-    private String fiscoEnabled;
 
     /**
      * 查询设备信息

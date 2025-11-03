@@ -19,7 +19,7 @@
         <module>server-quartz</module>
         <module>server-agriculture</module>
         <module>server-data</module>
-        <module>server-app</module>
+        <module>server-iot</module>
     </modules>
     <description>管理系统</description>
 
@@ -261,7 +261,7 @@
             <!-- app -->
             <dependency>
                 <groupId>com.server</groupId>
-                <artifactId>server-app</artifactId>
+                <artifactId>server-iot</artifactId>
                 <version>${server.version}</version>
             </dependency>
         </dependencies>
