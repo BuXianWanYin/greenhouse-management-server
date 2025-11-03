@@ -105,18 +105,17 @@ ollama:
   # 在线模型名称
   online-model: qwen3:8b
 
-# MQTT消息协议配置
+# MQTT消息协议配置（EMQX远程服务器）
 mqtt:
-  # MQTT服务器连接URI（格式：tcp://host:port）
-  server-url: tcp://localhost:1883
-  # MQTT客户端ID
-  client-id: fish-dish-server
-  # MQTT连接用户名
-  username: guest
-  # MQTT连接密码
-  password: guest
+  server-url: tcp://43.139.89.73:1883
+  # MQTT客户端ID（每个客户端必须唯一）
+  client-id: greenhouse-management-server-dev
+  # MQTT连接用户名（EMQX认证用户名）
+  username: bxwy
+  # MQTT连接密码（EMQX认证密码）
+  password: Guajix521..
   # 默认MQTT主题
-  default-topic: /fish-dish/data
+  default-topic: /greenhouse-management/data
   # MQTT操作完成超时时间（单位：毫秒）
   completion-timeout: 5000
 

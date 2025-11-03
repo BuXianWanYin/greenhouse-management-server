@@ -527,3 +527,355 @@
 20:54:51.775 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.2, 湿度=17.2, pH=6.6
 20:54:51.979 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
 20:54:52.066 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:10:17.177 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+21:10:17.181 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 191392 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+21:10:17.182 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+21:10:19.478 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+21:10:19.479 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+21:10:19.479 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+21:10:19.640 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+21:10:20.639 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+21:10:24.021 [main] INFO  c.s.c.MqttConfig - [afterPropertiesSet,42] - MQTT配置初始化完成 - serverUrl: tcp://localhost:1883, clientId: fish-dish-server, defaultTopic: /fish-dish/data
+21:10:24.029 [main] INFO  c.s.s.SerialPortService - [init,36] - 正在初始化串口服务...
+21:10:24.030 [main] INFO  c.s.s.SerialPortService - [connect,41] - 正在尝试连接串口: COM5，波特率: 9600
+21:10:24.067 [main] INFO  c.s.s.SerialPortService - [connect,46] - 成功打开串口: COM5
+21:10:24.274 [main] INFO  c.s.s.SensorCommunicationService - [init,54] - 正在初始化传感器通信服务...
+21:10:24.350 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+21:10:24.364 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+21:10:24.364 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+21:10:24.365 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+21:10:24.366 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+21:10:24.366 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+21:10:24.366 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+21:10:24.366 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@46e2a773
+21:10:25.168 [main] INFO  c.s.c.MqttConfig - [mqttClientFactory,62] - 配置MQTT连接: serverUri=tcp://localhost:1883, username=guest, clientId=fish-dish-server
+21:10:25.191 [main] INFO  c.s.c.MqttConfig - [mqttOutboundChannel,83] - 创建MQTT出站通道: mqttOutboundChannel
+21:10:25.224 [main] INFO  c.s.c.MqttConfig - [mqttOutbound,107] - MQTT消息处理器配置完成: clientId=fish-dish-server_outbound, defaultTopic=/fish-dish/data, async=false
+21:10:26.251 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+21:10:26.904 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+21:10:26.916 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 10.063 seconds (JVM running for 10.676)
+21:10:26.949 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,83] - 查询到 2 个传感器设备
+21:10:26.949 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,86] - 设备信息: 名称=123123, ID=58, 类型ID=1, 指令=01 03 00 00 00 03 05 CB
+21:10:26.949 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,96] - 启动传感器采集任务: 123123 (ID: 58, 类型: 1)
+21:10:26.950 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,86] - 设备信息: 名称=土壤8合一传感器, ID=59, 类型ID=2, 指令=02 03 00 00 00 20 44 21
+21:10:26.950 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,96] - 启动传感器采集任务: 土壤8合一传感器 (ID: 59, 类型: 2)
+21:10:26.951 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:10:27.156 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 52 00 1C 0C C0
+21:10:27.156 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.4, type=air, deviceId=58, deviceName=123123}
+21:10:27.268 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.4, 光照=28.0
+21:10:27.615 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:10:27.819 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 B2 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 91 8B
+21:10:27.819 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.8, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:10:27.829 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.8, pH=6.6
+21:10:31.951 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:10:32.156 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:10:32.156 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:10:32.162 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:10:32.454 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:10:32.659 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 52 00 1C 0C C0
+21:10:32.659 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.4, type=air, deviceId=58, deviceName=123123}
+21:10:32.665 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.4, 光照=28.0
+21:10:36.952 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:10:37.159 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 B2 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 91 8B
+21:10:37.159 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.8, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:10:37.164 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.8, pH=6.6
+21:10:37.453 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:10:37.656 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 51 00 1C FC C0
+21:10:37.657 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.3, type=air, deviceId=58, deviceName=123123}
+21:10:37.662 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.3, 光照=28.0
+21:10:41.953 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:10:42.156 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:10:42.156 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:10:42.162 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:10:42.454 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:10:42.657 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 51 00 1C FC C0
+21:10:42.657 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.3, type=air, deviceId=58, deviceName=123123}
+21:10:42.663 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.3, 光照=28.0
+21:10:46.954 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:10:47.157 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AC 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 B9 81
+21:10:47.157 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.2, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:10:47.166 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.2, pH=6.6
+21:10:47.456 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:10:47.659 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 50 00 1C AD 00
+21:10:47.659 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.2, type=air, deviceId=58, deviceName=123123}
+21:10:47.664 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.2, 光照=28.0
+21:10:51.954 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:10:52.158 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 51 00 1C FC C0
+21:10:52.159 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.3, type=air, deviceId=58, deviceName=123123}
+21:10:52.164 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.3, 光照=28.0
+21:10:52.454 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:10:52.657 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:10:52.657 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:10:52.664 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:10:56.954 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:10:57.158 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 B2 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 91 8B
+21:10:57.158 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.8, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:10:57.163 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.8, pH=6.6
+21:10:57.455 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:10:57.659 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 52 00 1C 0C C0
+21:10:57.660 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.4, type=air, deviceId=58, deviceName=123123}
+21:10:57.664 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.4, 光照=28.0
+21:11:01.955 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:11:02.158 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:11:02.158 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:11:02.164 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:11:02.456 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:11:02.659 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 51 00 1C FC C0
+21:11:02.659 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.3, type=air, deviceId=58, deviceName=123123}
+21:11:02.664 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.3, 光照=28.0
+21:11:06.956 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:11:07.160 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 B4 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 99 89
+21:11:07.160 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=18.0, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:11:07.164 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=18.0, pH=6.6
+21:11:07.457 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:11:07.659 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 51 00 1C FC C0
+21:11:07.660 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.3, type=air, deviceId=58, deviceName=123123}
+21:11:07.665 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.3, 光照=28.0
+21:11:11.956 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:11:12.159 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 51 00 1C FC C0
+21:11:12.160 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.3, type=air, deviceId=58, deviceName=123123}
+21:11:12.164 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.3, 光照=28.0
+21:11:12.457 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:11:12.659 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:11:12.660 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:11:12.664 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:11:16.957 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:11:17.160 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 51 00 1C FC C0
+21:11:17.160 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.3, type=air, deviceId=58, deviceName=123123}
+21:11:17.167 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.3, 光照=28.0
+21:11:17.459 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:11:17.662 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 B2 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 91 8B
+21:11:17.662 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.8, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:11:17.668 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.8, pH=6.6
+21:11:21.957 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:11:22.160 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AC 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 B9 81
+21:11:22.161 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.2, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:11:22.167 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.2, pH=6.6
+21:11:22.459 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:11:22.663 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 50 00 1C AD 00
+21:11:22.663 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.2, type=air, deviceId=58, deviceName=123123}
+21:11:22.669 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.2, 光照=28.0
+21:11:26.958 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:11:27.162 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 50 00 1C AD 00
+21:11:27.162 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.2, type=air, deviceId=58, deviceName=123123}
+21:11:27.167 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.2, 光照=28.0
+21:11:27.461 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:11:27.664 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AC 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 B9 81
+21:11:27.664 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.2, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:11:27.669 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.2, pH=6.6
+21:11:31.959 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:11:32.162 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AC 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 B9 81
+21:11:32.162 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.2, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:11:32.167 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.2, pH=6.6
+21:11:32.461 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:11:32.664 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 51 00 1C FC C0
+21:11:32.664 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.3, type=air, deviceId=58, deviceName=123123}
+21:11:32.668 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.3, 光照=28.0
+21:11:33.090 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+21:13:32.132 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+21:13:32.136 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 235380 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+21:13:32.137 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+21:13:34.484 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+21:13:34.485 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+21:13:34.487 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+21:13:34.626 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+21:13:35.632 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+21:13:39.400 [main] INFO  c.s.c.MqttConfig - [afterPropertiesSet,42] - MQTT配置初始化完成 - serverUrl: tcp://43.139.89.73:8083, clientId: greenhouse-management-server-dev, defaultTopic: /greenhouse-management/data
+21:13:39.412 [main] INFO  c.s.s.SerialPortService - [init,36] - 正在初始化串口服务...
+21:13:39.412 [main] INFO  c.s.s.SerialPortService - [connect,41] - 正在尝试连接串口: COM5，波特率: 9600
+21:13:39.451 [main] INFO  c.s.s.SerialPortService - [connect,46] - 成功打开串口: COM5
+21:13:39.661 [main] INFO  c.s.s.SensorCommunicationService - [init,54] - 正在初始化传感器通信服务...
+21:13:39.736 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+21:13:39.749 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+21:13:39.750 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+21:13:39.751 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+21:13:39.751 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+21:13:39.752 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+21:13:39.752 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+21:13:39.752 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@1703e50d
+21:13:40.587 [main] INFO  c.s.c.MqttConfig - [mqttClientFactory,62] - 配置MQTT连接: serverUri=tcp://43.139.89.73:8083, username=bxwy, clientId=greenhouse-management-server-dev
+21:13:40.610 [main] INFO  c.s.c.MqttConfig - [mqttOutboundChannel,83] - 创建MQTT出站通道: mqttOutboundChannel
+21:13:40.643 [main] INFO  c.s.c.MqttConfig - [mqttOutbound,107] - MQTT消息处理器配置完成: clientId=greenhouse-management-server-dev_outbound, defaultTopic=/greenhouse-management/data, async=false
+21:13:41.880 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+21:13:42.605 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+21:13:42.617 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 10.845 seconds (JVM running for 11.574)
+21:13:42.653 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,83] - 查询到 2 个传感器设备
+21:13:42.654 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,86] - 设备信息: 名称=123123, ID=58, 类型ID=1, 指令=01 03 00 00 00 03 05 CB
+21:13:42.654 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,96] - 启动传感器采集任务: 123123 (ID: 58, 类型: 1)
+21:13:42.654 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,86] - 设备信息: 名称=土壤8合一传感器, ID=59, 类型ID=2, 指令=02 03 00 00 00 20 44 21
+21:13:42.654 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,96] - 启动传感器采集任务: 土壤8合一传感器 (ID: 59, 类型: 2)
+21:13:42.654 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:13:42.862 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 50 00 1C AD 00
+21:13:42.862 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.2, type=air, deviceId=58, deviceName=123123}
+21:13:42.986 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.2, 光照=28.0
+21:13:48.032 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:13:48.236 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:13:48.237 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:13:48.252 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:13:48.534 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:13:48.739 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 50 00 1D 6C C0
+21:13:48.739 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=29.0, pastureId=71, temperature=24.5, humidity=59.2, type=air, deviceId=58, deviceName=123123}
+21:13:48.747 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.2, 光照=29.0
+21:13:49.034 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:13:49.240 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:13:49.240 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:13:49.248 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:13:52.656 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:13:52.861 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 50 00 1D 6C C0
+21:13:52.861 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=29.0, pastureId=71, temperature=24.5, humidity=59.2, type=air, deviceId=58, deviceName=123123}
+21:13:52.868 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.2, 光照=29.0
+21:13:53.156 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:13:53.361 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:13:53.361 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:13:53.370 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:13:58.372 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:13:58.576 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 B2 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 91 8B
+21:13:58.576 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.8, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:13:58.583 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.8, pH=6.6
+21:13:58.875 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:13:59.079 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 50 00 1D 6C C0
+21:13:59.080 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=29.0, pastureId=71, temperature=24.5, humidity=59.2, type=air, deviceId=58, deviceName=123123}
+21:13:59.086 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.2, 光照=29.0
+21:14:02.657 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:14:02.861 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 50 00 1D 6C C0
+21:14:02.861 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=29.0, pastureId=71, temperature=24.5, humidity=59.2, type=air, deviceId=58, deviceName=123123}
+21:14:02.868 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.2, 光照=29.0
+21:14:03.160 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:14:03.363 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 B2 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 91 8B
+21:14:03.364 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.8, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:14:03.371 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.8, pH=6.6
+21:14:07.658 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:14:07.860 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:14:07.861 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:14:07.867 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:14:12.869 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:14:13.081 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 50 00 1D 6C C0
+21:14:13.081 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=29.0, pastureId=71, temperature=24.5, humidity=59.2, type=air, deviceId=58, deviceName=123123}
+21:14:13.085 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.2, 光照=29.0
+21:14:13.370 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:14:13.581 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 50 00 1D 6C C0
+21:14:13.581 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=29.0, pastureId=71, temperature=24.5, humidity=59.2, type=air, deviceId=58, deviceName=123123}
+21:14:13.586 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.2, 光照=29.0
+21:14:13.871 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:14:14.079 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AC 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 B9 81
+21:14:14.079 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.2, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:14:14.084 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.2, pH=6.6
+21:14:17.659 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:14:17.864 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 4F 00 1D 5D 06
+21:14:17.864 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=29.0, pastureId=71, temperature=24.5, humidity=59.1, type=air, deviceId=58, deviceName=123123}
+21:14:17.871 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.1, 光照=29.0
+21:14:18.160 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:14:18.365 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:14:18.365 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:14:18.373 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:14:22.667 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:14:22.870 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 4F 00 1C 9C C6
+21:14:22.871 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.1, type=air, deviceId=58, deviceName=123123}
+21:14:22.879 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.1, 光照=28.0
+21:14:27.896 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:14:28.102 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AC 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 B9 81
+21:14:28.102 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.2, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:14:28.107 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.2, pH=6.6
+21:14:28.398 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:14:28.601 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 50 00 1D 6C C0
+21:14:28.601 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=29.0, pastureId=71, temperature=24.5, humidity=59.2, type=air, deviceId=58, deviceName=123123}
+21:14:28.606 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.2, 光照=29.0
+21:14:28.898 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:14:29.115 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:14:29.115 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:14:29.120 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:14:32.690 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:14:32.907 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 50 00 1C AD 00
+21:14:32.908 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.2, type=air, deviceId=58, deviceName=123123}
+21:14:32.912 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.2, 光照=28.0
+21:14:33.191 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:14:33.407 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:14:33.407 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:14:33.412 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:14:37.704 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:14:37.908 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 50 00 1D 6C C0
+21:14:37.908 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=29.0, pastureId=71, temperature=24.5, humidity=59.2, type=air, deviceId=58, deviceName=123123}
+21:14:37.913 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.2, 光照=29.0
+21:14:42.927 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:14:43.131 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 B2 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 91 8B
+21:14:43.131 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.8, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:14:43.136 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.8, pH=6.6
+21:14:43.428 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:14:43.632 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:14:43.632 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:14:43.636 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:14:43.929 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:14:44.132 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 51 00 1D 3D 00
+21:14:44.132 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=29.0, pastureId=71, temperature=24.5, humidity=59.3, type=air, deviceId=58, deviceName=123123}
+21:14:44.136 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.3, 光照=29.0
+21:14:44.433 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+21:16:44.930 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+21:16:44.934 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 145000 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+21:16:44.934 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+21:16:47.256 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+21:16:47.258 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+21:16:47.258 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+21:16:47.390 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+21:16:48.419 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+21:16:52.128 [main] INFO  c.s.c.MqttConfig - [afterPropertiesSet,42] - MQTT配置初始化完成 - serverUrl: tcp://43.139.89.73:1883, clientId: greenhouse-management-server-dev, defaultTopic: /greenhouse-management/data
+21:16:52.137 [main] INFO  c.s.s.SerialPortService - [init,36] - 正在初始化串口服务...
+21:16:52.138 [main] INFO  c.s.s.SerialPortService - [connect,41] - 正在尝试连接串口: COM5，波特率: 9600
+21:16:52.176 [main] INFO  c.s.s.SerialPortService - [connect,46] - 成功打开串口: COM5
+21:16:52.404 [main] INFO  c.s.s.SensorCommunicationService - [init,54] - 正在初始化传感器通信服务...
+21:16:52.482 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+21:16:52.493 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+21:16:52.493 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+21:16:52.494 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+21:16:52.495 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+21:16:52.495 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+21:16:52.495 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+21:16:52.495 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@28fa0ff8
+21:16:53.419 [main] INFO  c.s.c.MqttConfig - [mqttClientFactory,62] - 配置MQTT连接: serverUri=tcp://43.139.89.73:1883, username=bxwy, clientId=greenhouse-management-server-dev
+21:16:53.439 [main] INFO  c.s.c.MqttConfig - [mqttOutboundChannel,83] - 创建MQTT出站通道: mqttOutboundChannel
+21:16:53.468 [main] INFO  c.s.c.MqttConfig - [mqttOutbound,107] - MQTT消息处理器配置完成: clientId=greenhouse-management-server-dev_outbound, defaultTopic=/greenhouse-management/data, async=false
+21:16:54.483 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+21:16:55.092 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+21:16:55.104 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 10.487 seconds (JVM running for 11.146)
+21:16:55.142 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,83] - 查询到 2 个传感器设备
+21:16:55.142 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,86] - 设备信息: 名称=123123, ID=58, 类型ID=1, 指令=01 03 00 00 00 03 05 CB
+21:16:55.142 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,96] - 启动传感器采集任务: 123123 (ID: 58, 类型: 1)
+21:16:55.143 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,86] - 设备信息: 名称=土壤8合一传感器, ID=59, 类型ID=2, 指令=02 03 00 00 00 20 44 21
+21:16:55.143 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,96] - 启动传感器采集任务: 土壤8合一传感器 (ID: 59, 类型: 2)
+21:16:55.143 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:16:55.350 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 4E 00 1C CD 06
+21:16:55.351 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.0, type=air, deviceId=58, deviceName=123123}
+21:16:55.481 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.0, 光照=28.0
+21:16:55.906 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:16:56.110 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:16:56.110 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:16:56.122 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:17:00.144 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+21:17:00.347 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F5 02 4F 00 1C 9C C6
+21:17:00.347 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=28.0, pastureId=71, temperature=24.5, humidity=59.1, type=air, deviceId=58, deviceName=123123}
+21:17:00.354 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.5, 湿度=59.1, 光照=28.0
+21:17:00.645 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+21:17:00.849 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AE 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 40 40
+21:17:00.849 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+21:17:00.856 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
+21:17:03.833 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
