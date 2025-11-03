@@ -1,61 +1,86 @@
-# 数据源配置
+# Spring数据源配置
 spring:
   datasource:
+    # 数据源类型：Druid连接池
     type: com.alibaba.druid.pool.DruidDataSource
+    # MySQL驱动类名（适用于MySQL 8.0+）
     driverClassName: com.mysql.cj.jdbc.Driver
+    # Druid连接池详细配置
     druid:
-      # 主库数据源
+      # 主库数据源配置
       master:
+        # 主库JDBC连接URL（包含时区、字符集等参数）
         url: jdbc:mysql://${datasource.host}:${datasource.port}/${datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true
+        # 主库数据库用户名
         username: ${datasource.username}
+        # 主库数据库密码
         password: ${datasource.password}
-      # 从库数据源
+      # 从库数据源配置（读写分离）
       slave:
-        # 从数据源开关/默认关闭
+        # 是否启用从库数据源（默认关闭，单库模式）
         enabled: false
+        # 从库JDBC连接URL（启用从库时配置）
         url:
+        # 从库数据库用户名（启用从库时配置）
         username:
+        # 从库数据库密码（启用从库时配置）
         password:
-      # 初始连接数
+      # 连接池初始连接数
       initialSize: 5
-      # 最小连接池数量
+      # 连接池最小空闲连接数
       minIdle: 10
-      # 最大连接池数量
+      # 连接池最大活跃连接数
       maxActive: 20
-      # 配置获取连接等待超时的时间
+      # 获取连接的最大等待时间（单位：毫秒）
       maxWait: 60000
-      # 配置连接超时时间
+      # 连接超时时间（单位：毫秒）
       connectTimeout: 30000
-      # 配置网络超时时间
+      # 网络读取超时时间（单位：毫秒）
       socketTimeout: 60000
-      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      # 连接池空闲连接检测间隔（单位：毫秒，60秒检测一次）
       timeBetweenEvictionRunsMillis: 60000
-      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      # 连接在池中的最小生存时间（单位：毫秒，5分钟）
       minEvictableIdleTimeMillis: 300000
-      # 配置一个连接在池中最大生存的时间，单位是毫秒
+      # 连接在池中的最大生存时间（单位：毫秒，15分钟）
       maxEvictableIdleTimeMillis: 900000
-      # 配置检测连接是否有效
+      # 连接有效性验证SQL语句
       validationQuery: SELECT 1 FROM DUAL
+      # 空闲时检测连接是否有效
       testWhileIdle: true
+      # 获取连接时检测连接是否有效（关闭以提升性能）
       testOnBorrow: false
+      # 归还连接时检测连接是否有效（关闭以提升性能）
       testOnReturn: false
+      # Druid Web监控过滤器配置
       webStatFilter:
+        # 是否启用Web统计过滤器
         enabled: true
+      # Druid监控统计Servlet配置
       statViewServlet:
+        # 是否启用监控统计页面
         enabled: true
-        # 设置白名单，不填则允许所有访问
+        # 访问白名单（为空则允许所有IP访问，生产环境建议配置）
         allow:
+        # 监控统计页面访问路径
         url-pattern: /druid/*
-        # 控制台管理用户名和密码
+        # 监控页面登录用户名（生产环境必须修改）
         login-username: server
+        # 监控页面登录密码（生产环境必须修改）
         login-password: 123456
+      # Druid过滤器配置
       filter:
+        # SQL统计过滤器
         stat:
+          # 是否启用SQL统计
           enabled: true
-          # 慢SQL记录
+          # 是否记录慢SQL
           log-slow-sql: true
+          # 慢SQL阈值（单位：毫秒，超过此时间的SQL会被记录）
           slow-sql-millis: 1000
+          # 是否合并相同SQL的统计
           merge-sql: true
+        # SQL防火墙过滤器
         wall:
           config:
+            # 是否允许执行多条SQL语句
             multi-statement-allow: true

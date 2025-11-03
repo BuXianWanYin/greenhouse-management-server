@@ -1,8 +1,8 @@
 package com.server.utils;
 
 /**
- * @Author: zbb
- * @Date: 2025/6/25 16:34
+ * @Author: bxwy
+ * @Date: 2025/9/25 16:34
  */
 
 
@@ -48,16 +48,4 @@ public class QRCodeUtil {
 
         return "data:image/png;base64," + base64Image; // 返回前端可直接使用的Base64图像
     }
-//
-//    public static void main(String[] args) {
-//        try {
-//            // 示例调用
-//            //text 扫描二维码要显示的内容
-//            String text = "Hello, World!";
-//            String filePath = "QRCode.png";  // 输出文件名
-//            generateQRCode(text, filePath, 200);  // 调用方法生成200x200大小的二维码
-//        } catch (WriterException | IOException e) {
-//            System.err.println("Error generating QRCode: " + e.getMessage());
-//        }
-//    }
 }

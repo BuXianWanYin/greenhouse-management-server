@@ -1,0 +1,142 @@
+# 生产环境配置
+# 项目相关配置
+server-config:
+  # 文件上传路径（生产环境Linux路径示例，请根据实际情况修改）
+  profile: /home/server/uploadPath
+  # 启用IP地址获取功能（生产环境）
+  addressEnabled: true
+  # 验证码类型：字符验证码（生产环境推荐）
+  captchaType: char
+  # 启用文件项目根目录化
+  pathRoot: true
+
+# 服务器配置
+server:
+  # 生产环境端口号（请根据实际情况修改）
+  port: 8080
+
+# Redis缓存配置
+redis:
+  # Redis服务器地址（生产环境地址，请修改）
+  host: localhost
+  # Redis服务器端口
+  port: 6379
+  # Redis数据库索引（生产环境建议使用独立数据库）
+  database: 0
+  # 连接超时时间
+  timeout: 10s
+
+# JWT Token配置
+token:
+  # Token请求头字段名
+  header: Authorization
+  # Token加密密钥（生产环境必须使用复杂密钥，建议32位以上随机字符串）
+  secret: CHANGE_THIS_TO_A_COMPLEX_SECRET_KEY_IN_PRODUCTION
+  # Token有效期30分钟（可根据安全策略调整）
+  expireTime: 30
+
+# Swagger API文档配置
+swagger:
+  # 生产环境关闭Swagger文档（安全考虑）
+  enabled: false
+  # API文档访问路径前缀
+  pathMapping: /
+
+# 用户安全配置
+user:
+  password:
+    # 密码最大错误尝试次数（生产环境建议5次）
+    maxRetryCount: 5
+    # 密码锁定时间（单位：分钟，生产环境建议10-30分钟）
+    lockTime: 10
+
+# 数据源配置（MySQL数据库）
+datasource:
+  # 数据库服务器地址（生产环境地址，请修改）
+  host: localhost
+  # MySQL端口
+  port: 3306
+  # 数据库名称（生产环境数据库名，请修改）
+  database: fish-dish-server-prod
+  # 数据库用户名（生产环境用户名，请修改）
+  username: root
+  # 数据库密码（生产环境密码，必须修改）
+  password: CHANGE_THIS_TO_PRODUCTION_DB_PASSWORD
+
+# 邮件服务配置
+mail:
+  # 邮件服务器地址（根据使用的邮箱服务商修改）
+  host: smtp.qq.com
+  # 发送邮箱账号（生产环境邮箱，请修改）
+  username: your-email@qq.com
+  # 邮箱授权码（生产环境授权码，必须修改）
+  password: CHANGE_THIS_TO_PRODUCTION_MAIL_AUTH_CODE
+
+# RabbitMQ消息队列配置
+rabbitmq:
+  # RabbitMQ服务器地址（生产环境地址，请修改）
+  host: localhost
+  # RabbitMQ端口
+  port: 5672
+  # RabbitMQ用户名（生产环境用户名，请修改）
+  username: admin
+  # RabbitMQ密码（生产环境密码，必须修改）
+  password: CHANGE_THIS_TO_PRODUCTION_RABBITMQ_PASSWORD
+  # 消息接收超时时间（单位：毫秒）
+  timeout: 5000
+
+# Ollama AI模型配置
+ollama:
+  # Ollama服务基础URL（生产环境地址，请修改）
+  base-url: http://your-ollama-server:11434
+  # 使用的AI模型名称
+  model-name: qwen3:32b
+  # 模型温度参数（控制随机性，0-1之间）
+  temperature: 0.8
+  # 请求超时时间（单位：秒）
+  timeout: 180
+  # 是否启用思考模式
+  think: false
+  # 在线模型服务URL（生产环境地址，请修改）
+  online-url: http://your-online-model-server:11434
+  # 在线模型名称
+  online-model: qwen3:8b
+
+# MQTT消息协议配置
+mqtt:
+  # MQTT服务器连接URI（生产环境地址，请修改）
+  server-uri: tcp://your-mqtt-server:1883
+  # MQTT客户端ID（生产环境唯一标识，请修改）
+  client-id: fish-dish-server-prod
+  # MQTT连接用户名（生产环境用户名，请修改）
+  username: mqtt-user
+  # MQTT连接密码（生产环境密码，必须修改）
+  password: CHANGE_THIS_TO_PRODUCTION_MQTT_PASSWORD
+  # 默认MQTT主题（生产环境主题，请修改）
+  default-topic: /fish-dish/prod/data
+  # MQTT操作完成超时时间（单位：毫秒）
+  completion-timeout: 5000
+
+# 串口通信配置
+serial:
+  # 串口名称（Linux：/dev/ttyUSB0...，Windows：COM1...）
+  # 生产环境请根据实际硬件配置修改
+  port-name: /dev/ttyUSB0
+  # 串口波特率
+  baud-rate: 9600
+
+# IoT物联网数据采集配置
+iot:
+  # 生产环境启用IoT数据采集
+  enabled: true
+
+# 溯源系统地址配置
+codepath:
+  # 溯源查询页面URL（生产环境地址，请修改）
+  path: http://your-trace-server:8888/#/trace?traceId=
+
+# 实时模型单机控制配置
+online:
+  # 生产环境是否启用实时模型控制（根据实际需求配置）
+  enabled: false
+
