@@ -54,13 +54,7 @@
             <artifactId>server-agriculture</artifactId>
         </dependency>
 
-        <!-- 大数据 -->
-        <dependency>
-            <groupId>com.server</groupId>
-            <artifactId>server-data</artifactId>
-        </dependency>
-
-        <!-- app -->
+        <!-- iot -->
         <dependency>
             <groupId>com.server</groupId>
             <artifactId>server-iot</artifactId>
