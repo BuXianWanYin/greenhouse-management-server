@@ -12,10 +12,8 @@ import com.server.domain.vo.AgricultureDeviceVO;
 import com.server.mapper.AgricultureDeviceMapper;
 import com.server.mapper.AgricultureDeviceTypeMapper;
 import com.server.service.AgricultureDeviceService;
-import com.server.constant.RabbitMQConstant;
 import com.server.utils.SecurityUtils;
 import com.server.utils.StringUtils;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +30,6 @@ public class AgricultureDeviceServiceImpl extends ServiceImpl<AgricultureDeviceM
     private AgricultureDeviceMapper agricultureDeviceMapper;
     @Autowired
     private AgricultureDeviceTypeMapper agricultureDeviceTypeMapper;
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
 
     /**
      * 查询设备信息
@@ -111,7 +107,6 @@ public class AgricultureDeviceServiceImpl extends ServiceImpl<AgricultureDeviceM
         }
         agricultureDevice.setUpdateBy(username);
 
-        rabbitTemplate.convertAndSend(RabbitMQConstant.FB_EXCHANGE, "*", agricultureDevice);
         return update;
     }
 

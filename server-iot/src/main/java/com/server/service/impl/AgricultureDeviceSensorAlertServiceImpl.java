@@ -6,8 +6,6 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.server.constant.RabbitMQConstant;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.server.mapper.AgricultureDeviceSensorAlertMapper;
@@ -30,9 +28,6 @@ public class AgricultureDeviceSensorAlertServiceImpl extends ServiceImpl<Agricul
 
     @Autowired
     private AgricultureDeviceSensorAlertMapper agricultureDeviceSensorAlertMapper;
-
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
 
     /**
      * 查询传感器预警信息
@@ -94,7 +89,6 @@ public class AgricultureDeviceSensorAlertServiceImpl extends ServiceImpl<Agricul
         agricultureDeviceSensorAlert.setCreateTime(LocalDateTime.now());
 
         agricultureDeviceSensorAlertMapper.insert(agricultureDeviceSensorAlert);
-        rabbitTemplate.convertAndSend(RabbitMQConstant.FB_EXCHANGE, "*", agricultureDeviceSensorAlert);
         return agricultureDeviceSensorAlert; // 返回对象
     }
 
