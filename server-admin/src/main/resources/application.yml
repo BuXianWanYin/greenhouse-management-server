@@ -176,14 +176,6 @@ mqtt:
   default-topic: ${mqtt.default-topic}
   completion-timeout: ${mqtt.completion-timeout}
 
-# MQTT客户端 接收光照
-mqttclient:
-  mqttbroker: ${mqttclient.mqttbroker}
-  lighttopic: ${mqttclient.lighttopic}
-  username: ${mqttclient.username}
-  password: ${mqttclient.password}
-
-
 # 区块链
 fisco:
   enabled: ${fisco.enabled}
