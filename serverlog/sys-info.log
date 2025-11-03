@@ -879,3 +879,155 @@
 21:17:00.849 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.4, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
 21:17:00.856 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.4, pH=6.6
 21:17:03.833 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+21:17:35.544 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+21:17:35.549 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 237060 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+21:17:35.550 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+21:17:38.013 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+21:17:38.015 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+21:17:38.015 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+21:17:38.192 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+21:17:39.337 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+21:17:43.606 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+21:17:43.622 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+21:17:43.623 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+21:17:43.623 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+21:17:43.626 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+21:17:43.626 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+21:17:43.627 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+21:17:43.627 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@66fd9613
+21:17:45.800 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+21:17:46.416 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+21:17:46.430 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 11.254 seconds (JVM running for 11.904)
+21:17:53.930 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+21:17:54.016 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:17:54.065 [http-nio-8080-exec-3] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+21:17:57.049 [schedule-pool-1] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
+21:18:35.816 [http-nio-8080-exec-30] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
+21:18:35.949 [http-nio-8080-exec-30] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=1), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
+21:18:37.805 [http-nio-8080-exec-32] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
+21:18:37.838 [http-nio-8080-exec-32] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=1), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
+21:19:02.428 [http-nio-8080-exec-40] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
+21:19:02.466 [http-nio-8080-exec-40] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=1), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
+21:20:49.041 [http-nio-8080-exec-51] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
+21:20:49.077 [http-nio-8080-exec-51] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=1), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
+21:21:50.056 [http-nio-8080-exec-58] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+21:22:53.514 [http-nio-8080-exec-61] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+21:23:59.584 [http-nio-8080-exec-65] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+21:24:33.794 [http-nio-8080-exec-83] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
+21:24:33.819 [http-nio-8080-exec-83] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=1), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
+21:24:34.777 [http-nio-8080-exec-87] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
+21:24:34.806 [http-nio-8080-exec-87] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=1), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
+21:24:38.379 [http-nio-8080-exec-91] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
+21:24:38.407 [http-nio-8080-exec-91] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=1), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
+21:24:39.703 [http-nio-8080-exec-95] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
+21:24:39.734 [http-nio-8080-exec-95] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:DATA 推送成功:{agriculture=[ScaleVO(label=面积, value=50), ScaleVO(label=温室, value=1), ScaleVO(label=分区, value=4), ScaleVO(label=种类, value=4), ScaleVO(label=农资, value=2), ScaleVO(label=农机, value=2), ScaleVO(label=任务, value=54)], traceTotal=[{month=9, year=2025, totalCount=8}, {month=8, year=2025, totalCount=665}, {month=7, year=2025, totalCount=438}, {month=11, year=2024, totalCount=352}, {month=10, year=2024, totalCount=399}, {month=9, year=2024, totalCount=343}, {month=8, year=2024, totalCount=169}, {month=7, year=2024, totalCount=849}], device=[ScaleVO(label=气象传感器, value=1), ScaleVO(label=土壤传感器, value=1), ScaleVO(label=网关, value=0), ScaleVO(label=控制器, value=0), ScaleVO(label=摄像头, value=0), ScaleVO(label=排气扇, value=0), ScaleVO(label=加湿器, value=0), ScaleVO(label=补光灯, value=0), ScaleVO(label=警报灯, value=0), ScaleVO(label=其他设备, value=0), ScaleVO(label=电动推杆, value=0)]}
+21:27:29.007 [http-nio-8080-exec-13] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+21:27:32.387 [http-nio-8080-exec-12] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:27:32.401 [http-nio-8080-exec-11] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:28:10.081 [http-nio-8080-exec-17] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+21:28:10.081 [http-nio-8080-exec-16] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+21:28:15.926 [http-nio-8080-exec-15] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:28:15.932 [http-nio-8080-exec-22] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+21:28:27.373 [http-nio-8080-exec-26] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+21:28:28.107 [http-nio-8080-exec-29] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:28:28.111 [http-nio-8080-exec-28] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+21:28:32.366 [http-nio-8080-exec-39] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+21:28:33.218 [http-nio-8080-exec-41] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:28:33.222 [http-nio-8080-exec-42] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+21:28:42.608 [http-nio-8080-exec-51] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+21:28:46.346 [http-nio-8080-exec-52] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:28:46.359 [http-nio-8080-exec-53] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:29:07.439 [http-nio-8080-exec-55] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+21:29:07.439 [http-nio-8080-exec-54] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+21:29:07.808 [http-nio-8080-exec-57] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:29:07.811 [http-nio-8080-exec-58] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+21:29:20.753 [http-nio-8080-exec-68] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+21:29:25.066 [http-nio-8080-exec-69] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:29:25.068 [http-nio-8080-exec-70] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+21:30:15.516 [http-nio-8080-exec-79] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+21:30:19.352 [http-nio-8080-exec-81] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:30:19.367 [http-nio-8080-exec-82] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:32:04.000 [http-nio-8080-exec-91] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+21:32:04.000 [http-nio-8080-exec-90] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+21:32:09.221 [http-nio-8080-exec-92] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:32:09.223 [http-nio-8080-exec-93] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+21:32:20.160 [http-nio-8080-exec-3] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+21:32:24.864 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+21:32:24.866 [http-nio-8080-exec-5] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+21:33:09.334 [http-nio-8080-exec-17] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+21:33:20.142 [http-nio-8080-exec-15] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+22:33:48.414 [http-nio-8080-exec-22] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+22:33:48.418 [http-nio-8080-exec-19] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+22:34:46.584 [http-nio-8080-exec-24] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+22:34:47.471 [schedule-pool-3] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
+22:38:44.233 [http-nio-8080-exec-53] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+22:41:37.161 [http-nio-8080-exec-59] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+23:05:50.687 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+23:12:53.920 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+23:12:53.927 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 244276 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+23:12:53.928 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+23:12:56.137 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+23:12:56.138 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+23:12:56.138 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+23:12:56.298 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+23:12:57.441 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+23:13:01.417 [main] INFO  c.s.c.MqttConfig - [afterPropertiesSet,42] - MQTT配置初始化完成 - serverUrl: tcp://43.139.89.73:1883, clientId: greenhouse-management-server, defaultTopic: /greenhouse-management/data
+23:13:01.427 [main] INFO  c.s.s.SerialPortService - [init,36] - 正在初始化串口服务...
+23:13:01.427 [main] INFO  c.s.s.SerialPortService - [connect,41] - 正在尝试连接串口: COM5，波特率: 9600
+23:13:01.475 [main] INFO  c.s.s.SerialPortService - [connect,46] - 成功打开串口: COM5
+23:13:01.711 [main] INFO  c.s.s.SensorCommunicationService - [init,54] - 正在初始化传感器通信服务...
+23:13:01.787 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+23:13:01.801 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+23:13:01.801 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+23:13:01.802 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+23:13:01.803 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+23:13:01.803 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+23:13:01.803 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+23:13:01.803 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@55732ae6
+23:13:02.743 [main] INFO  c.s.c.MqttConfig - [mqttClientFactory,62] - 配置MQTT连接: serverUri=tcp://43.139.89.73:1883, username=bxwy, clientId=greenhouse-management-server
+23:13:02.766 [main] INFO  c.s.c.MqttConfig - [mqttOutboundChannel,83] - 创建MQTT出站通道: mqttOutboundChannel
+23:13:02.796 [main] INFO  c.s.c.MqttConfig - [mqttOutbound,107] - MQTT消息处理器配置完成: clientId=greenhouse-management-server_outbound, defaultTopic=/greenhouse-management/data, async=false
+23:13:03.883 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+23:13:04.718 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+23:13:04.732 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 11.132 seconds (JVM running for 11.869)
+23:13:04.772 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,83] - 查询到 2 个传感器设备
+23:13:04.772 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,86] - 设备信息: 名称=123123, ID=58, 类型ID=1, 指令=01 03 00 00 00 03 05 CB
+23:13:04.772 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,96] - 启动传感器采集任务: 123123 (ID: 58, 类型: 1)
+23:13:04.773 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,86] - 设备信息: 名称=土壤8合一传感器, ID=59, 类型ID=2, 指令=02 03 00 00 00 20 44 21
+23:13:04.773 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,96] - 启动传感器采集任务: 土壤8合一传感器 (ID: 59, 类型: 2)
+23:13:04.774 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+23:13:04.980 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 AC 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 B9 81
+23:13:04.980 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=17.2, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+23:13:05.124 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=17.2, pH=6.6
+23:13:05.557 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+23:13:05.631 [http-nio-8080-exec-3] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+23:13:05.705 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+23:13:05.740 [http-nio-8080-exec-2] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+23:13:05.763 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F4 02 4A 00 1D 70 C7
+23:13:05.763 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=29.0, pastureId=71, temperature=24.4, humidity=58.6, type=air, deviceId=58, deviceName=123123}
+23:13:05.777 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.4, 湿度=58.6, 光照=29.0
+23:13:08.543 [schedule-pool-1] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
+23:13:09.775 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+23:13:09.978 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 123123 (ID: 58, 类型: 1) 接收到原始数据: 01 03 06 00 F4 02 4A 00 1D 70 C7
+23:13:09.979 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=29.0, pastureId=71, temperature=24.4, humidity=58.6, type=air, deviceId=58, deviceName=123123}
+23:13:09.987 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,78] - 空气传感器数据保存成功: 设备ID=58, 温度=24.4, 湿度=58.6, 光照=29.0
+23:13:10.276 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 土壤8合一传感器 (ID: 59): 02 03 00 00 00 20 44 21
+23:13:10.479 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,145] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 接收到原始数据: 02 03 40 00 E9 00 A9 00 9B 00 70 00 22 00 05 00 28 02 94 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 12 00 14 00 13 00 37 00 38 00 39 00 15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 B5 82
+23:13:10.479 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 土壤8合一传感器 (ID: 59, 类型: 2) 解析后的数据: {salinity=112.0, potassium=40.0, conductivity=155.0, soil_temperature=23.3, nitrogen=34.0, pastureId=71, soil_humidity=16.9, type=soil, deviceId=59, deviceName=土壤8合一传感器, ph_value=6.6, phosphorus=5.0}
+23:13:10.489 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [processAndStore,99] - 土壤传感器数据保存成功: 设备ID=59, 温度=23.3, 湿度=16.9, pH=6.6
+23:13:14.775 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,131] - 发送指令到设备 123123 (ID: 58): 01 03 00 00 00 03 05 CB
+23:13:14.779 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.

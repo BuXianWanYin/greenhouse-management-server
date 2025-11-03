@@ -97,7 +97,7 @@ public class MqttConfig implements InitializingBean {
                 outboundClientId,
                 mqttClientFactory()
             );
-            // 改为同步发送，确保连接建立后再发送消息
+            // 同步发送，确保连接建立后再发送消息
             messageHandler.setAsync(false);
             messageHandler.setDefaultTopic(defaultTopic);
             messageHandler.setDefaultQos(1);

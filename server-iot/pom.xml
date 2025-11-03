@@ -12,10 +12,43 @@
     <artifactId>server-iot</artifactId>
 
     <dependencies>
-        <!-- 核心模块 -->
+        <!-- 核心模块-->
         <dependency>
             <groupId>com.server</groupId>
-            <artifactId>server-agriculture</artifactId>
+            <artifactId>server-framework</artifactId>
+        </dependency>
+
+        <!-- 通用工具-->
+        <dependency>
+            <groupId>com.server</groupId>
+            <artifactId>server-common</artifactId>
+        </dependency>
+
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- swagger3-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- 防止进入swagger页面报类型转换错误，排除3.0.0中的引用，手动增加1.6.2版本 -->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
+        <!-- RabbitMQ -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 
         <!-- 串口通信库 -->

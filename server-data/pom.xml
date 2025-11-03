@@ -16,10 +16,16 @@
     </description>
 
     <dependencies>
-        <!-- 鱼菜核心 -->
+        <!-- 核心 -->
         <dependency>
             <groupId>com.server</groupId>
             <artifactId>server-agriculture</artifactId>
+        </dependency>
+
+        <!-- IoT模块 -->
+        <dependency>
+            <groupId>com.server</groupId>
+            <artifactId>server-iot</artifactId>
         </dependency>
     </dependencies>
 

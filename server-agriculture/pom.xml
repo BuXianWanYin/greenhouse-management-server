@@ -132,6 +132,12 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpmime</artifactId>
         </dependency>
+
+        <!-- IoT模块 -->
+        <dependency>
+            <groupId>com.server</groupId>
+            <artifactId>server-iot</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

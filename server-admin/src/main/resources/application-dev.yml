@@ -71,9 +71,9 @@ mail:
   # QQ邮箱SMTP服务器
   host: smtp.qq.com
   # 发送邮箱账号
-  username: 2644832053@qq.com
+  username: 3050604024@qq.com
   # 邮箱授权码（非登录密码）
-  password: qxjtglqhflmdcacb
+  password: rxhidqusgbsmdcgh
 
 # RabbitMQ消息队列配置
 rabbitmq:
@@ -109,7 +109,7 @@ ollama:
 mqtt:
   server-url: tcp://43.139.89.73:1883
   # MQTT客户端ID（每个客户端必须唯一）
-  client-id: greenhouse-management-server-dev
+  client-id: greenhouse-management-server
   # MQTT连接用户名（EMQX认证用户名）
   username: bxwy
   # MQTT连接密码（EMQX认证密码）
@@ -126,7 +126,7 @@ serial:
   # 串口波特率
   baud-rate: 9600
 
-# IoT物联网数据采集配置
+# IoT物联网数据采集配置 true false
 iot:
   enabled: true
 

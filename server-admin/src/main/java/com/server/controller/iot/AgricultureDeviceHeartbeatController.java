@@ -22,7 +22,7 @@ import com.server.utils.poi.ExcelUtil;
 import com.server.core.page.TableDataInfo;
 
 /**
- * 设备心跳状态（关联设备，设备删除时心跳记录自动删除）Controller
+ * 设备心跳状态（
  * 
  * @author server
  * @date 2025-11-03
@@ -35,7 +35,7 @@ public class AgricultureDeviceHeartbeatController extends BaseController
     private AgricultureDeviceHeartbeatService agricultureDeviceHeartbeatService;
 
     /**
-     * 查询设备心跳状态（关联设备，设备删除时心跳记录自动删除）列表
+     * 查询设备心跳状态 
      */
     @PreAuthorize("@ss.hasPermi('device:heartbeat:list')")
     @GetMapping("/list")
@@ -47,7 +47,7 @@ public class AgricultureDeviceHeartbeatController extends BaseController
     }
 
     /**
-     * 导出设备心跳状态（关联设备，设备删除时心跳记录自动删除）列表
+     * 导出设备心跳状态 
      */
     @PreAuthorize("@ss.hasPermi('device:heartbeat:export')")
     @Log(title = "设备心跳状态（关联设备，设备删除时心跳记录自动删除）", businessType = BusinessType.EXPORT)
@@ -70,7 +70,7 @@ public class AgricultureDeviceHeartbeatController extends BaseController
     }
 
     /**
-     * 新增设备心跳状态（关联设备，设备删除时心跳记录自动删除）
+     * 新增设备心跳状态
      */
     @PreAuthorize("@ss.hasPermi('device:heartbeat:add')")
     @Log(title = "设备心跳状态（关联设备，设备删除时心跳记录自动删除）", businessType = BusinessType.INSERT)
@@ -81,7 +81,7 @@ public class AgricultureDeviceHeartbeatController extends BaseController
     }
 
     /**
-     * 修改设备心跳状态（关联设备，设备删除时心跳记录自动删除）
+     * 修改设备心跳状态
      */
     @PreAuthorize("@ss.hasPermi('device:heartbeat:edit')")
     @Log(title = "设备心跳状态（关联设备，设备删除时心跳记录自动删除）", businessType = BusinessType.UPDATE)
@@ -92,7 +92,7 @@ public class AgricultureDeviceHeartbeatController extends BaseController
     }
 
     /**
-     * 删除设备心跳状态（关联设备，设备删除时心跳记录自动删除）
+     * 删除设备心跳状态
      */
     @PreAuthorize("@ss.hasPermi('device:heartbeat:remove')")
     @Log(title = "设备心跳状态（关联设备，设备删除时心跳记录自动删除）", businessType = BusinessType.DELETE)
