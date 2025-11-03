@@ -108,7 +108,7 @@ ollama:
 # MQTT消息协议配置
 mqtt:
   # MQTT服务器连接URI（格式：tcp://host:port）
-  server-uri: tcp://localhost:1883
+  server-url: tcp://localhost:1883
   # MQTT客户端ID
   client-id: fish-dish-server
   # MQTT连接用户名

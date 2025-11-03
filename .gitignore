@@ -13,7 +13,7 @@ target/
 *.iws
 *.iml
 *.ipr
-**application-dev.yml
+
 
 ### Eclipse ###
 .apt_generated
@@ -43,4 +43,5 @@ build/
 
 ### 日志 ###
 .serverlog/
+*.log
 

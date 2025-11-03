@@ -59,7 +59,7 @@ public class AgriculturePartitionFoodServiceImpl extends ServiceImpl<Agriculture
     @Autowired
     private AgricultureDeviceSensorAlertService sensorAlertService;
 
-    @Value("${codepath}")
+    @Value("${codepath.path}")
     private String codepath;
 
     /**
