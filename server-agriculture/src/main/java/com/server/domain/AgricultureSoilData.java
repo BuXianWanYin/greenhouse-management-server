@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
 @AllArgsConstructor
 @TableName(value ="agriculture_soil_data")
 @ApiModel(value = "AgricultureSoilData" , description="土壤8参数传感器数据表")
-public class AgricultureSoilData extends BaseEntityPlus implements Serializable  {
+public class AgricultureSoilData implements Serializable  {
 
     private static final long serialVersionUID = 1L;
 
@@ -51,23 +51,23 @@ public class AgricultureSoilData extends BaseEntityPlus implements Serializable 
 
     @TableField(value="conductivity")
     @ApiModelProperty(value="电导率(μS/cm)")
-    private Long conductivity;
+    private Double conductivity;
 
     @TableField(value="salinity")
     @ApiModelProperty(value="盐分(mg/L)")
-    private Long salinity;
+    private Double salinity;
 
     @TableField(value="nitrogen")
     @ApiModelProperty(value="氮含量(mg/kg)")
-    private Long nitrogen;
+    private Double nitrogen;
 
     @TableField(value="phosphorus")
     @ApiModelProperty(value="磷含量(mg/kg)")
-    private Long phosphorus;
+    private Double phosphorus;
 
     @TableField(value="potassium")
     @ApiModelProperty(value="钾含量(mg/kg)")
-    private Long potassium;
+    private Double potassium;
 
     @TableField(value="ph_value")
     @ApiModelProperty(value="pH值")

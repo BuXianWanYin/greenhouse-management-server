@@ -1,129 +1,189 @@
-//package com.server.iot.service;
-//
-//import com.fazecast.jSerialComm.SerialPort;
-//import com.fazecast.jSerialComm.SerialPortDataListener;
-//import com.fazecast.jSerialComm.SerialPortEvent;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.stereotype.Service;
-//
-//import javax.annotation.PostConstruct;
-//import javax.annotation.PreDestroy;
-//import java.util.Arrays;
-//import java.util.List;
-//import java.util.stream.Collectors;
-//
-//@Service
-//public class SerialPortService {
-//
-//    private static final Logger log = LoggerFactory.getLogger(SerialPortService.class);
-//
-//    @Value("${serial.port-name}")
-//    private String portName;
-//
-//    @Value("${serial.baud-rate}")
-//    private int baudRate;
-//
-//    @Autowired
-//    private DataProcessingService dataProcessingService;
-//
-//    private SerialPort commPort;
-//
-//    @PostConstruct
-//    public void init() {
-//        log.info("正在初始化串口服务...");
-//        connect();
-//    }
-//
-//    public void connect() {
-//        log.info("正在尝试连接串口: {}，波特率: {}", portName, baudRate);
-//        commPort = SerialPort.getCommPort(portName);
-//        commPort.setBaudRate(baudRate);
-//
-//        if (commPort.openPort()) {
-//            log.info("成功打开串口: {}", portName);
-//        } else {
-//            log.error("打开串口失败: {}。请检查串口名称和权限。", portName);
-//            log.info("可用串口: {}", listPorts());
-//        }
-//    }
-//
-//    @PreDestroy
-//    public void disconnect() {
-//        if (commPort != null && commPort.isOpen()) {
-//            if (commPort.closePort()) {
-//                log.info("成功关闭串口: {}", portName);
-//            } else {
-//                log.error("关闭串口失败: {}", portName);
-//            }
-//        }
-//    }
-//
-//    public List<String> listPorts() {
-//        return Arrays.stream(SerialPort.getCommPorts())
-//                .map(SerialPort::getSystemPortName)
-//                .collect(Collectors.toList());
-//    }
-//
-//    /**
-//     * 向串口写入数据
-//     * @param data 要写入的数据
-//     * @return 写入的字节数
-//     */
-//    public int writeToSerial(byte[] data) {
-//        if (commPort != null && commPort.isOpen()) {
-//            int bytesWritten = commPort.writeBytes(data, data.length);
-//            log.debug("向串口写入 {} 字节", bytesWritten);
-//            return bytesWritten;
-//        } else {
-//            log.error("串口未打开");
-//            return -1;
-//        }
-//    }
-//
-//    /**
-//     * 从串口读取数据
-//     * @param maxBytes 最大读取字节数
-//     * @return 读取的数据
-//     */
-//    public byte[] readFromSerial(int maxBytes) {
-//        if (commPort != null && commPort.isOpen()) {
-//            byte[] data = new byte[maxBytes];
-//            int bytesRead = commPort.readBytes(data, Math.min(maxBytes, commPort.bytesAvailable()));
-//            if (bytesRead > 0) {
-//                byte[] result = new byte[bytesRead];
-//                System.arraycopy(data, 0, result, 0, bytesRead);
-//                log.debug("从串口读取 {} 字节", bytesRead);
-//                return result;
-//            }
-//        } else {
-//            log.error("串口未打开");
-//        }
-//        return new byte[0];
-//    }
-////
-//    /**
-//     * 检查串口是否已连接
-//     * @return 是否已连接
-//     */
-//    public boolean isConnected() {
-//        return commPort != null && commPort.isOpen();
-//    }
-//
-//    /**
-//     * 获取串口状态信息
-//     * @return 状态信息
-//     */
-//    public String getPortStatus() {
-//        if (commPort == null) {
-//            return "NOT_INITIALIZED";
-//        }
-//        if (commPort.isOpen()) {
-//            return "OPEN";
-//        } else {
-//            return "CLOSED";
-//        }
-//    }
-//}
+package com.server.iot.service;
+
+import com.fazecast.jSerialComm.SerialPort;
+import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class SerialPortService {
+
+    private static final Logger log = LoggerFactory.getLogger(SerialPortService.class);
+
+    // 串口锁对象的getter方法
+    @Getter
+    private final Object serialLock = new Object(); // 串口全局锁
+    @Value("${serial.port-name}")
+    private String portName;
+
+    @Value("${serial.baud-rate}")
+    private int baudRate;
+
+    private SerialPort commPort;
+
+    @PostConstruct
+    public void init() {
+        log.info("正在初始化串口服务...");
+        connect();
+    }
+
+    public void connect() {
+        log.info("正在尝试连接串口: {}，波特率: {}", portName, baudRate);
+        commPort = SerialPort.getCommPort(portName);
+        commPort.setBaudRate(baudRate);
+
+        if (commPort.openPort()) {
+            log.info("成功打开串口: {}", portName);
+        } else {
+            log.error("打开串口失败: {}。请检查串口名称和权限。", portName);
+            log.info("可用串口: {}", listPorts());
+        }
+    }
+
+    @PreDestroy
+    public void disconnect() {
+        if (commPort != null && commPort.isOpen()) {
+            if (commPort.closePort()) {
+                log.info("成功关闭串口: {}", portName);
+            } else {
+                log.error("关闭串口失败: {}", portName);
+            }
+        }
+    }
+
+    public List<String> listPorts() {
+        return Arrays.stream(SerialPort.getCommPorts())
+                .map(SerialPort::getSystemPortName)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 向串口写入数据
+     * @param data 要写入的数据
+     * @return 写入的字节数
+     */
+    public int writeToSerial(byte[] data) {
+        synchronized (serialLock) {
+//            log.info("[串口写入] 开始，线程: {}，时间: {}，数据长度: {}", Thread.currentThread().getName(), java.time.LocalDateTime.now(), data != null ? data.length : 0);
+            if (commPort != null && commPort.isOpen()) {
+                int bytesWritten = commPort.writeBytes(data, data.length);
+                // 清空缓冲区
+                int avail = commPort.bytesAvailable();
+                if (avail > 0) {
+                    commPort.readBytes(new byte[avail], avail);
+                }
+//                log.info("[串口写入] 结束，线程: {}，时间: {}，写入字节: {}", Thread.currentThread().getName(), java.time.LocalDateTime.now(), bytesWritten);
+                return bytesWritten;
+            } else {
+                log.error("串口未打开");
+                return -1;
+            }
+        }
+    }
+
+    /**
+     * 从串口读取数据
+     * @param maxBytes 最大读取字节数
+     * @return 读取的数据
+     */
+    public byte[] readFromSerial(int maxBytes) {
+        synchronized (serialLock) {
+//            log.info("[串口读取] 开始，线程: {}，时间: {}，最大字节: {}", Thread.currentThread().getName(), java.time.LocalDateTime.now(), maxBytes);
+            if (commPort != null && commPort.isOpen()) {
+                byte[] data = new byte[maxBytes];
+                int bytesRead = commPort.readBytes(data, Math.min(maxBytes, commPort.bytesAvailable()));
+                if (bytesRead > 0) {
+                    byte[] result = new byte[bytesRead];
+                    System.arraycopy(data, 0, result, 0, bytesRead);
+                    // 清空缓冲区
+                    int avail = commPort.bytesAvailable();
+                    if (avail > 0) {
+                        commPort.readBytes(new byte[avail], avail);
+                    }
+//                    log.debug("从串口读取 {} 字节", bytesRead);
+                    return result;
+                }
+            } else {
+                log.error("串口未打开");
+            }
+//            log.info("[串口读取] 结束，线程: {}，时间: {}，读取字节: 0", Thread.currentThread().getName(), java.time.LocalDateTime.now());
+            return new byte[0];
+        }
+    }
+
+    /**
+     * 检查串口是否已连接
+     * @return 是否已连接
+     */
+    public boolean isConnected() {
+        return commPort != null && commPort.isOpen();
+    }
+
+    /**
+     * 获取串口状态信息
+     * @return 状态信息
+     */
+    public String getPortStatus() {
+        if (commPort == null) {
+            return "NOT_INITIALIZED";
+        }
+        if (commPort.isOpen()) {
+            return "OPEN";
+        } else {
+            return "CLOSED";
+        }
+    }
+
+    // 16进制字符串转byte[]
+    public byte[] hexStringToByteArray(String hex) {
+        hex = hex.replaceAll(" ", "");
+        int len = hex.length();
+        byte[] data = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(hex.charAt(i), 16) << 4)
+                    + Character.digit(hex.charAt(i+1), 16));
+        }
+        return data;
+    }
+
+    /**
+     * 发送串口指令
+     * 功能说明：
+     * 将十六进制命令字符串转换为字节数组并通过串口发送；
+     * 当串口服务不可用时不执行任何操作，保证方法调用的安全性。
+     *
+     * @param hexCommand 十六进制命令字符串
+     * @return 写入的字节数，失败返回-1
+     */
+    public int sendSerialCommand(String hexCommand) {
+        if (hexCommand == null || hexCommand.trim().isEmpty()) {
+            log.warn("串口指令为空，跳过发送");
+            return -1;
+        }
+        
+        try {
+            // 将十六进制命令字符串转换为字节数组
+            byte[] data = hexStringToByteArray(hexCommand);
+            // 通过串口发送指令数据操作设备
+            int result = writeToSerial(data);
+            if (result > 0) {
+                log.info("串口指令发送成功: {}, 字节数: {}", hexCommand, result);
+            } else {
+                log.error("串口指令发送失败: {}", hexCommand);
+            }
+            return result;
+        } catch (Exception e) {
+            log.error("发送串口指令时发生异常: {}", hexCommand, e);
+            return -1;
+        }
+    }
+
+}

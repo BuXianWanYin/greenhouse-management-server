@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
 @AllArgsConstructor
 @TableName(value ="agriculture_air_data")
 @ApiModel(value = "AgricultureAirData" , description="温度湿度光照传感器数据表")
-public class AgricultureAirData extends BaseEntityPlus implements Serializable  {
+public class AgricultureAirData implements Serializable  {
 
     private static final long serialVersionUID = 1L;
 
