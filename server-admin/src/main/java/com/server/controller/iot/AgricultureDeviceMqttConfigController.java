@@ -1,4 +1,4 @@
-package com.server.controller.agriculture;
+package com.server.controller.iot;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
@@ -113,3 +113,4 @@ public class AgricultureDeviceMqttConfigController extends BaseController
         return toAjax(agricultureDeviceMqttConfigService.deleteAgricultureDeviceMqttConfigByIds(ids));
     }
 }
+

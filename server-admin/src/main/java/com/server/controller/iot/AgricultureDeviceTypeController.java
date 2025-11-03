@@ -1,4 +1,4 @@
-package com.server.controller.agriculture;
+package com.server.controller.iot;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
@@ -103,3 +103,4 @@ public class AgricultureDeviceTypeController extends BaseController
         return toAjax(agricultureDeviceTypeService.deleteAgricultureDeviceTypeByIds(ids));
     }
 }
+

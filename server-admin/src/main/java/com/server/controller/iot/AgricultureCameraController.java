@@ -1,4 +1,4 @@
-package com.server.controller.agriculture;
+package com.server.controller.iot;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
@@ -111,3 +111,4 @@ public class AgricultureCameraController extends BaseController
         return toAjax(agricultureCameraService.deleteAgricultureCameraByIds(ids));
     }
 }
+

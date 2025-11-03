@@ -1,4 +1,4 @@
-package com.server.controller.agriculture;
+package com.server.controller.iot;
 
 import java.util.Collections;
 import java.util.List;
@@ -146,3 +146,4 @@ public class AgricultureThresholdConfigController extends BaseController
         return toAjax(agricultureThresholdConfigService.deleteAgricultureThresholdConfigByIds(ids));
     }
 }
+

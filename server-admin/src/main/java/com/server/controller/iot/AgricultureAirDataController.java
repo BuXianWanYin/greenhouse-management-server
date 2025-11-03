@@ -1,4 +1,4 @@
-package com.server.controller.agriculture;
+package com.server.controller.iot;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
@@ -102,3 +102,4 @@ public class AgricultureAirDataController extends BaseController
         return toAjax(agricultureAirDataService.deleteAgricultureAirDataByIds(ids));
     }
 }
+

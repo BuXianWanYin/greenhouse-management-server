@@ -12,10 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @Author: zbb
- * @Date: 2025/7/16 20:00
- */
 
 @RestController
 @RequestMapping("/data/traceTotal")

@@ -25,7 +25,7 @@ import com.server.core.page.TableDataInfo;
 /**
  * 饵料信息Controller
  *
- * @author server
+ * @author bxwy
  * @date 2025-06-14
  */
 @RestController
