@@ -6,17 +6,21 @@ import java.util.List;
 import java.util.Map;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.server.domain.AgricultureDevice;
 import com.server.domain.AgricultureDeviceHeartbeat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.server.mapper.AgricultureDeviceHeartbeatMapper;
 import com.server.service.AgricultureDeviceHeartbeatService;
+import com.server.service.AgricultureDeviceService;
 import com.server.util.ModbusCommandParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * 设备心跳状态 Service业务层处理
+ * 负责心跳数据的 CRUD 操作和在线状态管理
+ * 不依赖 iot.enabled 配置，始终可用
  * 
  * @author server
  * @date 2025-11-03
@@ -28,6 +32,9 @@ public class AgricultureDeviceHeartbeatServiceImpl extends ServiceImpl<Agricultu
     
     @Autowired
     private AgricultureDeviceHeartbeatMapper agricultureDeviceHeartbeatMapper;
+    
+    @Autowired
+    private AgricultureDeviceService agricultureDeviceService;
 
     /**
      * 查询设备心跳状态
@@ -203,16 +210,33 @@ public class AgricultureDeviceHeartbeatServiceImpl extends ServiceImpl<Agricultu
             
             // 更新离线次数和最后在线时间
             if (onlineStatus == 0L) {
-                // 离线时，增加离线次数
+                // 离线时，增加离线次数，更新最后在线时间（记录最后在线时间）
                 Long offlineCount = heartbeat.getOfflineCount();
                 if (offlineCount == null) {
                     offlineCount = 0L;
                 }
                 heartbeat.setOfflineCount(offlineCount + 1);
+                // 如果当前lastOnlineTime为null，则设置为当前时间（表示设备刚离线）
+                if (heartbeat.getLastOnlineTime() == null) {
+                    heartbeat.setLastOnlineTime(LocalDateTime.now());
+                }
+                
+                // 同步更新设备的用户控制开关为关闭状态
+                try {
+                    AgricultureDevice device = agricultureDeviceService.getById(deviceId);
+                    if (device != null) {
+                        device.setUserControlSwitch("0");
+                        agricultureDeviceService.updateById(device);
+                        log.info("设备离线，同步更新用户控制开关为关闭状态。设备ID: {}", deviceId);
+                    }
+                } catch (Exception e) {
+                    log.warn("更新设备用户控制开关失败。设备ID: {}", deviceId, e);
+                    // 不影响心跳状态的更新，只记录警告日志
+                }
             } else {
-                // 在线时，重置离线次数，更新最后在线时间
+                // 在线时，重置离线次数，将最后在线时间设置为null（表示设备当前在线）
                 heartbeat.setOfflineCount(0L);
-                heartbeat.setLastOnlineTime(LocalDateTime.now());
+                heartbeat.setLastOnlineTime(null);
             }
             
             boolean result = updateById(heartbeat);

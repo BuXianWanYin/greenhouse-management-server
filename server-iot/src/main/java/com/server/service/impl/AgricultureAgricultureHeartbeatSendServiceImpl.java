@@ -1,9 +1,8 @@
 package com.server.service.impl;
 
 import com.server.domain.AgricultureDeviceHeartbeat;
-import com.server.mapper.AgricultureDeviceHeartbeatMapper;
 import com.server.service.AgricultureDeviceHeartbeatService;
-import com.server.service.HeartbeatService;
+import com.server.service.AgricultureHeartbeatSendService;
 import com.server.service.SerialPortService;
 import com.server.util.ModbusCommandParser;
 import com.server.util.SerialCommandExecutor;
@@ -19,26 +18,24 @@ import java.util.Map;
 import java.util.concurrent.Future;
 
 /**
- * 心跳服务实现类
+ * 心跳发送服务实现类
  * 负责发送心跳指令并校验设备回复
+ * 仅在 iot.enabled=true 时加载
  * 
  * @author server
  * @date 2025-01-XX
  */
 @Service
 @ConditionalOnProperty(name = "iot.enabled", havingValue = "true")
-public class HeartbeatServiceImpl implements HeartbeatService {
+public class AgricultureAgricultureHeartbeatSendServiceImpl implements AgricultureHeartbeatSendService {
     
-    private static final Logger log = LoggerFactory.getLogger(HeartbeatServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(AgricultureAgricultureHeartbeatSendServiceImpl.class);
     
     @Autowired
     private SerialPortService serialPortService;
     
     @Autowired
     private AgricultureDeviceHeartbeatService agricultureDeviceHeartbeatService;
-    
-    @Autowired
-    private AgricultureDeviceHeartbeatMapper agricultureDeviceHeartbeatMapper;
     
     @Autowired
     private SerialCommandExecutor serialCommandExecutor;
@@ -81,12 +78,13 @@ public class HeartbeatServiceImpl implements HeartbeatService {
                         
                         if (bytesSent <= 0) {
                             log.error("心跳指令发送失败。设备ID: {}", heartbeat.getDeviceId());
-                            updateHeartbeatStatus(heartbeat, false, "发送失败");
+                            agricultureDeviceHeartbeatService.updateOnlineStatusByDeviceId(heartbeat.getDeviceId(), 0L);
                             return false;
                         }
                         
                         // 更新发送时间
                         heartbeat.setLastSendTime(LocalDateTime.now());
+                        agricultureDeviceHeartbeatService.updateById(heartbeat);
                         
                         // 等待设备回复（根据Modbus协议，通常需要200-500ms）
                         Thread.sleep(300);
@@ -96,7 +94,7 @@ public class HeartbeatServiceImpl implements HeartbeatService {
                         
                         if (responseBytes == null || responseBytes.length == 0) {
                             log.warn("未收到设备回复。设备ID: {}", heartbeat.getDeviceId());
-                            updateHeartbeatStatus(heartbeat, false, "未收到回复");
+                            agricultureDeviceHeartbeatService.updateOnlineStatusByDeviceId(heartbeat.getDeviceId(), 0L);
                             return false;
                         }
                         
@@ -108,7 +106,7 @@ public class HeartbeatServiceImpl implements HeartbeatService {
                         String deviceAddr = ModbusCommandParser.extractDeviceAddr(heartbeatCmdHex);
                         if (deviceAddr == null) {
                             log.error("无法从指令中提取设备地址。设备ID: {}", heartbeat.getDeviceId());
-                            updateHeartbeatStatus(heartbeat, false, "无法提取设备地址");
+                            agricultureDeviceHeartbeatService.updateOnlineStatusByDeviceId(heartbeat.getDeviceId(), 0L);
                             return false;
                         }
                         
@@ -122,22 +120,22 @@ public class HeartbeatServiceImpl implements HeartbeatService {
                         
                         if (isValid) {
                             log.info("心跳回复校验通过。设备ID: {}", heartbeat.getDeviceId());
-                            updateHeartbeatStatus(heartbeat, true, "校验通过");
+                            agricultureDeviceHeartbeatService.updateOnlineStatusByDeviceId(heartbeat.getDeviceId(), 1L);
                             return true;
                         } else {
                             log.warn("心跳回复校验失败。设备ID: {}, 原因: {}", heartbeat.getDeviceId(), message);
-                            updateHeartbeatStatus(heartbeat, false, message);
+                            agricultureDeviceHeartbeatService.updateOnlineStatusByDeviceId(heartbeat.getDeviceId(), 0L);
                             return false;
                         }
                         
                     } catch (InterruptedException e) {
                         log.error("发送心跳指令时线程被中断。设备ID: {}", heartbeat.getDeviceId(), e);
                         Thread.currentThread().interrupt();
-                        updateHeartbeatStatus(heartbeat, false, "线程中断");
+                        agricultureDeviceHeartbeatService.updateOnlineStatusByDeviceId(heartbeat.getDeviceId(), 0L);
                         return false;
                     } catch (Exception e) {
                         log.error("发送心跳指令时发生异常。设备ID: {}", heartbeat.getDeviceId(), e);
-                        updateHeartbeatStatus(heartbeat, false, "异常: " + e.getMessage());
+                        agricultureDeviceHeartbeatService.updateOnlineStatusByDeviceId(heartbeat.getDeviceId(), 0L);
                         return false;
                     }
                 }
@@ -148,7 +146,7 @@ public class HeartbeatServiceImpl implements HeartbeatService {
             
         } catch (Exception e) {
             log.error("提交心跳任务到队列时发生异常。设备ID: {}", heartbeat.getDeviceId(), e);
-            updateHeartbeatStatus(heartbeat, false, "队列提交异常: " + e.getMessage());
+            agricultureDeviceHeartbeatService.updateOnlineStatusByDeviceId(heartbeat.getDeviceId(), 0L);
             return false;
         }
     }
@@ -216,40 +214,6 @@ public class HeartbeatServiceImpl implements HeartbeatService {
         }
         
         return sendHeartbeatAndValidate(heartbeat);
-    }
-    
-    /**
-     * 更新心跳状态
-     * 
-     * @param heartbeat 心跳记录对象
-     * @param isOnline 是否在线
-     * @param message 状态消息
-     */
-    private void updateHeartbeatStatus(AgricultureDeviceHeartbeat heartbeat, boolean isOnline, String message) {
-        try {
-            heartbeat.setLastRecvTime(LocalDateTime.now());
-            heartbeat.setOnlineStatus(isOnline ? 1L : 0L);
-            
-            // 更新离线次数和最后在线时间
-            if (!isOnline) {
-                Long offlineCount = heartbeat.getOfflineCount();
-                if (offlineCount == null) {
-                    offlineCount = 0L;
-                }
-                heartbeat.setOfflineCount(offlineCount + 1);
-            } else {
-                // 在线时重置离线次数，更新最后在线时间
-                heartbeat.setOfflineCount(0L);
-            }
-            
-            agricultureDeviceHeartbeatService.updateById(heartbeat);
-            
-            log.debug("更新心跳状态成功。设备ID: {}, 在线状态: {}, 离线次数: {}", 
-                     heartbeat.getDeviceId(), isOnline, heartbeat.getOfflineCount());
-            
-        } catch (Exception e) {
-            log.error("更新心跳状态失败。设备ID: {}", heartbeat.getDeviceId(), e);
-        }
     }
     
     /**

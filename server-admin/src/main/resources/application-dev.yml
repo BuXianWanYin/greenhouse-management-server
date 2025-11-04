@@ -114,7 +114,7 @@ serial:
 
 # IoT物联网数据采集配置 true false
 iot:
-  enabled: false
+  enabled: true
 
 # 溯源系统地址配置
 codepath:

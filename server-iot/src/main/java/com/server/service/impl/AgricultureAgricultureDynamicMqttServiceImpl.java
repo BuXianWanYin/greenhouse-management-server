@@ -3,7 +3,7 @@ package com.server.service.impl;
 import com.server.config.DynamicMqttClientFactoryManager;
 import com.server.domain.AgricultureDeviceMqttConfig;
 import com.server.service.AgricultureDeviceMqttConfigService;
-import com.server.service.DynamicMqttService;
+import com.server.service.AgricultureDynamicMqttService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -13,7 +13,6 @@ import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -24,7 +23,7 @@ import java.util.UUID;
 @Slf4j
 @Service
 @ConditionalOnProperty(name = "iot.enabled", havingValue = "true")
-public class DynamicMqttServiceImpl implements DynamicMqttService {
+public class AgricultureAgricultureDynamicMqttServiceImpl implements AgricultureDynamicMqttService {
 
     @Autowired
     private DynamicMqttClientFactoryManager factoryManager;

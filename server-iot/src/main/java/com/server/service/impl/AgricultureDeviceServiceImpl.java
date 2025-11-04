@@ -14,6 +14,8 @@ import com.server.mapper.AgricultureDeviceTypeMapper;
 import com.server.service.AgricultureDeviceService;
 import com.server.utils.SecurityUtils;
 import com.server.utils.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AgricultureDeviceServiceImpl extends ServiceImpl<AgricultureDeviceMapper, AgricultureDevice> implements AgricultureDeviceService {
+    private static final Logger log = LoggerFactory.getLogger(AgricultureDeviceServiceImpl.class);
+    
     @Autowired
     private AgricultureDeviceMapper agricultureDeviceMapper;
     @Autowired

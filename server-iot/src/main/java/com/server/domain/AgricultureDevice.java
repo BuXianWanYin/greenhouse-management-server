@@ -69,5 +69,10 @@ public class AgricultureDevice extends BaseEntityPlus implements Serializable
     @TableField(value="sensor_command")
     @ApiModelProperty(value="传感器采集指令")
     private String sensorCommand;
+
+    /** 用户开关控制（0-关闭，1-开启） */
+    @TableField(value="user_control_switch")
+    @ApiModelProperty(value="用户开关控制（0-关闭，1-开启）")
+    private String userControlSwitch;
 }
 

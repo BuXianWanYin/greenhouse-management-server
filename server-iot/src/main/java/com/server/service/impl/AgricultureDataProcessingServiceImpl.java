@@ -7,12 +7,8 @@ import com.server.domain.AgricultureDeviceMqttConfig;
 import com.server.domain.AgricultureSoilData;
 import com.server.domain.dto.AirDataMqttDTO;
 import com.server.domain.dto.SoilDataMqttDTO;
-import com.server.service.AgricultureAirDataService;
-import com.server.service.AgricultureDeviceHeartbeatService;
-import com.server.service.AgricultureDeviceMqttConfigService;
-import com.server.service.AgricultureSoilDataService;
-import com.server.service.DataProcessingService;
-import com.server.service.DynamicMqttService;
+import com.server.service.*;
+import com.server.service.AgricultureDynamicMqttService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -30,9 +26,9 @@ import java.util.Objects;
  */
 @Service
 @ConditionalOnProperty(name = "iot.enabled", havingValue = "true")
-public class DataProcessingServiceImpl implements DataProcessingService {
+public class AgricultureDataProcessingServiceImpl implements AgricultureDataProcessingService {
 
-    private static final Logger log = LoggerFactory.getLogger(DataProcessingServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(AgricultureDataProcessingServiceImpl.class);
 
     @Autowired
     private AgricultureAirDataService airDataService; // 空气传感器数据
@@ -47,7 +43,7 @@ public class DataProcessingServiceImpl implements DataProcessingService {
     private AgricultureDeviceHeartbeatService agricultureDeviceHeartbeatService; // 设备心跳服务
 
     @Autowired
-    private DynamicMqttService dynamicMqttService; // 动态MQTT服务
+    private AgricultureDynamicMqttService agricultureDynamicMqttService; // 动态MQTT服务
 
     @Autowired
     private ObjectMapper objectMapper; // Spring Boot自动配置的JSON处理工具
@@ -67,10 +63,18 @@ public class DataProcessingServiceImpl implements DataProcessingService {
 
             // 根据数据类型处理
             String type = (String) parsedData.get("type");
+            if (type == null) {
+                log.warn("解析数据中缺少type字段，跳过处理。设备ID: {}, 数据: {}", context.deviceId(), parsedData);
+                return;
+            }
+            log.debug("处理数据类型: {}, 设备ID: {}", type, context.deviceId());
             switch (type) {
                 case "air" -> processAirData(context);
                 case "soil" -> processSoilData(context);
-                default -> sendRawDataToMqtt(context, parsedData, type);
+                default -> {
+                    log.warn("未知数据类型: {}, 设备ID: {}, 仅发送到MQTT，不保存到数据库。解析后的数据: {}", type, context.deviceId(), parsedData);
+                    sendRawDataToMqtt(context, parsedData, type);
+                }
             }
         } catch (Exception e) {
             log.error("处理并存储已解析的数据失败", e);
@@ -135,8 +139,16 @@ public class DataProcessingServiceImpl implements DataProcessingService {
     private void saveSoilData(AgricultureSoilData soilData, Long deviceId) {
         try {
             soilDataService.save(soilData);
-            log.info("土壤传感器数据保存成功: 设备ID={}, 温度={}, 湿度={}, pH={}", 
-                soilData.getDeviceId(), soilData.getSoilTemperature(), soilData.getSoilHumidity(), soilData.getPhValue());
+            log.info("土壤传感器数据保存成功: 设备ID={}, 土壤温度={}℃, 土壤湿度={}%, 电导率={}μS/cm, 盐分={}mg/L, 氮={}mg/kg, 磷={}mg/kg, 钾={}mg/kg, pH={}", 
+                soilData.getDeviceId(), 
+                soilData.getSoilTemperature(), 
+                soilData.getSoilHumidity(), 
+                soilData.getConductivity(),
+                soilData.getSalinity(),
+                soilData.getNitrogen(),
+                soilData.getPhosphorus(),
+                soilData.getPotassium(),
+                soilData.getPhValue());
         } catch (Exception e) {
             log.error("保存土壤传感器数据失败: 设备ID={}", deviceId, e);
             throw e;
@@ -205,7 +217,7 @@ public class DataProcessingServiceImpl implements DataProcessingService {
      */
     private void sendMqttMessage(DataProcessingContext context, String payload, String dataType) {
         try {
-            boolean sent = dynamicMqttService.sendMessage(context.deviceId(), payload);
+            boolean sent = agricultureDynamicMqttService.sendMessage(context.deviceId(), payload);
             if (sent) {
                 log.debug("MQTT消息发送成功: {} - 设备ID={}, broker={}, topic={}", 
                     dataType, context.deviceId(), context.config().getMqttBroker(), context.topic());

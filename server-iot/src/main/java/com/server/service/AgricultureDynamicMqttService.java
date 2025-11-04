@@ -4,7 +4,7 @@ package com.server.service;
  * 动态MQTT服务接口
  * 根据设备配置动态发送MQTT消息
  */
-public interface DynamicMqttService {
+public interface AgricultureDynamicMqttService {
     
     /**
      * 根据设备ID发送MQTT消息

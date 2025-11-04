@@ -2,7 +2,7 @@ package com.server.service;
 
 import java.util.Map;
 
-public interface DataProcessingService {
+public interface AgricultureDataProcessingService {
 //    /**
 //     * 处理字节数组形式的数据。
 //     * 假设字节数组内容为JSON字符串。
