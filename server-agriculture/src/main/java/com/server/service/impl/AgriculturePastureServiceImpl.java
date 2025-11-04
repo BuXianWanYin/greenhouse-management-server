@@ -1,7 +1,5 @@
 package com.server.service.impl;
 
-import java.math.BigInteger;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,11 +7,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.server.constant.AgricultureConstants;
-import com.server.core.domain.AjaxResult;
-import com.server.core.text.Convert;
-import com.server.domain.AgricultureClass;
-import com.server.domain.AgricultureCropBatch;
-import com.server.domain.dto.AgriculturePastureDTO;
+import com.server.domain.AgriculturePasture;
 import com.server.exception.ServiceException;
 import com.server.mapper.AgriculturePastureMapper;
 import com.server.utils.SecurityUtils;
@@ -21,7 +15,6 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.server.domain.AgriculturePasture;
 import com.server.service.AgriculturePastureService;
 import com.server.service.AgricultureCropBatchService;
 

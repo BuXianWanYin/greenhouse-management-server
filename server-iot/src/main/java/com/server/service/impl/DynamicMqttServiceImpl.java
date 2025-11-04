@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.integration.mqtt.core.MqttPahoClientFactory;
 import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
-import org.springframework.messaging.support.GenericMessage;
+import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -117,18 +117,18 @@ public class DynamicMqttServiceImpl implements DynamicMqttService {
                 return false;
             }
 
-            // 准备消息头
-            Map<String, Object> headers = new HashMap<>();
-            headers.put("mqtt_topic", topic);
-            headers.put("mqtt_qos", qos);
-
-            // 创建消息
-            GenericMessage<String> message = new GenericMessage<>(payload, headers);
+            // 准备消息头 - 使用Spring Integration MQTT的标准消息头键名
+            // 使用MessageBuilder来构建消息，确保消息头正确设置
+            org.springframework.messaging.Message<String> message = MessageBuilder
+                    .withPayload(payload)
+                    .setHeader("mqtt_topic", topic)
+                    .setHeader("mqtt_qos", qos)
+                    .build();
 
             // 发送消息
             messageHandler.handleMessage(message);
-            
-            log.debug("MQTT消息发送成功: deviceId={}, broker={}, topic={}, qos={}", 
+
+            log.debug("MQTT消息发送成功: deviceId={}, broker={}, topic={}, qos={}",
                     deviceId, broker, topic, qos);
             return true;
 
@@ -141,9 +141,9 @@ public class DynamicMqttServiceImpl implements DynamicMqttService {
     /**
      * 获取或创建MessageHandler
      */
-    private MqttPahoMessageHandler getOrCreateMessageHandler(Long deviceId, 
-                                                               AgricultureDeviceMqttConfig config, 
-                                                               String broker) {
+    private MqttPahoMessageHandler getOrCreateMessageHandler(Long deviceId,
+                                                             AgricultureDeviceMqttConfig config,
+                                                             String broker) {
         // 使用broker作为key，但实际每个broker可能共享同一个factory
         String cacheKey = broker;
         return handlerCache.computeIfAbsent(cacheKey, key -> {
@@ -162,9 +162,13 @@ public class DynamicMqttServiceImpl implements DynamicMqttService {
                 handler.setAsync(false); // 同步发送
                 handler.setCompletionTimeout(5000); // 5秒超时
 
-                log.info("创建动态MQTT MessageHandler: deviceId={}, broker={}, clientId={}", 
+                // 设置DefaultPahoMessageConverter，用于正确处理消息转换
+                // DefaultPahoMessageConverter会将String或byte[]负载转换为MqttMessage
+                handler.setConverter(new DefaultPahoMessageConverter());
+
+                log.info("创建动态MQTT MessageHandler: deviceId={}, broker={}, clientId={}",
                         deviceId, broker, clientId);
-                
+
                 return handler;
             } catch (Exception e) {
                 log.error("创建MQTT MessageHandler失败: deviceId={}, broker={}", deviceId, broker, e);

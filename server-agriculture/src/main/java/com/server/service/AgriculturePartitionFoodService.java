@@ -7,9 +7,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.server.domain.AgriculturePartitionFood;
 import com.server.domain.dto.AgriculturePartitionFoodPageDTO;
 import com.server.domain.vo.TraceabilityDetailVO;
-import com.server.mapper.AgriculturePartitionFoodMapper;
-import com.server.mapper.AgriculturePastureMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 分区食品 采摘Service接口

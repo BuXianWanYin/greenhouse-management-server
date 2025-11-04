@@ -4,7 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.server.annotation.SeeRefreshData;
-import com.server.domain.dto.AgriculturePastureDTO;
+import com.server.domain.AgriculturePasture;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +19,6 @@ import com.server.annotation.Log;
 import com.server.core.controller.BaseController;
 import com.server.core.domain.AjaxResult;
 import com.server.enums.BusinessType;
-import com.server.domain.AgriculturePasture;
 import com.server.service.AgriculturePastureService;
 import com.server.utils.poi.ExcelUtil;
 import com.server.core.page.TableDataInfo;

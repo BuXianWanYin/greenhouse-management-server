@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.server.domain.AgricultureAirData;
 import com.server.domain.AgricultureDeviceMqttConfig;
 import com.server.domain.AgricultureSoilData;
+import com.server.domain.dto.AirDataMqttDTO;
+import com.server.domain.dto.SoilDataMqttDTO;
 import com.server.service.AgricultureAirDataService;
 import com.server.service.AgricultureDeviceMqttConfigService;
 import com.server.service.AgricultureSoilDataService;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Objects;
 
@@ -44,112 +47,181 @@ public class DataProcessingServiceImpl implements DataProcessingService {
     @Autowired
     private ObjectMapper objectMapper; // Spring Boot自动配置的JSON处理工具
 
+    // 时间格式化器：yyyy-MM-dd HH:mm:ss
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     @Override
     public void processAndStore(Map<String, Object> parsedData) {
         try {
-            // 1. 获取设备ID
-            Long deviceId = null;
-            if (parsedData.get("deviceId") != null) {
-                deviceId = Long.valueOf(parsedData.get("deviceId").toString());
+            // 构建上下文
+            DataProcessingContext context = buildContext(parsedData);
+            if (context.deviceId() == null) {
+                log.warn("解析数据中缺少设备ID，跳过处理");
+                return;
             }
 
-            // 2. 查找该设备的MQTT配置
-            AgricultureDeviceMqttConfig config = null;
-            String topic = null;
-            if (deviceId != null) {
-                config = deviceMqttConfigService.getByDeviceId(deviceId);
-                if (config != null && config.getMqttTopic() != null && !config.getMqttTopic().isEmpty()) {
-                    topic = config.getMqttTopic();
-                }
-            }
-
-            // 3. 数据类型（决定存储到哪张表，但推送MQTT只看设备ID）
+            // 根据数据类型处理
             String type = (String) parsedData.get("type");
-
-            if ("air".equals(type)) {
-                // 空气传感器数据，存表
-                AgricultureAirData airData = createAirData(parsedData);
-                try {
-                    airDataService.save(airData);
-                    log.info("空气传感器数据保存成功: 设备ID={}, 温度={}, 湿度={}, 光照={}", 
-                        airData.getDeviceId(), airData.getTemperature(), airData.getHumidity(), airData.getIlluminance());
-                } catch (Exception e) {
-                    log.error("保存空气传感器数据失败: 设备ID={}", deviceId, e);
-                    throw e; // 数据保存失败应该抛出异常
-                }
-
-                // 推送到设备专属topic（失败不影响数据保存）
-                try {
-                    if (config != null && config.getMqttBroker() != null && !config.getMqttBroker().trim().isEmpty()) {
-                        // 使用动态MQTT服务，根据设备配置的mqttBroker连接
-                        boolean sent = dynamicMqttService.sendMessage(deviceId, objectMapper.writeValueAsString(airData));
-                        if (sent) {
-                            log.debug("MQTT消息发送成功: 设备ID={}, broker={}, topic={}", 
-                                    deviceId, config.getMqttBroker(), topic);
-                        } else {
-                            log.warn("MQTT消息发送失败: 设备ID={}, broker={}, topic={}", 
-                                    deviceId, config.getMqttBroker(), topic);
-                        }
-                    } else {
-                        log.warn("设备ID={} 未配置MQTT Broker，无法发送MQTT消息", deviceId);
-                    }
-                } catch (Exception e) {
-                    log.error("MQTT消息发送失败: 设备ID={}, topic={}", deviceId, topic, e);
-                    // MQTT发送失败不影响数据保存，只记录错误
-                }
-
-            } else if ("soil".equals(type)) {
-                // 土壤传感器数据，存表
-                AgricultureSoilData soilData = createSoilData(parsedData);
-                try {
-                    soilDataService.save(soilData);
-                    log.info("土壤传感器数据保存成功: 设备ID={}, 温度={}, 湿度={}, pH={}", 
-                        soilData.getDeviceId(), soilData.getSoilTemperature(), soilData.getSoilHumidity(), soilData.getPhValue());
-                } catch (Exception e) {
-                    log.error("保存土壤传感器数据失败: 设备ID={}", deviceId, e);
-                    throw e; // 数据保存失败应该抛出异常
-                }
-
-                // 推送到设备专属topic（失败不影响数据保存）
-                try {
-                    if (config != null && config.getMqttBroker() != null && !config.getMqttBroker().trim().isEmpty()) {
-                        // 使用动态MQTT服务，根据设备配置的mqttBroker连接
-                        boolean sent = dynamicMqttService.sendMessage(deviceId, objectMapper.writeValueAsString(soilData));
-                        if (sent) {
-                            log.debug("MQTT消息发送成功: 设备ID={}, broker={}, topic={}", 
-                                    deviceId, config.getMqttBroker(), topic);
-                        } else {
-                            log.warn("MQTT消息发送失败: 设备ID={}, broker={}, topic={}", 
-                                    deviceId, config.getMqttBroker(), topic);
-                        }
-                    } else {
-                        log.warn("设备ID={} 未配置MQTT Broker，无法发送MQTT消息", deviceId);
-                    }
-                } catch (Exception e) {
-                    log.error("MQTT消息发送失败: 设备ID={}, topic={}", deviceId, topic, e);
-                    // MQTT发送失败不影响数据保存，只记录错误
-                }
-            } else {
-                // 其它类型，直接推送原始数据
-                try {
-                    if (config != null && config.getMqttBroker() != null && !config.getMqttBroker().trim().isEmpty()) {
-                        boolean sent = dynamicMqttService.sendMessage(deviceId, objectMapper.writeValueAsString(parsedData));
-                        if (sent) {
-                            log.warn("收到未知数据类型: {}，原始数据已推送到MQTT主题 {}", type, topic);
-                        } else {
-                            log.warn("收到未知数据类型: {}，MQTT消息发送失败: 设备ID={}, topic={}", type, deviceId, topic);
-                        }
-                    } else {
-                        log.warn("收到未知数据类型: {}，设备ID={} 未配置MQTT Broker，无法发送MQTT消息", type, deviceId);
-                    }
-                } catch (Exception e) {
-                    log.error("MQTT消息发送失败: 设备ID={}, 主题={}, 数据类型={}", deviceId, topic, type, e);
-                }
+            switch (type) {
+                case "air" -> processAirData(context);
+                case "soil" -> processSoilData(context);
+                default -> sendRawDataToMqtt(context, parsedData, type);
             }
         } catch (Exception e) {
             log.error("处理并存储已解析的数据失败", e);
         }
     }
+
+    /**
+     * 构建数据处理上下文
+     */
+    private DataProcessingContext buildContext(Map<String, Object> parsedData) {
+        Long deviceId = parsedData.get("deviceId") != null 
+            ? Long.valueOf(parsedData.get("deviceId").toString()) 
+            : null;
+
+        AgricultureDeviceMqttConfig config = null;
+        String topic = null;
+        if (deviceId != null) {
+            config = deviceMqttConfigService.getByDeviceId(deviceId);
+            if (config != null && config.getMqttTopic() != null && !config.getMqttTopic().isEmpty()) {
+                topic = config.getMqttTopic();
+            }
+        }
+
+        return new DataProcessingContext(parsedData, deviceId, config, topic);
+    }
+
+    /**
+     * 处理空气传感器数据
+     */
+    private void processAirData(DataProcessingContext context) {
+        AgricultureAirData airData = createAirData(context.parsedData());
+        saveAirData(airData, context.deviceId());
+        sendAirDataToMqtt(airData, context);
+    }
+
+    /**
+     * 处理土壤传感器数据
+     */
+    private void processSoilData(DataProcessingContext context) {
+        AgricultureSoilData soilData = createSoilData(context.parsedData());
+        saveSoilData(soilData, context.deviceId());
+        sendSoilDataToMqtt(soilData, context);
+    }
+
+    /**
+     * 保存空气传感器数据
+     */
+    private void saveAirData(AgricultureAirData airData, Long deviceId) {
+        try {
+            airDataService.save(airData);
+            log.info("空气传感器数据保存成功: 设备ID={}, 温度={}, 湿度={}, 光照={}", 
+                airData.getDeviceId(), airData.getTemperature(), airData.getHumidity(), airData.getIlluminance());
+        } catch (Exception e) {
+            log.error("保存空气传感器数据失败: 设备ID={}", deviceId, e);
+            throw e;
+        }
+    }
+
+    /**
+     * 保存土壤传感器数据
+     */
+    private void saveSoilData(AgricultureSoilData soilData, Long deviceId) {
+        try {
+            soilDataService.save(soilData);
+            log.info("土壤传感器数据保存成功: 设备ID={}, 温度={}, 湿度={}, pH={}", 
+                soilData.getDeviceId(), soilData.getSoilTemperature(), soilData.getSoilHumidity(), soilData.getPhValue());
+        } catch (Exception e) {
+            log.error("保存土壤传感器数据失败: 设备ID={}", deviceId, e);
+            throw e;
+        }
+    }
+
+    /**
+     * 发送空气传感器数据到MQTT
+     */
+    private void sendAirDataToMqtt(AgricultureAirData airData, DataProcessingContext context) {
+        try {
+            if (isMqttConfigValid(context)) {
+                AirDataMqttDTO mqttDTO = convertToAirDataMqttDTO(airData);
+                sendMqttMessage(context, objectMapper.writeValueAsString(mqttDTO), "空气传感器数据");
+            } else {
+                log.warn("设备ID={} 未配置MQTT Broker，无法发送MQTT消息", context.deviceId());
+            }
+        } catch (Exception e) {
+            log.error("MQTT消息发送失败: 设备ID={}, topic={}", context.deviceId(), context.topic(), e);
+        }
+    }
+
+    /**
+     * 发送土壤传感器数据到MQTT
+     */
+    private void sendSoilDataToMqtt(AgricultureSoilData soilData, DataProcessingContext context) {
+        try {
+            if (isMqttConfigValid(context)) {
+                SoilDataMqttDTO mqttDTO = convertToSoilDataMqttDTO(soilData);
+                sendMqttMessage(context, objectMapper.writeValueAsString(mqttDTO), "土壤传感器数据");
+            } else {
+                log.warn("设备ID={} 未配置MQTT Broker，无法发送MQTT消息", context.deviceId());
+            }
+        } catch (Exception e) {
+            log.error("MQTT消息发送失败: 设备ID={}, topic={}", context.deviceId(), context.topic(), e);
+        }
+    }
+
+    /**
+     * 发送原始数据到MQTT（未知类型）
+     */
+    private void sendRawDataToMqtt(DataProcessingContext context, Map<String, Object> parsedData, String type) {
+        try {
+            if (isMqttConfigValid(context)) {
+                sendMqttMessage(context, objectMapper.writeValueAsString(parsedData), "未知数据类型: " + type);
+                log.warn("收到未知数据类型: {}，原始数据已推送到MQTT主题 {}", type, context.topic());
+            } else {
+                log.warn("收到未知数据类型: {}，设备ID={} 未配置MQTT Broker，无法发送MQTT消息", type, context.deviceId());
+            }
+        } catch (Exception e) {
+            log.error("MQTT消息发送失败: 设备ID={}, 主题={}, 数据类型={}", context.deviceId(), context.topic(), type, e);
+        }
+    }
+
+    /**
+     * 检查MQTT配置是否有效
+     */
+    private boolean isMqttConfigValid(DataProcessingContext context) {
+        return context.config() != null 
+            && context.config().getMqttBroker() != null 
+            && !context.config().getMqttBroker().trim().isEmpty();
+    }
+
+    /**
+     * 发送MQTT消息（公共方法）
+     */
+    private void sendMqttMessage(DataProcessingContext context, String payload, String dataType) {
+        try {
+            boolean sent = dynamicMqttService.sendMessage(context.deviceId(), payload);
+            if (sent) {
+                log.debug("MQTT消息发送成功: {} - 设备ID={}, broker={}, topic={}", 
+                    dataType, context.deviceId(), context.config().getMqttBroker(), context.topic());
+            } else {
+                log.warn("MQTT消息发送失败: {} - 设备ID={}, broker={}, topic={}", 
+                    dataType, context.deviceId(), context.config().getMqttBroker(), context.topic());
+            }
+        } catch (Exception e) {
+            log.error("发送MQTT消息异常: {} - 设备ID={}, topic={}", dataType, context.deviceId(), context.topic(), e);
+        }
+    }
+
+    /**
+     * 数据处理上下文（使用 Record，JDK 14+）
+     */
+    private record DataProcessingContext(
+        Map<String, Object> parsedData,
+        Long deviceId,
+        AgricultureDeviceMqttConfig config,
+        String topic
+    ) {}
 
     /**
      * 根据传入的Map数据，创建一个空气传感器数据实体对象。
@@ -196,25 +268,18 @@ public class DataProcessingServiceImpl implements DataProcessingService {
 
     /**
      * 从Object对象获取Double值。
-     * @param value 待转换的对象
-     * @param defaultValue 如果转换失败或对象为null时返回的默认值
-     * @return 转换后的Double值或默认值
+     * 处理 Number、String 或 null 的情况
      */
     private Double getDoubleValue(Object value, Double defaultValue) {
         if (value == null) {
             return defaultValue;
         }
+        if (value instanceof Number) {
+            return ((Number) value).doubleValue();
+        }
         try {
-            if (value instanceof Number) {
-                return ((Number) value).doubleValue();
-            } else {
-                String strValue = Objects.toString(value);
-                if ("null".equals(strValue) || strValue.trim().isEmpty()) {
-                    return defaultValue;
-                }
-                return new java.math.BigDecimal(strValue).doubleValue();
-            }
-        } catch (Exception e) {
+            return Double.parseDouble(value.toString());
+        } catch (NumberFormatException e) {
             log.warn("无法转换值 '{}' 为Double类型，使用默认值 '{}'", value, defaultValue);
             return defaultValue;
         }
@@ -222,27 +287,67 @@ public class DataProcessingServiceImpl implements DataProcessingService {
 
     /**
      * 从Object对象获取Long值。
-     * @param value 待转换的对象
-     * @param defaultValue 如果转换失败或对象为null时返回的默认值
-     * @return 转换后的Long值或默认值
+     * 处理 Number、String 或 null 的情况
      */
     private Long getLongValue(Object value, Long defaultValue) {
         if (value == null) {
             return defaultValue;
         }
+        if (value instanceof Number) {
+            return ((Number) value).longValue();
+        }
         try {
-            if (value instanceof Number) {
-                return ((Number) value).longValue();
-            } else {
-                String strValue = Objects.toString(value);
-                if ("null".equals(strValue) || strValue.trim().isEmpty()) {
-                    return defaultValue;
-                }
-                return Long.parseLong(strValue);
-            }
-        } catch (Exception e) {
+            return Long.parseLong(value.toString());
+        } catch (NumberFormatException e) {
             log.warn("无法转换值 '{}' 为Long类型，使用默认值 '{}'", value, defaultValue);
             return defaultValue;
         }
+    }
+
+    /**
+     * 将空气传感器数据转换为MQTT DTO
+     * 包含格式化后的时间
+     */
+    private AirDataMqttDTO convertToAirDataMqttDTO(AgricultureAirData airData) {
+        AirDataMqttDTO dto = new AirDataMqttDTO();
+        dto.setId(airData.getId());
+        dto.setDeviceId(airData.getDeviceId());
+        dto.setPastureId(airData.getPastureId());
+        dto.setTemperature(airData.getTemperature());
+        dto.setHumidity(airData.getHumidity());
+        dto.setIlluminance(airData.getIlluminance());
+        
+        // 格式化时间
+        if (airData.getCollectTime() != null) {
+            dto.setCollectTime(airData.getCollectTime().format(TIME_FORMATTER));
+        }
+        
+        return dto;
+    }
+
+    /**
+     * 将土壤传感器数据转换为MQTT DTO
+     * 包含格式化后的时间
+     */
+    private SoilDataMqttDTO convertToSoilDataMqttDTO(AgricultureSoilData soilData) {
+        SoilDataMqttDTO dto = new SoilDataMqttDTO();
+        dto.setId(soilData.getId());
+        dto.setDeviceId(soilData.getDeviceId());
+        dto.setPastureId(soilData.getPastureId());
+        dto.setSoilTemperature(soilData.getSoilTemperature());
+        dto.setSoilHumidity(soilData.getSoilHumidity());
+        dto.setConductivity(soilData.getConductivity());
+        dto.setSalinity(soilData.getSalinity());
+        dto.setNitrogen(soilData.getNitrogen());
+        dto.setPhosphorus(soilData.getPhosphorus());
+        dto.setPotassium(soilData.getPotassium());
+        dto.setPhValue(soilData.getPhValue());
+        
+        // 格式化时间
+        if (soilData.getCollectTime() != null) {
+            dto.setCollectTime(soilData.getCollectTime().format(TIME_FORMATTER));
+        }
+        
+        return dto;
     }
 }
