@@ -51,7 +51,6 @@ public class HeartbeatScheduledTask {
      */
     @PostConstruct
     public void init() {
-        log.info("正在初始化心跳任务服务...");
     }
     
     /**
@@ -69,7 +68,6 @@ public class HeartbeatScheduledTask {
      */
     @PreDestroy
     public void destroy() {
-        log.info("正在关闭心跳任务服务...");
         // 停止所有设备的心跳线程
         for (Long deviceId : deviceThreadFlags.keySet()) {
             AtomicBoolean flag = deviceThreadFlags.get(deviceId);
@@ -90,17 +88,15 @@ public class HeartbeatScheduledTask {
             List<AgricultureDeviceHeartbeat> heartbeats = agricultureDeviceHeartbeatService.list();
             
             if (heartbeats == null || heartbeats.isEmpty()) {
-                log.info("未找到需要发送心跳的设备");
                 return;
             }
             
-            log.info("系统启动时检查到 {} 个设备需要发送心跳", heartbeats.size());
+            log.info("启动心跳任务，检查到 {} 个设备需要发送心跳", heartbeats.size());
             
             // 为每个设备创建独立的线程，按照各自的间隔独立发送心跳
             for (AgricultureDeviceHeartbeat heartbeat : heartbeats) {
                 // 检查心跳指令是否配置
                 if (heartbeat.getHeartbeatCmdHex() == null || heartbeat.getHeartbeatCmdHex().trim().isEmpty()) {
-                    log.warn("设备ID={} 未配置心跳指令，跳过心跳任务启动", heartbeat.getDeviceId());
                     continue;
                 }
                 
@@ -148,8 +144,6 @@ public class HeartbeatScheduledTask {
         new Thread(() -> {
             Thread.currentThread().setName(threadName);
             
-            log.info("启动设备 {} 的心跳任务线程，发送间隔={}ms", deviceId, sendInterval.get());
-            
             // 首次延迟，等待设备初始化完成
             try {
                 Thread.sleep(2000);
@@ -191,7 +185,6 @@ public class HeartbeatScheduledTask {
                     
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
-                    log.info("设备ID={} 的心跳任务线程被中断", deviceId);
                     break;
                 } catch (Exception e) {
                     log.error("设备ID={} 的心跳任务执行异常", deviceId, e);
@@ -205,7 +198,6 @@ public class HeartbeatScheduledTask {
                 }
             }
             
-            log.info("设备ID={} 的心跳任务线程已停止", deviceId);
             deviceThreadFlags.remove(deviceId);
             
         }, threadName).start();

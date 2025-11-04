@@ -72,7 +72,6 @@ public class AgricultureAgricultureHeartbeatSendServiceImpl implements Agricultu
                 synchronized (serialPortService.getSerialLock()) {
                     try {
                         // 发送心跳指令
-                        log.info("发送心跳指令到设备 ID: {}, 指令: {}", heartbeat.getDeviceId(), heartbeatCmdHex);
                         byte[] commandBytes = serialPortService.hexStringToByteArray(heartbeatCmdHex);
                         int bytesSent = serialPortService.writeToSerial(commandBytes);
                         
@@ -93,14 +92,12 @@ public class AgricultureAgricultureHeartbeatSendServiceImpl implements Agricultu
                         byte[] responseBytes = serialPortService.readFromSerial(256);
                         
                         if (responseBytes == null || responseBytes.length == 0) {
-                            log.warn("未收到设备回复。设备ID: {}", heartbeat.getDeviceId());
                             agricultureDeviceHeartbeatService.updateOnlineStatusByDeviceId(heartbeat.getDeviceId(), 0L);
                             return false;
                         }
                         
                         // 将回复转换为十六进制字符串
                         String responseHex = bytesToHexString(responseBytes);
-                        log.info("收到设备回复。设备ID: {}, 回复: {}", heartbeat.getDeviceId(), responseHex);
                         
                         // 从指令中提取设备地址
                         String deviceAddr = ModbusCommandParser.extractDeviceAddr(heartbeatCmdHex);
@@ -119,7 +116,6 @@ public class AgricultureAgricultureHeartbeatSendServiceImpl implements Agricultu
                         String message = (String) validationResult.get("message");
                         
                         if (isValid) {
-                            log.info("心跳回复校验通过。设备ID: {}", heartbeat.getDeviceId());
                             agricultureDeviceHeartbeatService.updateOnlineStatusByDeviceId(heartbeat.getDeviceId(), 1L);
                             return true;
                         } else {
@@ -185,7 +181,6 @@ public class AgricultureAgricultureHeartbeatSendServiceImpl implements Agricultu
             }
         }
         
-        log.info("批量发送心跳完成，总数: {}, 成功: {}", heartbeatList.size(), successCount);
         return successCount;
     }
     

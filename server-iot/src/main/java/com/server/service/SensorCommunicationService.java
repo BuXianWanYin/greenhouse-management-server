@@ -55,7 +55,6 @@ public class SensorCommunicationService {
      */
     @PostConstruct
     public void init() {
-        log.info("正在初始化传感器通信服务...");
     }
 
     /**
@@ -64,7 +63,6 @@ public class SensorCommunicationService {
      */
     @EventListener(ApplicationReadyEvent.class)
     public void onApplicationReady() {
-        log.info("收到应用就绪事件，开始启动传感器通信服务...");
         startSensorCommunication();
     }
 
@@ -88,12 +86,9 @@ public class SensorCommunicationService {
      * 查询所有需要轮询的传感器，并逐一启动任务。
      */
     private void startSensorCommunication() {
-        log.info("开始启动传感器通信流程...");
         try {
-            // 查询所有传感器设备
-            log.debug("准备查询传感器设备，设备类型ID: 1(空气传感器), 2(土壤传感器)");
             List<AgricultureDevice> sensors = getSensorDevices();
-            log.info("查询到 {} 个传感器设备", sensors.size());
+            log.info("启动传感器通信流程，查询到 {} 个传感器设备", sensors.size());
             
             if (sensors.isEmpty()) {
                 log.warn("未查询到任何传感器设备，请检查数据库中的设备配置");
@@ -102,24 +97,16 @@ public class SensorCommunicationService {
             
             int startedCount = 0;
             for (AgricultureDevice sensor : sensors) {
-                log.info("设备信息: 名称={}, ID={}, 类型ID={}, 指令={}, 用户控制开关={}", 
-                    sensor.getDeviceName(), sensor.getId(), sensor.getDeviceTypeId(), sensor.getSensorCommand(), sensor.getUserControlSwitch());
-                
                 // 跳过未配置指令的设备
                 String command = sensor.getSensorCommand();
                 if (command == null || "null".equals(command) || command.trim().isEmpty()) {
-                    log.warn("传感器 {} (ID: {}, 类型: {}) 没有配置指令，跳过任务启动。", 
-                        sensor.getDeviceName(), sensor.getId(), sensor.getDeviceTypeId());
                     continue;
                 }
                 
-                // 启动任务（所有设备都启动，采集时会检查用户控制开关状态）
-                log.info("启动传感器采集任务: {} (ID: {}, 类型: {})，采集时会检查用户控制开关状态", 
-                    sensor.getDeviceName(), sensor.getId(), sensor.getDeviceTypeId());
                 startSensorCollectLoop(sensor);
                 startedCount++;
             }
-            log.info("传感器通信流程启动完成，共查询到 {} 个设备，成功启动 {} 个采集任务（采集时会根据用户控制开关状态决定是否执行）", sensors.size(), startedCount);
+            log.info("传感器通信流程启动完成，成功启动 {} 个采集任务", startedCount);
         } catch (Exception e) {
             log.error("启动传感器通信流程失败", e);
         }
@@ -148,7 +135,6 @@ public class SensorCommunicationService {
         Thread collectThread = new Thread(() -> {
             String sensorName = sensor.getDeviceName();
             String commandHexStr = sensor.getSensorCommand();
-            log.info("传感器 {} (ID: {}) 的采集任务线程已启动", sensorName, sensorId);
             while (!Thread.currentThread().isInterrupted()) {
                 try {
                     serialCommandExecutor.submit(() -> {
@@ -164,13 +150,10 @@ public class SensorCommunicationService {
                                 // 检查用户控制开关，如果为 '0'（关闭），则跳过本次数据采集
                                 String userControlSwitch = currentDevice.getUserControlSwitch();
                                 if (userControlSwitch != null && "0".equals(userControlSwitch)) {
-                                    log.debug("设备 {} (ID: {}) 用户控制开关为关闭状态，跳过本次数据采集", sensorName, sensorId);
                                     return;
                                 }
                                 
                                 byte[] commandBytes = hexStringToByteArray(commandHexStr);
-                                // 输出发送的指令
-                                log.info("发送指令到设备 {} (ID: {}): {}", sensorName, sensorId, bytesToHexString(commandBytes));
                                 serialPortService.writeToSerial(commandBytes);
                                 Thread.sleep(200);
                                 byte[] response = serialPortService.readFromSerial(256);
@@ -185,19 +168,15 @@ public class SensorCommunicationService {
                                     // 再次检查用户控制开关（防止在采集过程中被关闭）
                                     String latestUserControlSwitch = latestDevice.getUserControlSwitch();
                                     if (latestUserControlSwitch != null && "0".equals(latestUserControlSwitch)) {
-                                        log.debug("设备 {} (ID: {}) 用户控制开关已关闭，跳过数据处理", sensorName, sensorId);
                                         return;
                                     }
                                     
                                     String deviceType = latestDevice.getDeviceTypeId();
-                                    // 输出接收到的原始数据
-                                    log.info("设备 {} (ID: {}, 类型: {}) 接收到原始数据: {}", 
-                                        sensorName, sensorId, deviceType, bytesToHexString(response));
                                     Map<String, Object> parsedData = parseSensorData(response, deviceType);
                                     // 检查解析结果是否为空
                                     if (parsedData == null || parsedData.isEmpty()) {
-                                        log.warn("设备 {} (ID: {}, 类型: {}) 解析后的数据为空，可能数据格式不正确", 
-                                            sensorName, sensorId, deviceType);
+                                        log.warn("设备 {} (ID: {}) 解析后的数据为空，可能数据格式不正确", 
+                                            sensorName, sensorId);
                                     } else {
                                         parsedData.put("deviceId", sensorId);
                                         parsedData.put("deviceName", latestDevice.getDeviceName());
@@ -211,13 +190,8 @@ public class SensorCommunicationService {
                                                     latestDevice.getDeviceName(), sensorId, latestDevice.getPastureId());
                                             }
                                         }
-                                        // 输出解析后的数据
-                                        log.info("设备 {} (ID: {}, 类型: {}) 解析后的数据: {}", 
-                                            sensorName, sensorId, deviceType, parsedData);
                                         agricultureDataProcessingService.processAndStore(parsedData);
                                     }
-                                } else {
-                                    log.warn("轮询 {} (ID: {}) 未收到响应。", sensorName, sensorId);
                                 }
                             } catch (Exception e) {
                                 log.error("采集任务异常: {}", e.getMessage(), e);
@@ -229,7 +203,6 @@ public class SensorCommunicationService {
                     break;
                 }
             }
-            log.info("传感器 {} (ID: {}) 的轮询任务已完全停止。", sensorName, sensorId);
             deviceCollectThreads.remove(sensorId);
         }, "Sensor-Collect-" + sensor.getId());
         
@@ -245,7 +218,6 @@ public class SensorCommunicationService {
     public void stopSensorCollectLoop(Long deviceId) {
         Thread thread = deviceCollectThreads.get(deviceId);
         if (thread != null && thread.isAlive()) {
-            log.info("停止设备 ID: {} 的采集任务", deviceId);
             thread.interrupt();
             deviceCollectThreads.remove(deviceId);
         }
@@ -288,12 +260,10 @@ public class SensorCommunicationService {
             if (deviceCollectThreads.containsKey(deviceId)) {
                 Thread existingThread = deviceCollectThreads.get(deviceId);
                 if (existingThread != null && existingThread.isAlive()) {
-                    log.info("设备 ID: {} 的采集任务已在运行中", deviceId);
                     return;
                 }
             }
             
-            log.info("动态启动设备 ID: {} 的采集任务", deviceId);
             startSensorCollectLoop(device);
         } catch (Exception e) {
             log.error("启动设备 ID: {} 的采集任务失败", deviceId, e);
@@ -487,7 +457,6 @@ public class SensorCommunicationService {
      * 它会先停止所有当前任务，然后重新从数据库加载并启动任务。
      */
     public void reloadSensorConfig() {
-        log.info("正在重新加载传感器配置...");
         startSensorCommunication();
     }
 

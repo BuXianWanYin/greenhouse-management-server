@@ -67,7 +67,6 @@ public class AgricultureDataProcessingServiceImpl implements AgricultureDataProc
                 log.warn("解析数据中缺少type字段，跳过处理。设备ID: {}, 数据: {}", context.deviceId(), parsedData);
                 return;
             }
-            log.debug("处理数据类型: {}, 设备ID: {}", type, context.deviceId());
             switch (type) {
                 case "air" -> processAirData(context);
                 case "soil" -> processSoilData(context);
@@ -125,8 +124,6 @@ public class AgricultureDataProcessingServiceImpl implements AgricultureDataProc
     private void saveAirData(AgricultureAirData airData, Long deviceId) {
         try {
             airDataService.save(airData);
-            log.info("空气传感器数据保存成功: 设备ID={}, 温度={}, 湿度={}, 光照={}", 
-                airData.getDeviceId(), airData.getTemperature(), airData.getHumidity(), airData.getIlluminance());
         } catch (Exception e) {
             log.error("保存空气传感器数据失败: 设备ID={}", deviceId, e);
             throw e;
@@ -139,16 +136,6 @@ public class AgricultureDataProcessingServiceImpl implements AgricultureDataProc
     private void saveSoilData(AgricultureSoilData soilData, Long deviceId) {
         try {
             soilDataService.save(soilData);
-            log.info("土壤传感器数据保存成功: 设备ID={}, 土壤温度={}℃, 土壤湿度={}%, 电导率={}μS/cm, 盐分={}mg/L, 氮={}mg/kg, 磷={}mg/kg, 钾={}mg/kg, pH={}", 
-                soilData.getDeviceId(), 
-                soilData.getSoilTemperature(), 
-                soilData.getSoilHumidity(), 
-                soilData.getConductivity(),
-                soilData.getSalinity(),
-                soilData.getNitrogen(),
-                soilData.getPhosphorus(),
-                soilData.getPotassium(),
-                soilData.getPhValue());
         } catch (Exception e) {
             log.error("保存土壤传感器数据失败: 设备ID={}", deviceId, e);
             throw e;
@@ -163,8 +150,6 @@ public class AgricultureDataProcessingServiceImpl implements AgricultureDataProc
             if (isMqttConfigValid(context)) {
                 AirDataMqttDTO mqttDTO = convertToAirDataMqttDTO(airData);
                 sendMqttMessage(context, objectMapper.writeValueAsString(mqttDTO), "空气传感器数据");
-            } else {
-                log.warn("设备ID={} 未配置MQTT Broker，无法发送MQTT消息", context.deviceId());
             }
         } catch (Exception e) {
             log.error("MQTT消息发送失败: 设备ID={}, topic={}", context.deviceId(), context.topic(), e);
@@ -179,8 +164,6 @@ public class AgricultureDataProcessingServiceImpl implements AgricultureDataProc
             if (isMqttConfigValid(context)) {
                 SoilDataMqttDTO mqttDTO = convertToSoilDataMqttDTO(soilData);
                 sendMqttMessage(context, objectMapper.writeValueAsString(mqttDTO), "土壤传感器数据");
-            } else {
-                log.warn("设备ID={} 未配置MQTT Broker，无法发送MQTT消息", context.deviceId());
             }
         } catch (Exception e) {
             log.error("MQTT消息发送失败: 设备ID={}, topic={}", context.deviceId(), context.topic(), e);
@@ -194,9 +177,6 @@ public class AgricultureDataProcessingServiceImpl implements AgricultureDataProc
         try {
             if (isMqttConfigValid(context)) {
                 sendMqttMessage(context, objectMapper.writeValueAsString(parsedData), "未知数据类型: " + type);
-                log.warn("收到未知数据类型: {}，原始数据已推送到MQTT主题 {}", type, context.topic());
-            } else {
-                log.warn("收到未知数据类型: {}，设备ID={} 未配置MQTT Broker，无法发送MQTT消息", type, context.deviceId());
             }
         } catch (Exception e) {
             log.error("MQTT消息发送失败: 设备ID={}, 主题={}, 数据类型={}", context.deviceId(), context.topic(), type, e);
@@ -218,10 +198,7 @@ public class AgricultureDataProcessingServiceImpl implements AgricultureDataProc
     private void sendMqttMessage(DataProcessingContext context, String payload, String dataType) {
         try {
             boolean sent = agricultureDynamicMqttService.sendMessage(context.deviceId(), payload);
-            if (sent) {
-                log.debug("MQTT消息发送成功: {} - 设备ID={}, broker={}, topic={}", 
-                    dataType, context.deviceId(), context.config().getMqttBroker(), context.topic());
-            } else {
+            if (!sent) {
                 log.warn("MQTT消息发送失败: {} - 设备ID={}, broker={}, topic={}", 
                     dataType, context.deviceId(), context.config().getMqttBroker(), context.topic());
             }
@@ -231,7 +208,7 @@ public class AgricultureDataProcessingServiceImpl implements AgricultureDataProc
     }
 
     /**
-     * 数据处理上下文（使用 Record，JDK 14+）
+     * 数据处理上下文
      */
     private record DataProcessingContext(
         Map<String, Object> parsedData,

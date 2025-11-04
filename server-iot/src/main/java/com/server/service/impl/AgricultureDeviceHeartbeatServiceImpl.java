@@ -94,7 +94,6 @@ public class AgricultureDeviceHeartbeatServiceImpl extends ServiceImpl<Agricultu
         // 如果发送间隔未设置，设置默认值5000毫秒（5秒）
         if (agricultureDeviceHeartbeat.getSendInterval() == null || agricultureDeviceHeartbeat.getSendInterval() <= 0) {
             agricultureDeviceHeartbeat.setSendInterval(5000L);
-            log.debug("设置发送间隔默认值: 5000毫秒");
         }
 
         agricultureDeviceHeartbeat.setCreateTime(LocalDateTime.now());
@@ -145,9 +144,6 @@ public class AgricultureDeviceHeartbeatServiceImpl extends ServiceImpl<Agricultu
         agricultureDeviceHeartbeat.setCmdRegLength((Long) parsed.get("regLength"));
         agricultureDeviceHeartbeat.setCrc16Low((Long) parsed.get("crcLow"));
         agricultureDeviceHeartbeat.setCrc16High((Long) parsed.get("crcHigh"));
-        
-        log.info("心跳指令解析成功: 功能码={}, 起始地址={}, 寄存器数量={}", 
-                parsed.get("functionCode"), parsed.get("regStart"), parsed.get("regLength"));
     }
 
     /**
@@ -227,7 +223,6 @@ public class AgricultureDeviceHeartbeatServiceImpl extends ServiceImpl<Agricultu
                     if (device != null) {
                         device.setUserControlSwitch("0");
                         agricultureDeviceService.updateById(device);
-                        log.info("设备离线，同步更新用户控制开关为关闭状态。设备ID: {}", deviceId);
                     }
                 } catch (Exception e) {
                     log.warn("更新设备用户控制开关失败。设备ID: {}", deviceId, e);
@@ -241,7 +236,6 @@ public class AgricultureDeviceHeartbeatServiceImpl extends ServiceImpl<Agricultu
             
             boolean result = updateById(heartbeat);
             if (result) {
-                log.info("更新设备在线状态成功。设备ID: {}, 在线状态: {}", deviceId, onlineStatus == 1L ? "在线" : "离线");
                 return 1;
             } else {
                 log.error("更新设备在线状态失败。设备ID: {}", deviceId);
