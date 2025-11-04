@@ -791,3 +791,210 @@
 19:17:00.152 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [lambda$startSensorCollectLoop$0,166] - 设备 123123 (ID: 58, 类型: 1) 解析后的数据: {illuminance=26.0, pastureId=71, temperature=24.1, humidity=64.3, type=air, deviceId=58, deviceName=123123}
 19:17:00.160 [Serial-Command-Executor] INFO  c.s.s.i.DataProcessingServiceImpl - [saveAirData,119] - 空气传感器数据保存成功: 设备ID=58, 温度=24.1, 湿度=64.3, 光照=26.0
 19:17:03.634 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+19:17:54.401 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 282188 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+19:17:54.398 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+19:17:54.402 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+19:17:56.803 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+19:17:56.804 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+19:17:56.804 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+19:17:56.946 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+19:17:58.119 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+19:18:02.070 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+19:18:02.085 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+19:18:02.086 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+19:18:02.087 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+19:18:02.088 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+19:18:02.088 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+19:18:02.088 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+19:18:02.088 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@22bf4d9d
+19:18:04.122 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+19:18:04.724 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+19:18:04.736 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 10.719 seconds (JVM running for 11.403)
+19:18:07.723 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:18:07.830 [http-nio-8080-exec-1] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:18:08.808 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+19:18:08.856 [http-nio-8080-exec-5] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:26:24.289 [http-nio-8080-exec-28] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:26:29.852 [http-nio-8080-exec-29] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+19:26:30.283 [http-nio-8080-exec-30] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+19:26:30.290 [http-nio-8080-exec-31] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:27:22.382 [http-nio-8080-exec-48] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:28:08.349 [http-nio-8080-exec-51] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:29:28.972 [http-nio-8080-exec-69] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:30:06.849 [http-nio-8080-exec-76] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:30:31.256 [http-nio-8080-exec-79] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:31:39.872 [http-nio-8080-exec-82] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:32:09.087 [http-nio-8080-exec-84] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:32:20.461 [http-nio-8080-exec-90] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:32:29.872 [http-nio-8080-exec-91] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:33:04.678 [http-nio-8080-exec-94] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:33:45.049 [http-nio-8080-exec-95] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:33:51.467 [http-nio-8080-exec-97] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:36:25.697 [http-nio-8080-exec-2] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:37:00.516 [http-nio-8080-exec-8] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+19:39:06.937 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+19:39:09.416 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+19:39:09.421 [http-nio-8080-exec-13] INFO  c.s.sse.SseServer - [lambda$createSse$1,35] - [AGRICULTURE]连接超时...................
+19:39:09.423 [http-nio-8080-exec-13] INFO  c.s.sse.SseServer - [lambda$createSse$0,31] - [AGRICULTURE]结束连接...................
+19:39:09.439 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+19:39:09.439 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+19:39:09.439 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+19:39:09.442 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
+19:39:09.446 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
+19:39:12.860 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+19:39:12.867 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 216728 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+19:39:12.868 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+19:39:15.392 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+19:39:15.394 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+19:39:15.394 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+19:39:15.554 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+19:39:16.515 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+19:39:20.323 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+19:39:20.336 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+19:39:20.337 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+19:39:20.338 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+19:39:20.339 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+19:39:20.339 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+19:39:20.339 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+19:39:20.339 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@2bfe398b
+19:39:22.452 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+19:39:22.614 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:39:22.711 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+19:39:22.711 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+19:39:22.718 [http-nio-8080-exec-3] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+19:39:23.321 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+19:39:23.336 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 10.838 seconds (JVM running for 11.7)
+19:39:23.795 [http-nio-8080-exec-4] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+19:39:23.812 [http-nio-8080-exec-6] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+19:42:40.394 [http-nio-8080-exec-44] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....
+19:44:19.719 [http-nio-8080-exec-89] INFO  c.s.s.i.AgricultureDeviceHeartbeatServiceImpl - [parseHeartbeatCommand,124] - 心跳指令解析成功: 功能码=3, 起始地址=0, 寄存器数量=1
+19:44:19.721 [http-nio-8080-exec-89] INFO  c.s.h.MyMetaObjectHandler - [insertFill,18] - start insert fill ....
+19:46:31.056 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+19:46:31.416 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+19:46:31.418 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+19:46:31.418 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+19:46:31.418 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+19:46:31.419 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+19:46:31.440 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+19:46:31.441 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+19:46:31.441 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+19:46:31.444 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
+19:46:31.451 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
+19:55:26.767 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+19:55:26.772 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 280928 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+19:55:26.773 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+19:55:29.055 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+19:55:29.057 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+19:55:29.058 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+19:55:29.228 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+19:55:30.950 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+19:55:35.070 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+19:55:35.088 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+19:55:35.089 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+19:55:35.090 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+19:55:35.091 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+19:55:35.092 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+19:55:35.092 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+19:55:35.092 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@1dc37d4f
+19:55:37.232 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+19:55:37.953 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+19:55:37.967 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 11.496 seconds (JVM running for 12.165)
+19:55:39.753 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:55:54.365 [http-nio-8080-exec-5] INFO  c.s.s.i.AgricultureDeviceHeartbeatServiceImpl - [parseHeartbeatCommand,123] - 心跳指令解析成功: 功能码=3, 起始地址=0, 寄存器数量=1
+19:55:54.371 [http-nio-8080-exec-5] INFO  c.s.h.MyMetaObjectHandler - [insertFill,18] - start insert fill ....
+19:57:10.674 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+19:57:11.037 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+19:57:11.037 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+19:57:11.037 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+19:57:11.040 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
+19:57:11.045 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
+19:57:17.060 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+19:57:17.065 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 279544 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+19:57:17.065 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+19:57:19.486 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+19:57:19.487 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+19:57:19.488 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+19:57:19.627 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+19:57:20.976 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+19:57:25.093 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+19:57:25.105 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+19:57:25.105 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+19:57:25.106 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+19:57:25.107 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+19:57:25.108 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+19:57:25.108 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+19:57:25.108 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@5b1dd206
+19:57:27.099 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+19:57:27.817 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+19:57:27.829 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 11.195 seconds (JVM running for 11.953)
+19:57:29.308 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+19:57:36.278 [http-nio-8080-exec-3] INFO  c.s.s.i.AgricultureDeviceHeartbeatServiceImpl - [parseHeartbeatCommand,123] - 心跳指令解析成功: 功能码=3, 起始地址=0, 寄存器数量=1
+20:00:25.063 [http-nio-8080-exec-48] INFO  c.s.s.i.AgricultureDeviceHeartbeatServiceImpl - [parseHeartbeatCommand,123] - 心跳指令解析成功: 功能码=3, 起始地址=0, 寄存器数量=1
+20:03:58.524 [http-nio-8080-exec-5] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+20:03:58.555 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+20:04:31.064 [http-nio-8080-exec-36] INFO  c.s.s.i.AgricultureDeviceHeartbeatServiceImpl - [parseHeartbeatCommand,123] - 心跳指令解析成功: 功能码=3, 起始地址=0, 寄存器数量=1
+20:04:41.116 [http-nio-8080-exec-45] INFO  c.s.s.i.AgricultureDeviceHeartbeatServiceImpl - [parseHeartbeatCommand,123] - 心跳指令解析成功: 功能码=3, 起始地址=0, 寄存器数量=1
+20:05:18.744 [http-nio-8080-exec-51] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+20:07:33.430 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+20:07:42.609 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+20:07:42.615 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 266584 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+20:07:42.616 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+20:07:45.034 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+20:07:45.035 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+20:07:45.035 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+20:07:45.183 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+20:07:46.142 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+20:07:49.512 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+20:07:49.526 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+20:07:49.527 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+20:07:49.527 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+20:07:49.528 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+20:07:49.529 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+20:07:49.529 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+20:07:49.529 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@20d1737
+20:07:51.228 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+20:07:51.526 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+20:07:51.593 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+20:07:51.593 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+20:07:51.608 [http-nio-8080-exec-4] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+20:07:51.623 [http-nio-8080-exec-8] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+20:07:51.639 [http-nio-8080-exec-6] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+20:07:51.812 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+20:07:51.823 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 9.533 seconds (JVM running for 10.17)
+20:07:53.446 [http-nio-8080-exec-7] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+20:07:55.097 [http-nio-8080-exec-5] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
