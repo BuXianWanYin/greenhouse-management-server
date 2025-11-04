@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 /** 
- * @author 851543
+ * @author bxwy
  * @description  
  */
 @Data
@@ -77,5 +77,28 @@ public class AgricultureDeviceHeartbeat extends BaseEntityPlus implements Serial
     @ApiModelProperty(value="连续离线次数")
     private Long offlineCount;
 
-}
+    @TableField(value="send_interval")
+    @ApiModelProperty(value="指令发送间隔（毫秒）")
+    private Long sendInterval;
 
+    @TableField(value="last_online_time")
+    @ApiModelProperty(value="最后在线时间")
+    private LocalDateTime lastOnlineTime;
+
+    // 覆盖 BaseEntityPlus 中的字段，标记为不存在
+    @TableField(value = "create_by", exist = false)
+    private String createBy;
+    
+    @TableField(value = "create_time", exist = false)
+    private LocalDateTime createTime;
+    
+    @TableField(value = "update_by", exist = false)
+    private String updateBy;
+    
+    @TableField(value = "update_time", exist = false)
+    private LocalDateTime updateTime;
+    
+    @TableField(value = "remark", exist = false)
+    private String remark;
+
+}

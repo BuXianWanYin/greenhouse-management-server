@@ -2,11 +2,13 @@ package com.server.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.server.domain.AgricultureAirData;
+import com.server.domain.AgricultureDeviceHeartbeat;
 import com.server.domain.AgricultureDeviceMqttConfig;
 import com.server.domain.AgricultureSoilData;
 import com.server.domain.dto.AirDataMqttDTO;
 import com.server.domain.dto.SoilDataMqttDTO;
 import com.server.service.AgricultureAirDataService;
+import com.server.service.AgricultureDeviceHeartbeatService;
 import com.server.service.AgricultureDeviceMqttConfigService;
 import com.server.service.AgricultureSoilDataService;
 import com.server.service.DataProcessingService;
@@ -40,6 +42,9 @@ public class DataProcessingServiceImpl implements DataProcessingService {
 
     @Autowired
     private AgricultureDeviceMqttConfigService deviceMqttConfigService; //Mqtt配置
+
+    @Autowired
+    private AgricultureDeviceHeartbeatService agricultureDeviceHeartbeatService; // 设备心跳服务
 
     @Autowired
     private DynamicMqttService dynamicMqttService; // 动态MQTT服务
@@ -306,7 +311,7 @@ public class DataProcessingServiceImpl implements DataProcessingService {
 
     /**
      * 将空气传感器数据转换为MQTT DTO
-     * 包含格式化后的时间
+     * 包含格式化后的时间和设备在线状态
      */
     private AirDataMqttDTO convertToAirDataMqttDTO(AgricultureAirData airData) {
         AirDataMqttDTO dto = new AirDataMqttDTO();
@@ -322,12 +327,27 @@ public class DataProcessingServiceImpl implements DataProcessingService {
             dto.setCollectTime(airData.getCollectTime().format(TIME_FORMATTER));
         }
         
+        // 查询设备心跳记录，获取在线状态和最后在线时间
+        if (airData.getDeviceId() != null) {
+            AgricultureDeviceHeartbeat heartbeat = agricultureDeviceHeartbeatService
+                    .lambdaQuery()
+                    .eq(AgricultureDeviceHeartbeat::getDeviceId, airData.getDeviceId())
+                    .one();
+            
+            if (heartbeat != null) {
+                dto.setOnlineStatus(heartbeat.getOnlineStatus());
+                if (heartbeat.getLastOnlineTime() != null) {
+                    dto.setLastOnlineTime(heartbeat.getLastOnlineTime().format(TIME_FORMATTER));
+                }
+            }
+        }
+        
         return dto;
     }
 
     /**
      * 将土壤传感器数据转换为MQTT DTO
-     * 包含格式化后的时间
+     * 包含格式化后的时间和设备在线状态
      */
     private SoilDataMqttDTO convertToSoilDataMqttDTO(AgricultureSoilData soilData) {
         SoilDataMqttDTO dto = new SoilDataMqttDTO();
@@ -346,6 +366,21 @@ public class DataProcessingServiceImpl implements DataProcessingService {
         // 格式化时间
         if (soilData.getCollectTime() != null) {
             dto.setCollectTime(soilData.getCollectTime().format(TIME_FORMATTER));
+        }
+        
+        // 查询设备心跳记录，获取在线状态和最后在线时间
+        if (soilData.getDeviceId() != null) {
+            AgricultureDeviceHeartbeat heartbeat = agricultureDeviceHeartbeatService
+                    .lambdaQuery()
+                    .eq(AgricultureDeviceHeartbeat::getDeviceId, soilData.getDeviceId())
+                    .one();
+            
+            if (heartbeat != null) {
+                dto.setOnlineStatus(heartbeat.getOnlineStatus());
+                if (heartbeat.getLastOnlineTime() != null) {
+                    dto.setLastOnlineTime(heartbeat.getLastOnlineTime().format(TIME_FORMATTER));
+                }
+            }
         }
         
         return dto;

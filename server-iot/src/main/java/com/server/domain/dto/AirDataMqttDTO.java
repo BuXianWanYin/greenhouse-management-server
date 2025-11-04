@@ -23,4 +23,6 @@ public class AirDataMqttDTO implements Serializable {
     private Double humidity;
     private Double illuminance;
     private String collectTime; // 格式化后的时间：yyyy-MM-dd HH:mm:ss
+    private Long onlineStatus; // 在线状态（1=在线，0=离线）
+    private String lastOnlineTime; // 最后在线时间：yyyy-MM-dd HH:mm:ss
 }

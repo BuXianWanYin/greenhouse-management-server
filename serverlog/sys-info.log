@@ -998,3 +998,7 @@
 20:07:51.823 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 9.533 seconds (JVM running for 10.17)
 20:07:53.446 [http-nio-8080-exec-7] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
 20:07:55.097 [http-nio-8080-exec-5] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+20:10:25.841 [http-nio-8080-exec-55] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+20:10:44.185 [http-nio-8080-exec-56] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+20:14:19.726 [http-nio-8080-exec-87] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+20:14:30.829 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.

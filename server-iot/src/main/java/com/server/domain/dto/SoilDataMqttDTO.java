@@ -28,4 +28,6 @@ public class SoilDataMqttDTO implements Serializable {
     private Double potassium;
     private Double phValue;
     private String collectTime; // 格式化后的时间：yyyy-MM-dd HH:mm:ss
+    private Long onlineStatus; // 在线状态（1=在线，0=离线）
+    private String lastOnlineTime; // 最后在线时间：yyyy-MM-dd HH:mm:ss
 }
