@@ -198,7 +198,14 @@ public class SensorCommunicationService {
                             }
                         }
                     });
-                    Thread.sleep(5000); // 轮询间隔
+                    // 从数据库获取最新的采集间隔配置
+                    AgricultureDevice latestDevice = deviceService.getById(sensorId);
+                    long collectIntervalMs = 5000; // 默认5秒
+                    if (latestDevice != null && latestDevice.getCollectInterval() != null && latestDevice.getCollectInterval() > 0) {
+                        // collectInterval 单位是秒，转换为毫秒
+                        collectIntervalMs = latestDevice.getCollectInterval() * 1000;
+                    }
+                    Thread.sleep(collectIntervalMs); // 使用设备配置的采集间隔
                 } catch (InterruptedException e) {
                     break;
                 }

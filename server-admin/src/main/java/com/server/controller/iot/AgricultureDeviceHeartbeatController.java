@@ -51,17 +51,17 @@ public class AgricultureDeviceHeartbeatController extends BaseController
      * 导出设备心跳状态 
      */
     @PreAuthorize("@ss.hasPermi('device:heartbeat:export')")
-    @Log(title = "设备心跳状态（关联设备，设备删除时心跳记录自动删除）", businessType = BusinessType.EXPORT)
+    @Log(title = "设备心跳状态", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, AgricultureDeviceHeartbeat agricultureDeviceHeartbeat)
     {
         List<AgricultureDeviceHeartbeat> list = agricultureDeviceHeartbeatService.selectAgricultureDeviceHeartbeatList(agricultureDeviceHeartbeat);
         ExcelUtil<AgricultureDeviceHeartbeat> util = new ExcelUtil<AgricultureDeviceHeartbeat>(AgricultureDeviceHeartbeat.class);
-        util.exportExcel(response, list, "设备心跳状态（关联设备，设备删除时心跳记录自动删除）数据");
+        util.exportExcel(response, list, "设备心跳状态数据");
     }
 
     /**
-     * 获取设备心跳状态（关联设备，设备删除时心跳记录自动删除）详细信息
+     * 获取设备心跳状态详细信息
      */
     @PreAuthorize("@ss.hasPermi('device:heartbeat:query')")
     @GetMapping(value = "/{id}")
@@ -74,7 +74,7 @@ public class AgricultureDeviceHeartbeatController extends BaseController
      * 新增设备心跳状态
      */
     @PreAuthorize("@ss.hasPermi('device:heartbeat:add')")
-    @Log(title = "设备心跳状态（关联设备，设备删除时心跳记录自动删除）", businessType = BusinessType.INSERT)
+    @Log(title = "设备心跳状态", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody AgricultureDeviceHeartbeat agricultureDeviceHeartbeat)
     {
@@ -85,7 +85,7 @@ public class AgricultureDeviceHeartbeatController extends BaseController
      * 修改设备心跳状态
      */
     @PreAuthorize("@ss.hasPermi('device:heartbeat:edit')")
-    @Log(title = "设备心跳状态（关联设备，设备删除时心跳记录自动删除）", businessType = BusinessType.UPDATE)
+    @Log(title = "设备心跳状态", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody AgricultureDeviceHeartbeat agricultureDeviceHeartbeat)
     {
@@ -96,7 +96,7 @@ public class AgricultureDeviceHeartbeatController extends BaseController
      * 删除设备心跳状态
      */
     @PreAuthorize("@ss.hasPermi('device:heartbeat:remove')")
-    @Log(title = "设备心跳状态（关联设备，设备删除时心跳记录自动删除）", businessType = BusinessType.DELETE)
+    @Log(title = "设备心跳状态", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)
     {
