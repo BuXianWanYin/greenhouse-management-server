@@ -368,8 +368,8 @@ public class SensorCommunicationService {
             double soilHumidity = (((data[idx] & 0xFF) << 8) | (data[idx + 1] & 0xFF)) / 10.0;
             idx += 2;
 
-            // 电导率（μS/cm）
-            int ec = ((data[idx] & 0xFF) << 8) | (data[idx + 1] & 0xFF);
+            // 电导率（精度0.1 μS/cm）
+            double ec = (((data[idx] & 0xFF) << 8) | (data[idx + 1] & 0xFF)) / 10.0;
             idx += 2;
 
             // 盐分（mg/L）
@@ -393,7 +393,7 @@ public class SensorCommunicationService {
 
             result.put("soil_temperature", Math.round(soilTemp * 10.0) / 10.0);
             result.put("soil_humidity", Math.round(soilHumidity * 10.0) / 10.0);
-            result.put("conductivity", (double) ec);
+            result.put("conductivity", Math.round(ec * 10.0) / 10.0);
             result.put("salinity", (double) salinity);
             result.put("nitrogen", (double) nitrogen);
             result.put("phosphorus", (double) phosphorus);
