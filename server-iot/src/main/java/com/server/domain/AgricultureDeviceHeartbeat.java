@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiModelProperty;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName(value ="agriculture_device_heartbeat")
-@ApiModel(value = "AgricultureDeviceHeartbeat" , description="设备心跳状态表（关联设备表，设备删除时心跳记录自动删除）")
+@ApiModel(value = "AgricultureDeviceHeartbeat" , description="设备心跳状态表")
 public class AgricultureDeviceHeartbeat extends BaseEntityPlus implements Serializable  {
 
     private static final long serialVersionUID = 1L;
@@ -78,7 +78,7 @@ public class AgricultureDeviceHeartbeat extends BaseEntityPlus implements Serial
     private Long offlineCount;
 
     @TableField(value="send_interval")
-    @ApiModelProperty(value="指令发送间隔（毫秒）")
+    @ApiModelProperty(value="指令发送间隔（秒）")
     private Long sendInterval;
 
     @TableField(value="last_online_time")

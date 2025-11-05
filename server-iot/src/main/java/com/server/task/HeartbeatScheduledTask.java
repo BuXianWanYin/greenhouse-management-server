@@ -124,14 +124,15 @@ public class HeartbeatScheduledTask {
             return;
         }
         
-        // 获取发送间隔（毫秒），如果没有设置则使用默认值5000毫秒（5秒）
+        // 获取发送间隔（秒），如果没有设置则使用默认值5秒
         Long initialSendInterval = heartbeat.getSendInterval();
         if (initialSendInterval == null || initialSendInterval <= 0) {
-            initialSendInterval = 5000L; // 默认5秒
+            initialSendInterval = 5L; // 默认5秒
         }
         
-        // 使用 AtomicLong 存储发送间隔，支持在 lambda 中修改
-        final AtomicLong sendInterval = new AtomicLong(initialSendInterval);
+        // 使用 AtomicLong 存储发送间隔（秒），支持在 lambda 中修改
+        // Thread.sleep需要毫秒，所以需要转换为毫秒
+        final AtomicLong sendInterval = new AtomicLong(initialSendInterval * 1000L);
         
         // 创建线程标志
         final AtomicBoolean running = new AtomicBoolean(true);
@@ -171,16 +172,16 @@ public class HeartbeatScheduledTask {
                         break;
                     }
                     
-                    // 获取最新的发送间隔并更新
+                    // 获取最新的发送间隔并更新（秒转毫秒）
                     Long latestSendInterval = latestHeartbeat.getSendInterval();
                     if (latestSendInterval != null && latestSendInterval > 0) {
-                        sendInterval.set(latestSendInterval);
+                        sendInterval.set(latestSendInterval * 1000L); // 秒转毫秒
                     }
                     
                     // 发送心跳指令
                     agricultureHeartbeatSendService.sendHeartbeatAndValidate(latestHeartbeat);
                     
-                    // 按照设备的间隔休眠
+                    // 按照设备的间隔休眠（毫秒）
                     Thread.sleep(sendInterval.get());
                     
                 } catch (InterruptedException e) {
@@ -188,7 +189,7 @@ public class HeartbeatScheduledTask {
                     break;
                 } catch (Exception e) {
                     log.error("设备ID={} 的心跳任务执行异常", deviceId, e);
-                    // 发生异常时，等待一段时间后继续
+                    // 发生异常时，等待一段时间后继续（毫秒）
                     try {
                         Thread.sleep(sendInterval.get());
                     } catch (InterruptedException ie) {

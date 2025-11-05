@@ -165,15 +165,16 @@ public class AgricultureAgricultureHeartbeatSendServiceImpl implements Agricultu
                 successCount++;
             }
             
-            // 使用每个心跳记录的发送间隔，如果没有设置则使用默认值5000毫秒
+            // 使用每个心跳记录的发送间隔（秒），如果没有设置则使用默认值5秒
             Long sendInterval = heartbeat.getSendInterval();
             if (sendInterval == null || sendInterval <= 0) {
-                sendInterval = 5000L; // 默认5秒
+                sendInterval = 5L; // 默认5秒
             }
             
             // 每次发送之间间隔一段时间，避免串口操作过于频繁
+            // Thread.sleep需要毫秒，所以需要转换为毫秒
             try {
-                Thread.sleep(sendInterval);
+                Thread.sleep(sendInterval * 1000L);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 log.warn("批量发送心跳时线程被中断");

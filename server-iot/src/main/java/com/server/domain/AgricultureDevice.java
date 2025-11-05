@@ -74,5 +74,10 @@ public class AgricultureDevice extends BaseEntityPlus implements Serializable
     @TableField(value="user_control_switch")
     @ApiModelProperty(value="用户开关控制（0-关闭，1-开启）")
     private String userControlSwitch;
+
+    /** 采集间隔（单位：秒） */
+    @TableField(value="collect_interval")
+    @ApiModelProperty(value="采集间隔（单位：秒）")
+    private Long collectInterval;
 }
 

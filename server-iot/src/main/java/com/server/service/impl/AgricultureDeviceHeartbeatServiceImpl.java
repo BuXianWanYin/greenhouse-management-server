@@ -91,9 +91,9 @@ public class AgricultureDeviceHeartbeatServiceImpl extends ServiceImpl<Agricultu
         // 自动解析心跳指令
         parseHeartbeatCommand(agricultureDeviceHeartbeat);
         
-        // 如果发送间隔未设置，设置默认值5000毫秒（5秒）
+        // 如果发送间隔未设置，设置默认值5秒
         if (agricultureDeviceHeartbeat.getSendInterval() == null || agricultureDeviceHeartbeat.getSendInterval() <= 0) {
-            agricultureDeviceHeartbeat.setSendInterval(5000L);
+            agricultureDeviceHeartbeat.setSendInterval(5L);
         }
 
         agricultureDeviceHeartbeat.setCreateTime(LocalDateTime.now());
