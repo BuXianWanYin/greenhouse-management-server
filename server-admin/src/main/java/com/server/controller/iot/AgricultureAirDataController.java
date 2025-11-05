@@ -17,9 +17,17 @@ import com.server.core.controller.BaseController;
 import com.server.core.domain.AjaxResult;
 import com.server.enums.BusinessType;
 import com.server.domain.AgricultureAirData;
+import com.server.domain.AgricultureDevice;
+import com.server.domain.AgriculturePasture;
 import com.server.service.AgricultureAirDataService;
+import com.server.service.AgricultureDeviceService;
+import com.server.service.AgriculturePastureService;
 import com.server.utils.poi.ExcelUtil;
 import com.server.core.page.TableDataInfo;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * 温度湿度光照传感器数据Controller
@@ -33,6 +41,12 @@ public class AgricultureAirDataController extends BaseController
 {
     @Autowired
     private AgricultureAirDataService agricultureAirDataService;
+
+    @Autowired
+    private AgricultureDeviceService agricultureDeviceService;
+
+    @Autowired
+    private AgriculturePastureService agriculturePastureService;
 
     /**
      * 查询温度湿度光照传感器数据列表
@@ -55,6 +69,50 @@ public class AgricultureAirDataController extends BaseController
     public void export(HttpServletResponse response, AgricultureAirData agricultureAirData)
     {
         List<AgricultureAirData> list = agricultureAirDataService.selectAgricultureAirDataList(agricultureAirData);
+        
+        // 获取所有设备ID和温室ID
+        Set<Long> deviceIds = list.stream()
+            .map(AgricultureAirData::getDeviceId)
+            .filter(id -> id != null)
+            .collect(Collectors.toSet());
+        
+        Set<Long> pastureIds = list.stream()
+            .map(AgricultureAirData::getPastureId)
+            .filter(id -> id != null)
+            .collect(Collectors.toSet());
+        
+        // 批量查询设备名称
+        Map<Long, String> deviceNameMap = new HashMap<>();
+        if (!deviceIds.isEmpty()) {
+            List<AgricultureDevice> devices = agricultureDeviceService.listByIds(deviceIds);
+            for (AgricultureDevice device : devices) {
+                if (device != null && device.getDeviceName() != null) {
+                    deviceNameMap.put(device.getId(), device.getDeviceName());
+                }
+            }
+        }
+        
+        // 批量查询温室名称
+        Map<Long, String> pastureNameMap = new HashMap<>();
+        if (!pastureIds.isEmpty()) {
+            List<AgriculturePasture> pastures = agriculturePastureService.listByIds(pastureIds);
+            for (AgriculturePasture pasture : pastures) {
+                if (pasture != null && pasture.getName() != null) {
+                    pastureNameMap.put(pasture.getId(), pasture.getName());
+                }
+            }
+        }
+        
+        // 填充设备名称和温室名称
+        for (AgricultureAirData data : list) {
+            if (data.getDeviceId() != null) {
+                data.setDeviceName(deviceNameMap.getOrDefault(data.getDeviceId(), String.valueOf(data.getDeviceId())));
+            }
+            if (data.getPastureId() != null) {
+                data.setPastureName(pastureNameMap.getOrDefault(data.getPastureId(), String.valueOf(data.getPastureId())));
+            }
+        }
+        
         ExcelUtil<AgricultureAirData> util = new ExcelUtil<AgricultureAirData>(AgricultureAirData.class);
         util.exportExcel(response, list, "温度湿度光照传感器数据数据");
     }

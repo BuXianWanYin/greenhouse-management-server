@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.server.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.server.mapper.AgricultureAirDataMapper;
@@ -50,7 +52,45 @@ public class AgricultureAirDataServiceImpl extends ServiceImpl<AgricultureAirDat
     @Override
     public List<AgricultureAirData> selectAgricultureAirDataList(AgricultureAirData agricultureAirData)
     {
-        return list();
+        // 创建 LambdaQueryWrapper 用于构建动态查询条件
+        LambdaQueryWrapper<AgricultureAirData> queryWrapper = new LambdaQueryWrapper<>();
+        
+        // 根据 pastureId 查询
+        if (agricultureAirData != null && agricultureAirData.getPastureId() != null) {
+            queryWrapper.eq(AgricultureAirData::getPastureId, agricultureAirData.getPastureId());
+        }
+        
+        // 根据 deviceId 查询
+        if (agricultureAirData != null && agricultureAirData.getDeviceId() != null) {
+            queryWrapper.eq(AgricultureAirData::getDeviceId, agricultureAirData.getDeviceId());
+        }
+        
+        // 根据时间范围查询
+        if (agricultureAirData != null && StringUtils.isNotEmpty(agricultureAirData.getBeginTime())) {
+            try {
+                LocalDateTime beginTime = LocalDateTime.parse(agricultureAirData.getBeginTime(), 
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                queryWrapper.ge(AgricultureAirData::getCollectTime, beginTime);
+            } catch (Exception e) {
+                // 时间格式解析失败，忽略该条件
+            }
+        }
+        
+        if (agricultureAirData != null && StringUtils.isNotEmpty(agricultureAirData.getEndTime())) {
+            try {
+                LocalDateTime endTime = LocalDateTime.parse(agricultureAirData.getEndTime(), 
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                queryWrapper.le(AgricultureAirData::getCollectTime, endTime);
+            } catch (Exception e) {
+                // 时间格式解析失败，忽略该条件
+            }
+        }
+        
+        // 按采集时间降序排序（最新的数据在前面）
+        queryWrapper.orderByDesc(AgricultureAirData::getCollectTime);
+        
+        // 执行查询
+        return list(queryWrapper);
     }
 
     /**

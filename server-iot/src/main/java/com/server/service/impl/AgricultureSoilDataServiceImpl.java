@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.server.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.server.mapper.AgricultureSoilDataMapper;
@@ -50,7 +52,45 @@ public class AgricultureSoilDataServiceImpl extends ServiceImpl<AgricultureSoilD
     @Override
     public List<AgricultureSoilData> selectAgricultureSoilDataList(AgricultureSoilData agricultureSoilData)
     {
-        return list();
+        // 创建 LambdaQueryWrapper 用于构建动态查询条件
+        LambdaQueryWrapper<AgricultureSoilData> queryWrapper = new LambdaQueryWrapper<>();
+        
+        // 根据 pastureId 查询
+        if (agricultureSoilData != null && agricultureSoilData.getPastureId() != null) {
+            queryWrapper.eq(AgricultureSoilData::getPastureId, agricultureSoilData.getPastureId());
+        }
+        
+        // 根据 deviceId 查询
+        if (agricultureSoilData != null && agricultureSoilData.getDeviceId() != null) {
+            queryWrapper.eq(AgricultureSoilData::getDeviceId, agricultureSoilData.getDeviceId());
+        }
+        
+        // 根据时间范围查询
+        if (agricultureSoilData != null && StringUtils.isNotEmpty(agricultureSoilData.getBeginTime())) {
+            try {
+                LocalDateTime beginTime = LocalDateTime.parse(agricultureSoilData.getBeginTime(), 
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                queryWrapper.ge(AgricultureSoilData::getCollectTime, beginTime);
+            } catch (Exception e) {
+                // 时间格式解析失败，忽略该条件
+            }
+        }
+        
+        if (agricultureSoilData != null && StringUtils.isNotEmpty(agricultureSoilData.getEndTime())) {
+            try {
+                LocalDateTime endTime = LocalDateTime.parse(agricultureSoilData.getEndTime(), 
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                queryWrapper.le(AgricultureSoilData::getCollectTime, endTime);
+            } catch (Exception e) {
+                // 时间格式解析失败，忽略该条件
+            }
+        }
+        
+        // 按采集时间降序排序（最新的数据在前面）
+        queryWrapper.orderByDesc(AgricultureSoilData::getCollectTime);
+        
+        // 执行查询
+        return list(queryWrapper);
     }
 
     /**

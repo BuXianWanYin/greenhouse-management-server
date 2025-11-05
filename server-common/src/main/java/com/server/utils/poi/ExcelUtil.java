@@ -527,6 +527,17 @@ public class ExcelUtil<T>
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setCharacterEncoding("utf-8");
         this.init(list, sheetName, title, Type.EXPORT);
+        // 设置响应头，让浏览器下载文件
+        try
+        {
+            String filename = encodingFilename(sheetName);
+            // 使用FileUtils工具方法设置响应头，支持中文文件名
+            FileUtils.setAttachmentResponseHeader(response, filename);
+        }
+        catch (Exception e)
+        {
+            log.error("设置导出文件名异常{}", e.getMessage());
+        }
         exportExcel(response);
     }
 
@@ -587,18 +598,23 @@ public class ExcelUtil<T>
      */
     public void exportExcel(HttpServletResponse response)
     {
+        OutputStream outputStream = null;
         try
         {
             writeSheet();
-            wb.write(response.getOutputStream());
+            outputStream = response.getOutputStream();
+            wb.write(outputStream);
+            outputStream.flush();
         }
         catch (Exception e)
         {
             log.error("导出Excel异常{}", e.getMessage());
+            throw new UtilException("导出Excel失败，请联系网站管理员！");
         }
         finally
         {
             IOUtils.closeQuietly(wb);
+            // HttpServletResponse的输出流不应该手动关闭，由容器管理
         }
     }
 
@@ -635,6 +651,10 @@ public class ExcelUtil<T>
      */
     public void writeSheet()
     {
+        if (list == null)
+        {
+            list = new ArrayList<>();
+        }
         // 取出一共有多少个sheet.
         int sheetNo = Math.max(1, (int) Math.ceil(list.size() * 1.0 / sheetSize));
         for (int index = 0; index < sheetNo; index++)
