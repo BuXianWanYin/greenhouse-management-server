@@ -61,9 +61,6 @@ public class AgricultureDeviceSensorAlert extends BaseEntityPlus implements Seri
     @ApiModelProperty(value="大棚ID")
     private String pastureId;
 
-    @TableField(value="batch_id")
-    @ApiModelProperty(value="分区ID")
-    private String batchId;
 
     @TableField(value="device_id")
     @ApiModelProperty(value="设备ID")
@@ -76,10 +73,6 @@ public class AgricultureDeviceSensorAlert extends BaseEntityPlus implements Seri
     @TableField(value="device_type")
     @ApiModelProperty(value="设备类型")
     private String deviceType;
-
-    @TableField(value="block_address")
-    @ApiModelProperty(value="合约地址")
-    private String blockAddress;
 
     @TableField(value="alert_time")
     @ApiModelProperty(value="预警时间")

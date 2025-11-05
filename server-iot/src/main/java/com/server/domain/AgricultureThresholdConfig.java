@@ -36,11 +36,11 @@ public class AgricultureThresholdConfig extends BaseEntityPlus implements Serial
     private Long deviceId;
 
     @TableField(value="device_type")
-    @ApiModelProperty(value="设备类型（气象、水质等）")
+    @ApiModelProperty(value="设备类型（气象、土壤等）")
     private String deviceType;
 
     @TableField(value="param_type")
-    @ApiModelProperty(value="参数类型（如：风速、温度、PH值等）")
+    @ApiModelProperty(value="参数类型（温度、PH值等）")
     private String paramType;
 
     @TableField(value="unit")
@@ -55,12 +55,8 @@ public class AgricultureThresholdConfig extends BaseEntityPlus implements Serial
     @ApiModelProperty(value="阈值最大值")
     private Double thresholdMax;
 
-    @TableField(value="alarm_level")
-    @ApiModelProperty(value="报警级别（danger/严重、warning/警告等）")
-    private String alarmLevel;
-
     @TableField(value="notify_type")
-    @ApiModelProperty(value="通知方式（system/系统通知, ring/强提醒, sms/短信等）")
+    @ApiModelProperty(value="通知方式（system/系统通知, email/邮箱提醒, sms/短信等）")
     private String notifyType;
 
     @TableField(value="is_enabled")

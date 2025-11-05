@@ -54,10 +54,6 @@ public class AgricultureDeviceSensorAlertServiceImpl extends ServiceImpl<Agricul
         if (agricultureDeviceSensorAlert.getPastureId() != null && !agricultureDeviceSensorAlert.getPastureId().isEmpty()) {
             queryWrapper.eq(AgricultureDeviceSensorAlert::getPastureId, agricultureDeviceSensorAlert.getPastureId());
         }
-        //分区 id 过滤
-        if (agricultureDeviceSensorAlert.getBatchId() != null && !agricultureDeviceSensorAlert.getBatchId().isEmpty()) {
-            queryWrapper.eq(AgricultureDeviceSensorAlert::getBatchId, agricultureDeviceSensorAlert.getBatchId());
-        }
         // 设备类型过滤
         if (agricultureDeviceSensorAlert.getDeviceType() != null && !agricultureDeviceSensorAlert.getDeviceType().isEmpty()) {
             queryWrapper.eq(AgricultureDeviceSensorAlert::getDeviceType, agricultureDeviceSensorAlert.getDeviceType());
