@@ -766,3 +766,217 @@
 03:34:30.588 [http-nio-8080-exec-7] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
 03:34:30.706 [http-nio-8080-exec-6] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
 03:35:39.026 [http-nio-8080-exec-31] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+03:38:29.826 [http-nio-8080-exec-74] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+03:39:53.489 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+03:40:00.217 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+03:40:00.222 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 28816 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+03:40:00.223 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+03:40:02.340 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+03:40:02.341 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+03:40:02.341 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+03:40:02.476 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+03:40:03.431 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+03:40:06.992 [main] INFO  c.s.s.SerialPortService - [init,36] - 正在初始化串口服务...
+03:40:06.992 [main] INFO  c.s.s.SerialPortService - [connect,41] - 正在尝试连接串口: COM5，波特率: 9600
+03:40:07.032 [main] INFO  c.s.s.SerialPortService - [connect,46] - 成功打开串口: COM5
+03:40:07.211 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+03:40:07.222 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+03:40:07.223 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+03:40:07.223 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+03:40:07.225 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+03:40:07.225 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+03:40:07.225 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+03:40:07.225 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@c310aa3
+03:40:08.943 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+03:40:09.108 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03:40:09.176 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:40:09.176 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:40:09.183 [http-nio-8080-exec-4] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:40:09.199 [http-nio-8080-exec-3] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:40:09.571 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+03:40:09.584 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 9.706 seconds (JVM running for 10.34)
+03:40:09.624 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,91] - 启动传感器通信流程，查询到 2 个传感器设备
+03:40:09.625 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,109] - 传感器通信流程启动完成，成功启动 2 个采集任务
+03:40:09.635 [main] INFO  c.s.t.HeartbeatScheduledTask - [startHeartbeatTasks,94] - 启动心跳任务，检查到 2 个设备需要发送心跳
+03:40:09.635 [main] INFO  c.s.t.HeartbeatScheduledTask - [startHeartbeatTasks,107] - 心跳任务启动完成，共启动 2 个设备的心跳任务
+03:40:10.016 [Serial-Command-Executor] INFO  c.s.c.DynamicMqttClientFactoryManager - [createClientFactoryWithConfig,117] - 创建MQTT客户端工厂: broker=tcp://43.139.89.73:1883, username=bxwy
+03:40:10.037 [Serial-Command-Executor] INFO  c.s.s.i.AgricultureAgricultureDynamicMqttServiceImpl - [lambda$0,168] - 创建动态MQTT MessageHandler: deviceId=59, broker=tcp://43.139.89.73:1883, clientId=dynamic_mqtt_59_b5d0034d
+03:40:10.662 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=34 lux, 小端序=8704 lux, 使用小端序
+03:40:11.122 [http-nio-8080-exec-5] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:40:11.136 [http-nio-8080-exec-6] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:40:14.839 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=35 lux, 小端序=8960 lux, 使用小端序
+03:40:20.343 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=34 lux, 小端序=8704 lux, 使用小端序
+03:40:23.096 [http-nio-8080-exec-8] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+03:40:25.345 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=37 lux, 小端序=9472 lux, 使用小端序
+03:40:29.847 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=219 lux, 小端序=56064 lux, 使用小端序
+03:40:35.351 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=249 lux, 小端序=63744 lux, 使用小端序
+03:40:39.853 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=242 lux, 小端序=61952 lux, 使用小端序
+03:40:44.854 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=250 lux, 小端序=64000 lux, 使用小端序
+03:40:49.858 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:40:54.862 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:41:00.365 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:41:05.368 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:41:09.869 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:41:15.371 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=107 lux, 小端序=27392 lux, 使用小端序
+03:41:20.376 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=112 lux, 小端序=28672 lux, 使用小端序
+03:41:25.538 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=39 lux, 小端序=9984 lux, 使用小端序
+03:41:29.878 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:41:35.350 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:41:39.881 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:41:45.157 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=39 lux, 小端序=9984 lux, 使用小端序
+03:41:49.885 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=39 lux, 小端序=9984 lux, 使用小端序
+03:41:54.887 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=39 lux, 小端序=9984 lux, 使用小端序
+03:42:00.391 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:42:04.891 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:42:09.893 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:42:14.895 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=39 lux, 小端序=9984 lux, 使用小端序
+03:42:19.898 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:42:24.898 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:42:30.401 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:42:34.902 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:42:40.406 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=39 lux, 小端序=9984 lux, 使用小端序
+03:42:44.908 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:42:50.412 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=39 lux, 小端序=9984 lux, 使用小端序
+03:42:54.911 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=39 lux, 小端序=9984 lux, 使用小端序
+03:42:59.914 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=39 lux, 小端序=9984 lux, 使用小端序
+03:43:04.914 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:43:09.916 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:43:14.919 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=38 lux, 小端序=9728 lux, 使用小端序
+03:43:20.424 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=33 lux, 小端序=8448 lux, 使用小端序
+03:43:24.921 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=1 lux, 小端序=256 lux, 使用小端序
+03:43:30.425 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=12 lux, 小端序=3072 lux, 使用小端序
+03:43:34.925 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=12 lux, 小端序=3072 lux, 使用小端序
+03:43:40.072 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=12 lux, 小端序=3072 lux, 使用小端序
+03:43:44.927 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=12 lux, 小端序=3072 lux, 使用小端序
+03:43:50.382 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=12 lux, 小端序=3072 lux, 使用小端序
+03:43:54.931 [Serial-Command-Executor] INFO  c.s.s.SensorCommunicationService - [parseAirSensorData,346] - 光照数据检测到可能的字节序问题，使用小端序解析: 大端序=12 lux, 小端序=3072 lux, 使用小端序
+03:43:56.170 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+03:43:58.645 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+03:43:58.645 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+03:43:58.645 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+03:43:58.645 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+03:43:58.645 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+03:43:58.646 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+03:43:58.650 [http-nio-8080-exec-56] INFO  c.s.sse.SseServer - [lambda$1,35] - [AGRICULTURE]连接超时...................
+03:43:58.661 [http-nio-8080-exec-56] INFO  c.s.sse.SseServer - [lambda$0,31] - [AGRICULTURE]结束连接...................
+03:43:58.675 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+03:43:58.675 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+03:43:58.675 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+03:43:58.675 [SpringApplicationShutdownHook] INFO  c.s.s.SensorCommunicationService - [destroy,75] - 正在关闭传感器通信服务...
+03:43:58.675 [SpringApplicationShutdownHook] INFO  c.s.s.SensorCommunicationService - [destroy,81] - 传感器通信服务已关闭
+03:43:58.675 [SpringApplicationShutdownHook] INFO  c.s.s.SerialPortService - [disconnect,57] - 成功关闭串口: COM5
+03:43:58.680 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
+03:43:58.686 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
+03:44:03.482 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+03:44:03.486 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 48540 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+03:44:03.487 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+03:44:05.992 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+03:44:05.993 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+03:44:05.993 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+03:44:06.152 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+03:44:07.181 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+03:44:11.154 [main] INFO  c.s.s.SerialPortService - [init,36] - 正在初始化串口服务...
+03:44:11.154 [main] INFO  c.s.s.SerialPortService - [connect,41] - 正在尝试连接串口: COM5，波特率: 9600
+03:44:11.194 [main] INFO  c.s.s.SerialPortService - [connect,46] - 成功打开串口: COM5
+03:44:11.402 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+03:44:11.418 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+03:44:11.419 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+03:44:11.420 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+03:44:11.421 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+03:44:11.422 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+03:44:11.422 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+03:44:11.422 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@77a27356
+03:44:13.510 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+03:44:13.855 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03:44:13.952 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:44:13.952 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:44:13.964 [http-nio-8080-exec-3] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:44:13.978 [http-nio-8080-exec-5] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:44:13.995 [http-nio-8080-exec-8] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:44:14.113 [http-nio-8080-exec-12] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+03:44:14.113 [http-nio-8080-exec-13] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+03:44:14.113 [http-nio-8080-exec-10] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+03:44:14.113 [http-nio-8080-exec-9] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+03:44:14.113 [http-nio-8080-exec-11] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+03:44:14.314 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+03:44:14.333 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 11.267 seconds (JVM running for 12.0)
+03:44:14.378 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,91] - 启动传感器通信流程，查询到 2 个传感器设备
+03:44:14.379 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,109] - 传感器通信流程启动完成，成功启动 2 个采集任务
+03:44:14.389 [main] INFO  c.s.t.HeartbeatScheduledTask - [startHeartbeatTasks,94] - 启动心跳任务，检查到 2 个设备需要发送心跳
+03:44:14.389 [main] INFO  c.s.t.HeartbeatScheduledTask - [startHeartbeatTasks,107] - 心跳任务启动完成，共启动 2 个设备的心跳任务
+03:44:14.474 [http-nio-8080-exec-14] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:44:14.687 [http-nio-8080-exec-15] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+03:44:14.792 [Serial-Command-Executor] INFO  c.s.c.DynamicMqttClientFactoryManager - [createClientFactoryWithConfig,117] - 创建MQTT客户端工厂: broker=tcp://43.139.89.73:1883, username=bxwy
+03:44:14.819 [Serial-Command-Executor] INFO  c.s.s.i.AgricultureAgricultureDynamicMqttServiceImpl - [lambda$0,168] - 创建动态MQTT MessageHandler: deviceId=59, broker=tcp://43.139.89.73:1883, clientId=dynamic_mqtt_59_b3b2e40b
+03:45:06.124 [http-nio-8080-exec-31] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+03:46:03.422 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+03:46:05.941 [SpringApplicationShutdownHook] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+03:46:05.947 [http-nio-8080-exec-36] INFO  c.s.sse.SseServer - [lambda$1,35] - [AGRICULTURE]连接超时...................
+03:46:05.947 [http-nio-8080-exec-35] INFO  c.s.sse.SseServer - [lambda$1,35] - [AGRICULTURE]连接超时...................
+03:46:05.950 [http-nio-8080-exec-35] INFO  c.s.sse.SseServer - [lambda$0,31] - [AGRICULTURE]结束连接...................
+03:46:05.950 [http-nio-8080-exec-36] INFO  c.s.sse.SseServer - [lambda$0,31] - [AGRICULTURE]结束连接...................
+03:46:05.969 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+03:46:05.969 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+03:46:05.969 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+03:46:05.970 [SpringApplicationShutdownHook] INFO  c.s.s.SensorCommunicationService - [destroy,75] - 正在关闭传感器通信服务...
+03:46:05.970 [SpringApplicationShutdownHook] INFO  c.s.s.SensorCommunicationService - [destroy,81] - 传感器通信服务已关闭
+03:46:05.970 [SpringApplicationShutdownHook] INFO  c.s.s.SerialPortService - [disconnect,57] - 成功关闭串口: COM5
+03:46:05.976 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
+03:46:05.985 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
+03:46:10.703 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 46952 (D:\0.bishe\QGJ\greenhouse-management-oldserver\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-oldserver)
+03:46:10.702 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+03:46:10.704 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+03:46:13.087 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+03:46:13.088 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+03:46:13.088 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+03:46:13.238 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+03:46:14.383 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+03:46:18.427 [main] INFO  c.s.s.SerialPortService - [init,36] - 正在初始化串口服务...
+03:46:18.428 [main] INFO  c.s.s.SerialPortService - [connect,41] - 正在尝试连接串口: COM5，波特率: 9600
+03:46:18.469 [main] INFO  c.s.s.SerialPortService - [connect,46] - 成功打开串口: COM5
+03:46:18.681 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+03:46:18.694 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+03:46:18.694 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+03:46:18.696 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+03:46:18.696 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+03:46:18.696 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+03:46:18.697 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+03:46:18.697 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@35307365
+03:46:20.450 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+03:46:20.597 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+03:46:20.656 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:46:20.656 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:46:21.054 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+03:46:21.067 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 10.782 seconds (JVM running for 11.582)
+03:46:21.103 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,91] - 启动传感器通信流程，查询到 2 个传感器设备
+03:46:21.104 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,109] - 传感器通信流程启动完成，成功启动 2 个采集任务
+03:46:21.111 [http-nio-8080-exec-3] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:46:21.113 [main] INFO  c.s.t.HeartbeatScheduledTask - [startHeartbeatTasks,94] - 启动心跳任务，检查到 2 个设备需要发送心跳
+03:46:21.113 [main] INFO  c.s.t.HeartbeatScheduledTask - [startHeartbeatTasks,107] - 心跳任务启动完成，共启动 2 个设备的心跳任务
+03:46:21.126 [http-nio-8080-exec-6] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:46:21.471 [Serial-Command-Executor] INFO  c.s.c.DynamicMqttClientFactoryManager - [createClientFactoryWithConfig,117] - 创建MQTT客户端工厂: broker=tcp://43.139.89.73:1883, username=bxwy
+03:46:21.492 [Serial-Command-Executor] INFO  c.s.s.i.AgricultureAgricultureDynamicMqttServiceImpl - [lambda$0,168] - 创建动态MQTT MessageHandler: deviceId=59, broker=tcp://43.139.89.73:1883, clientId=dynamic_mqtt_59_8e3dfa8d
+03:46:23.124 [http-nio-8080-exec-5] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:46:23.139 [http-nio-8080-exec-4] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+03:46:58.663 [http-nio-8080-exec-31] INFO  c.s.h.MyMetaObjectHandler - [updateFill,38] - start update fill ....

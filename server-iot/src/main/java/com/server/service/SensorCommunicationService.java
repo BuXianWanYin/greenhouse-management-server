@@ -331,8 +331,9 @@ public class SensorCommunicationService {
             double humidity = (((data[5] & 0xFF) << 8) | (data[6] & 0xFF)) / 10.0;
 
             // 光照解析（16位无符号整数，单位Lux）
-            int illuminance = ((data[7] & 0xFF) << 8) | (data[8] & 0xFF);
-
+            int illuminanceRaw = ((data[7] & 0xFF) << 8) | (data[8] & 0xFF);
+            int illuminance = illuminanceRaw * 10; // 乘以10转换为实际Lux值
+            
             result.put("temperature", Math.round(temperature * 10.0) / 10.0);
             result.put("humidity", Math.round(humidity * 10.0) / 10.0);
             result.put("illuminance", (double) illuminance);
