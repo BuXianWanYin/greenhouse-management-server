@@ -101,5 +101,18 @@ public class AgricultureSoilDataController extends BaseController
     {
         return toAjax(agricultureSoilDataService.deleteAgricultureSoilDataByIds(ids));
     }
+
+    /**
+     * 查询土壤趋势数据
+     * 
+     * @param pastureId 温室ID
+     * @param range 时间范围：'day'(24小时), 'week'(7天), 'month'(30天)
+     * @return 趋势数据
+     */
+    @GetMapping("/trend")
+    public AjaxResult getTrendData(Long pastureId, String range)
+    {
+        return success(agricultureSoilDataService.getTrendData(pastureId, range));
+    }
 }
 

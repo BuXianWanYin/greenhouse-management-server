@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.server.domain.AgricultureAirData;
+import com.server.domain.dto.TrendDataVO;
 
 /**
  * 温度湿度光照传感器数据Service接口
@@ -60,5 +61,14 @@ public interface AgricultureAirDataService extends IService<AgricultureAirData>
      * @return 结果
      */
     public int deleteAgricultureAirDataById(Long id);
+
+    /**
+     * 查询气象趋势数据
+     * 
+     * @param pastureId 温室ID
+     * @param range 时间范围：'day'(24小时), 'week'(7天), 'month'(30天)
+     * @return 趋势数据
+     */
+    public TrendDataVO getTrendData(Long pastureId, String range);
 }
 
