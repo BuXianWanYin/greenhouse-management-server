@@ -23,8 +23,8 @@ import static com.server.constant.RabbitMQConstant.*;
 /**
  * 温室Service业务层处理
  *
- * @author server
- * @date 2025-05-27
+ * @author bxwy
+ * @date 2025-11-07
  */
 @Service
 public class AgriculturePastureServiceImpl extends ServiceImpl<AgriculturePastureMapper, AgriculturePasture> implements AgriculturePastureService {

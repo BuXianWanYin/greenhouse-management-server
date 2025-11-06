@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * 大棚Mapper接口
  *
- * @author server
- * @date 2025-05-27
+ * @author bxwy
+ * @date 2025-11-07
  */
 @Mapper
 public interface AgriculturePastureMapper extends BaseMapper<AgriculturePasture>

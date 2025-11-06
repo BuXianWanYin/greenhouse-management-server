@@ -9,8 +9,8 @@ import com.server.domain.AgriculturePasture;
 /**
  * 温室Service接口
  * 
- * @author server
- * @date 2025-05-27
+ * @author bxwy
+ * @date 2025-11-07
  */
 public interface AgriculturePastureService  extends IService<AgriculturePasture>
 {
