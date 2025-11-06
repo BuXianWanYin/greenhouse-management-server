@@ -25,34 +25,68 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName(value ="agriculture_crop_batch")
-@ApiModel(value = "AgricultureCropBatch" , description="分区表")
+@ApiModel(value = "AgricultureCropBatch" , description="种植批次表")
 public class AgricultureCropBatch implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "batch_id", type = IdType.AUTO)
-    @ApiModelProperty(value="分区ID")
+    @ApiModelProperty(value="批次ID")
     private Long batchId;
 
     @TableField(value="batch_name")
-    @ApiModelProperty(value="分区名称")
+    @ApiModelProperty(value="批次名称")
     private String batchName;
 
-    @TableField(value="germplasm_id")
-    @ApiModelProperty(value="鱼种质ID")
-    private Long germplasmId;
+    @TableField(value="class_id")
+    @ApiModelProperty(value="种质ID（关联agriculture_class表）")
+    private Long classId;
 
-    @TableField(value="vegetable_id")
-    @ApiModelProperty(value="菜种质ID")
-    private Long vegetableId;
+    @TableField(value="plan_year")
+    @ApiModelProperty(value="计划年份")
+    private Integer planYear;
+
+    @TableField(value="season_type")
+    @ApiModelProperty(value="季节类型（spring=春季,summer=夏季,autumn=秋季,winter=冬季）")
+    private String seasonType;
+
+    @TableField(value="rotation_plan_id")
+    @ApiModelProperty(value="轮作计划ID（关联agriculture_rotation_plan表）")
+    private Long rotationPlanId;
+
+    @TableField(value="planting_density")
+    @ApiModelProperty(value="种植密度（株/亩）")
+    private Double plantingDensity;
+
+    @TableField(value="expected_harvest_time")
+    @ApiModelProperty(value="预期收获时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime expectedHarvestTime;
+
+    @TableField(value="current_growth_stage")
+    @ApiModelProperty(value="当前生长阶段（seedling=幼苗期,growth=生长期,flowering=开花期,fruiting=结果期,mature=成熟期）")
+    private String currentGrowthStage;
+
+    @TableField(value="growth_stage_start_time")
+    @ApiModelProperty(value="当前生长阶段开始时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime growthStageStartTime;
+
+    @TableField(value="total_growth_days")
+    @ApiModelProperty(value="总生长天数")
+    private Integer totalGrowthDays;
+
+    @TableField(value="actual_harvest_time")
+    @ApiModelProperty(value="实际收获时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime actualHarvestTime;
 
     @TableField(value="pasture_id")
-    @ApiModelProperty(value="大棚ID")
+    @ApiModelProperty(value="温室ID")
     private Long pastureId;
-
-    @TableField(value="fish_area")
-    @ApiModelProperty(value="养殖面积(亩)")
-    private Double fishArea;
 
     @TableField(value="crop_area")
     @ApiModelProperty(value="种植面积(亩)")
@@ -101,10 +135,6 @@ public class AgricultureCropBatch implements Serializable {
     @TableField(value = "remark")
     @ApiModelProperty(value = "备注")
     private String remark;
-
-    @TableField(value="contract_addr")
-    @ApiModelProperty(value="区块链合约地址")
-    private String contractAddr;
 
     @TableField(value="harvest")
     @ApiModelProperty(value="收获标志(0代表已收获，1代表未收获)")

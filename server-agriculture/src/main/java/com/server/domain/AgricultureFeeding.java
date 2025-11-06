@@ -17,8 +17,8 @@ import java.util.Date;
 public class AgricultureFeeding implements Serializable {
     private String id;
 
-    @ApiModelProperty(value = "分区id", example = "123", required = true)
-    @NotBlank(message = "分区id为空")
+    @ApiModelProperty(value = "批次id", example = "123", required = true)
+    @NotBlank(message = "批次id为空")
     private String iaPartitionId;
 
     @ApiModelProperty(value = "施肥时间", required = true)
@@ -38,7 +38,7 @@ public class AgricultureFeeding implements Serializable {
     @NotBlank(message = "备注为空")
     private String description;
 
-    @ApiModelProperty(value = "分区名", example = "test")
+    @ApiModelProperty(value = "批次名", example = "test")
     @TableField(exist = false)
     private String partitionName;
 

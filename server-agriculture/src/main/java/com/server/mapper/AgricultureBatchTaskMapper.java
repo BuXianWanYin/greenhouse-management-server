@@ -5,8 +5,10 @@ import com.server.domain.AgricultureBatchTask;
 import org.springframework.stereotype.Repository;
 
 /**
- * @Author: zbb
- * @Date: 2025/5/28 22:24
+ * 批次任务Mapper接口
+ *
+ * @author bxwy
+ * @date 2025-05-29
  */
 @Repository
 public interface AgricultureBatchTaskMapper extends BaseMapper<AgricultureBatchTask> {

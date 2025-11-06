@@ -55,7 +55,7 @@ public class AgricultureThresholdConfigController extends BaseController
     }
 
     /**
-     * 根据大棚id和分区id 传感器设备类型 查询所有设备的阈值配置
+     * 根据温室id和批次id 传感器设备类型 查询所有设备的阈值配置
      */
     @PreAuthorize("@ss.hasPermi('agriculture:config:list')")
     @GetMapping("/listByPastureAndBatch")

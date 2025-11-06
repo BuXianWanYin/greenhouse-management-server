@@ -21,8 +21,8 @@ public class AgriculturePartitionFood implements Serializable {
     @TableField(value = "id")
     private String id;
 
-    @ApiModelProperty(value = "分区id", example = "123", required = true)
-    @NotBlank(message = "分区id为空")
+    @ApiModelProperty(value = "批次id", example = "123", required = true)
+    @NotBlank(message = "批次id为空")
     @TableField(value = "ia_partition_id")
     private String iaPartitionId;
 

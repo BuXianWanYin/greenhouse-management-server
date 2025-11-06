@@ -43,9 +43,9 @@ public class AgricultureTraceabilityLogController extends BaseController {
     }
 
     /**
-     * 获取按分区的统计信息
+     * 获取按批次的统计信息
      */
-    @ApiOperation("获取按分区的统计信息")
+    @ApiOperation("获取按批次的统计信息")
     @PreAuthorize("@ss.hasPermi('traceabilityLog:partitionStats')")
     @GetMapping("/partitionStats")
     public AjaxResult getPartitionTraceabilityStats() {

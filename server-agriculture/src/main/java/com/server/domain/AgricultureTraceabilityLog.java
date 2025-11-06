@@ -25,7 +25,7 @@ public class AgricultureTraceabilityLog implements Serializable {
     @TableField(value = "trace_code")
     private String traceCode;
 
-    @ApiModelProperty(value = "分区ID", required = true)
+    @ApiModelProperty(value = "批次ID", required = true)
     @TableField(value = "partition_id")
     private String partitionId;
 

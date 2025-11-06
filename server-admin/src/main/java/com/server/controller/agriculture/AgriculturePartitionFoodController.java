@@ -24,9 +24,9 @@ import com.server.utils.poi.ExcelUtil;
 import com.server.core.page.TableDataInfo;
 
 /**
- * 分区食品 采摘Controller
+ * 采摘食品Controller
  * 
- * @author server
+ * @author bxwy
  * @date 2025-06-24
  */
 @RestController
@@ -38,7 +38,7 @@ public class AgriculturePartitionFoodController extends BaseController
     private AgriculturePartitionFoodService agriculturePartitionFoodService;
 
     /**
-     * 查询分区食品 采摘列表
+     * 查询采摘食品列表
      */
     @PreAuthorize("@ss.hasPermi('agriculturePartitionFood:list')")
     @GetMapping("/list")
@@ -49,7 +49,7 @@ public class AgriculturePartitionFoodController extends BaseController
     }
 
     /**
-     * 根据溯源码查询溯源详情信息（分区、温室、批次任务、环境数据等）
+     * 根据溯源码查询溯源详情信息（批次、温室、批次任务、环境数据等）
      */
     @ApiOperation("根据溯源码查询溯源详情信息")
     @GetMapping("/traceDetail")
@@ -77,20 +77,20 @@ public class AgriculturePartitionFoodController extends BaseController
         return success(vo);
     }
     /**
-     * 导出分区食品 采摘列表
+     * 导出采摘食品列表
      */
     @PreAuthorize("@ss.hasPermi('agriculturePartitionFood:export')")
-    @Log(title = "分区食品 采摘", businessType = BusinessType.EXPORT)
+    @Log(title = "采摘食品", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, AgriculturePartitionFood agriculturePartitionFood)
     {
         List<AgriculturePartitionFood> list = agriculturePartitionFoodService.selectagriculturePartitionFoodList(agriculturePartitionFood);
         ExcelUtil<AgriculturePartitionFood> util = new ExcelUtil<AgriculturePartitionFood>(AgriculturePartitionFood.class);
-        util.exportExcel(response, list, "分区食品 采摘数据");
+        util.exportExcel(response, list, "采摘食品数据");
     }
 
     /**
-     * 获取分区食品 采摘详细信息
+     * 获取采摘食品详细信息
      */
     @PreAuthorize("@ss.hasPermi('agriculturePartitionFood:query')")
     @GetMapping(value = "/{id}")
@@ -100,10 +100,10 @@ public class AgriculturePartitionFoodController extends BaseController
     }
 
     /**
-     * 新增分区食品 采摘
+     * 新增采摘食品
      */
     @PreAuthorize("@ss.hasPermi('agriculturePartitionFood:add')")
-    @Log(title = "分区食品 采摘", businessType = BusinessType.INSERT)
+    @Log(title = "采摘食品", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody AgriculturePartitionFood agriculturePartitionFood)
     {
@@ -111,10 +111,10 @@ public class AgriculturePartitionFoodController extends BaseController
     }
 
     /**
-     * 修改分区食品 采摘
+     * 修改采摘食品
      */
     @PreAuthorize("@ss.hasPermi('agriculturePartitionFood:edit')")
-    @Log(title = "分区食品 采摘", businessType = BusinessType.UPDATE)
+    @Log(title = "采摘食品", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody AgriculturePartitionFood agriculturePartitionFood)
     {
@@ -122,10 +122,10 @@ public class AgriculturePartitionFoodController extends BaseController
     }
 
     /**
-     * 删除分区食品 采摘
+     * 删除采摘食品
      */
     @PreAuthorize("@ss.hasPermi('agriculturePartitionFood:remove')")
-    @Log(title = "分区食品 采摘", businessType = BusinessType.DELETE)
+    @Log(title = "采摘食品", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable String[] ids)
     {

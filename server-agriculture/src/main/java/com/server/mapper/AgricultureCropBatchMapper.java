@@ -2,7 +2,6 @@ package com.server.mapper;
 
 import java.util.List;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.server.domain.AgricultureCropBatch;
 import com.server.domain.dto.AgricultureCropBatchDTO;
@@ -13,9 +12,9 @@ import com.baomidou.mybatisplus.core.toolkit.Constants;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * 分区Mapper接口
+ * 种植批次Mapper接口
  *
- * @author server
+ * @author bxwy
  * @date 2025-05-28
  */
 @Repository
@@ -29,8 +28,7 @@ public interface AgricultureCropBatchMapper  extends BaseMapper<AgricultureCropB
      */
     @Select("SELECT b.*, c.class_image,c.class_name,u.nick_name " +
             "FROM agriculture_crop_batch b " +
-            "LEFT JOIN agriculture_class c ON b.germplasm_id = c.class_id OR b.batch_name = c.class_name " +
-            "LEFT JOIN agriculture_class c1 ON b.vegetable_id = c1.class_id OR b.batch_name = c1.class_name " +
+            "LEFT JOIN agriculture_class c ON b.class_id = c.class_id " +
             "LEFT JOIN sys_user u on u.user_id=b.responsible_person_id " +
             "${ew.customSqlSegment}")
     /**

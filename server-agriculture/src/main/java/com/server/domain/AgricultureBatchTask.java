@@ -1,8 +1,6 @@
 package com.server.domain;
 
-import java.io.Serializable;
 import java.util.Date;
-import java.time.LocalDateTime;
 import java.util.Map;
 
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -15,35 +13,38 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import com.server.annotation.Excel;
 import com.server.core.domain.BaseEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * 分区批次任务对象 agriculture_batch_task
+ * 批次任务对象 agriculture_batch_task
  *
- * @author server
+ * @author bxwy
  * @date 2025-05-29
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @TableName(value ="agriculture_batch_task")
-@ApiModel(value = "AgricultureBatchTask", description = "分区批次任务表")
+@ApiModel(value = "AgricultureBatchTask", description = "批次任务表")
 public class AgricultureBatchTask extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /** 任务ID */
     @TableId(value = "task_id", type = IdType.AUTO)
     @ApiModelProperty(value = "任务ID")
+    @Excel(name = "任务ID")
     private Long taskId;
 
-    /** 分区ID */
+    /** 批次ID */
     @TableField(value = "batch_id")
-    @ApiModelProperty(value = "分区ID")
-    @Excel(name = "分区ID")
+    @ApiModelProperty(value = "批次ID")
+    @Excel(name = "批次ID")
     private Long batchId;
 
     /** 任务名称 */

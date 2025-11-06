@@ -40,7 +40,7 @@ public interface AgricultureTraceabilityLogMapper extends BaseMapper<Agriculture
     List<Map<String, Object>> getTraceabilityCodeStats();
 
     /**
-     * 按分区统计溯源查询次数
+     * 按批次统计溯源查询次数
      */
     @Select("SELECT " +
             "f.ia_partition_id as partitionId, " +

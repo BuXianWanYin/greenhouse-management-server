@@ -23,19 +23,19 @@ import com.server.service.AgricultureTraceabilityLogService;
 import com.server.service.AgricultureDeviceSensorAlertService;
 
 /**
- * 分区食品 采摘Service业务层处理
+ * 采摘食品Service业务层处理
  * 
- * @author server
+ * @author bxwy
  * @date 2025-06-24
  */
 @Service
 public class AgriculturePartitionFoodServiceImpl extends ServiceImpl<AgriculturePartitionFoodMapper, AgriculturePartitionFood> implements AgriculturePartitionFoodService
 {
-    // 注入分区食品采摘的Mapper，用于操作分区食品采摘表
+    // 注入采摘食品的Mapper，用于操作采摘食品表
     @Autowired
     private AgriculturePartitionFoodMapper agriculturePartitionFoodMapper;
 
-    // 注入分区Mapper，用于操作分区表
+    // 注入批次Mapper，用于操作批次表
     @Autowired
     private AgricultureCropBatchMapper agricultureCropBatchMapper;
 
@@ -63,7 +63,7 @@ public class AgriculturePartitionFoodServiceImpl extends ServiceImpl<Agriculture
     private String codepath;
 
     /**
-     * 根据溯源码查询溯源详情信息，包括分区、温室、批次任务、环境数据等
+     * 根据溯源码查询溯源详情信息，包括批次、温室、批次任务、环境数据等
      *
      * @param traceId 溯源码（溯源id）
      * @param queryIp 查询IP
@@ -92,17 +92,17 @@ public class AgriculturePartitionFoodServiceImpl extends ServiceImpl<Agriculture
         // 4. 查询该溯源码的溯源次数
         Long traceCount = traceabilityLogService.getTraceabilityCountByCode(traceId);
 
-        // 5. 查分区
+        // 5. 查批次
         AgricultureCropBatch cropBatch = agricultureCropBatchMapper.selectById(food.getIaPartitionId());
 
-        // 6. 格式化分区的创建时间为年-月-日格式
+        // 6. 格式化批次的创建时间为年-月-日格式
         String formattedCreateTime = null;
         if (cropBatch != null && cropBatch.getCreateTime() != null) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             formattedCreateTime = dateFormat.format(cropBatch.getCreateTime());
         }
 
-        // 7. 查大棚
+        // 7. 查温室
         AgriculturePasture pasture = null;
         if (cropBatch != null) {
             pasture = pastureMapper.selectById(cropBatch.getPastureId());
@@ -134,7 +134,7 @@ public class AgriculturePartitionFoodServiceImpl extends ServiceImpl<Agriculture
             thresholdConfigList = agricultureThresholdConfigService.selectByDeviceIds(deviceIds);
         }
 
-        // 10. 查大棚和分区下的所有预警信息
+        // 10. 查温室和批次下的所有预警信息
         List<AgricultureDeviceSensorAlert> allSensorAlerts = sensorAlertService.list(
             new QueryWrapper<AgricultureDeviceSensorAlert>()
                 .eq("pasture_id", cropBatch.getPastureId())
@@ -205,10 +205,10 @@ public class AgriculturePartitionFoodServiceImpl extends ServiceImpl<Agriculture
     }
 
     /**
-     * 查询分区食品 采摘
+     * 查询采摘食品
      * 
-     * @param id 分区食品 采摘主键
-     * @return 分区食品 采摘
+     * @param id 采摘食品主键
+     * @return 采摘食品
      */
     @Override
     public AgriculturePartitionFood selectagriculturePartitionFoodById(String id)
@@ -217,10 +217,10 @@ public class AgriculturePartitionFoodServiceImpl extends ServiceImpl<Agriculture
     }
 
     /**
-     * 查询分区食品 采摘列表
+     * 查询采摘食品列表
      * 
-     * @param agriculturePartitionFood 分区食品 采摘
-     * @return 分区食品 采摘
+     * @param agriculturePartitionFood 采摘食品
+     * @return 采摘食品列表
      */
     @Override
     public List<AgriculturePartitionFood> selectagriculturePartitionFoodList(AgriculturePartitionFood agriculturePartitionFood)
@@ -230,9 +230,9 @@ public class AgriculturePartitionFoodServiceImpl extends ServiceImpl<Agriculture
     }
 
     /**
-     * 新增分区食品 采摘
+     * 新增采摘食品
      * 
-     * @param agriculturePartitionFood 分区食品 采摘
+     * @param agriculturePartitionFood 采摘食品
      * @return 结果
      */
     @Override
@@ -242,9 +242,9 @@ public class AgriculturePartitionFoodServiceImpl extends ServiceImpl<Agriculture
     }
 
     /**
-     * 修改分区食品 采摘
+     * 修改采摘食品
      * 
-     * @param agriculturePartitionFood 分区食品 采摘
+     * @param agriculturePartitionFood 采摘食品
      * @return 结果
      */
     @Override
@@ -254,9 +254,9 @@ public class AgriculturePartitionFoodServiceImpl extends ServiceImpl<Agriculture
     }
 
     /**
-     * 批量删除分区食品 采摘
+     * 批量删除采摘食品
      * 
-     * @param ids 需要删除的分区食品 采摘主键
+     * @param ids 需要删除的采摘食品主键
      * @return 结果
      */
     @Override
@@ -266,9 +266,9 @@ public class AgriculturePartitionFoodServiceImpl extends ServiceImpl<Agriculture
     }
 
     /**
-     * 删除分区食品 采摘信息
+     * 删除采摘食品信息
      * 
-     * @param id 分区食品 采摘主键
+     * @param id 采摘食品主键
      * @return 结果
      */
     @Override

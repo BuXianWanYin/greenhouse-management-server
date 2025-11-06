@@ -24,7 +24,7 @@ public interface AgricultureTraceabilityLogService extends IService<AgricultureT
     List<Map<String, Object>> getTraceabilityCodeStats();
 
     /**
-     * 获取按分区的统计信息
+     * 获取按批次的统计信息
      */
     List<Map<String, Object>> getPartitionTraceabilityStats();
 

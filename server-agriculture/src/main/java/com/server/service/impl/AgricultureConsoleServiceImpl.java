@@ -73,8 +73,8 @@ public class AgricultureConsoleServiceImpl implements AgricultureConsoleService 
 
         List<AgricultureConsoleVO> result = new ArrayList<AgricultureConsoleVO>();
 
-        result.add(fillAgricultureConsoleVO("农场大棚", pastureTotal, lastPastureTotal, "&#xe632"));
-        result.add(fillAgricultureConsoleVO("农场分区", cropBatchTotal, lastCropBatchTotal, "&#xe66b"));
+        result.add(fillAgricultureConsoleVO("农场温室", pastureTotal, lastPastureTotal, "&#xe632"));
+        result.add(fillAgricultureConsoleVO("农场批次", cropBatchTotal, lastCropBatchTotal, "&#xe66b"));
         result.add(fillAgricultureConsoleVO("农场种类", classTotal, lastClassTotal, "&#xe60a"));
         result.add(fillAgricultureConsoleVO("农场面积", pastureAreaTotal, lastPastureAreaTotal, "&#xe6dc"));
 

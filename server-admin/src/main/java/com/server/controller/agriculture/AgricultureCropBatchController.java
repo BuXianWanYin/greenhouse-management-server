@@ -25,10 +25,10 @@ import com.server.service.AgricultureCropBatchService;
 import com.server.utils.poi.ExcelUtil;
 
 /**
- * 分区Controller
+ * 种植批次Controller
  *
- * @author server
- * @date 2025-05-28
+ * @author bxwy
+ * @date 2025-09-28
  */
 @RestController
 @RequestMapping("/agriculture/batch")
@@ -38,7 +38,7 @@ public class AgricultureCropBatchController extends BaseController
     private AgricultureCropBatchService agricultureCropBatchService;
 
     /**
-     * 查询分区列表
+     * 查询批次列表
      */
     @PreAuthorize("@ss.hasPermi('agriculture:batch:list')")
     @GetMapping("/list")
@@ -48,7 +48,7 @@ public class AgricultureCropBatchController extends BaseController
     }
 
     /**
-     * 根据大棚ID查询分区列表
+     * 根据温室ID查询批次列表
      */
     @PreAuthorize("@ss.hasPermi('agriculture:batch:list')")
     @GetMapping("/listByPasture/{pastureId}")
@@ -57,20 +57,20 @@ public class AgricultureCropBatchController extends BaseController
     }
 
     /**
-     * 导出分区列表
+     * 导出批次列表
      */
     @PreAuthorize("@ss.hasPermi('agriculture:batch:export')")
-    @Log(title = "分区", businessType = BusinessType.EXPORT)
+    @Log(title = "种植批次", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, AgricultureCropBatch agricultureCropBatch)
     {
         List<AgricultureCropBatch> list = agricultureCropBatchService.selectAgricultureCropBatchList(agricultureCropBatch);
         ExcelUtil<AgricultureCropBatch> util = new ExcelUtil<AgricultureCropBatch>(AgricultureCropBatch.class);
-        util.exportExcel(response, list, "分区数据");
+        util.exportExcel(response, list, "种植批次数据");
     }
 
     /**
-     * 获取分区详细信息
+     * 获取批次详细信息
      */
     @PreAuthorize("@ss.hasPermi('agriculture:batch:query')")
     @GetMapping(value = "/{batchId}")
@@ -80,10 +80,10 @@ public class AgricultureCropBatchController extends BaseController
     }
 
     /**
-     * 新增分区
+     * 新增种植批次
      */
     @PreAuthorize("@ss.hasPermi('agriculture:batch:add')")
-    @Log(title = "分区", businessType = BusinessType.INSERT)
+    @Log(title = "种植批次", businessType = BusinessType.INSERT)
     @PostMapping
     @SeeRefreshData
     public AjaxResult add(@RequestBody AgricultureCropBatch agricultureCropBatch)
@@ -92,10 +92,10 @@ public class AgricultureCropBatchController extends BaseController
     }
 
     /**
-     * 修改分区
+     * 修改种植批次
      */
     @PreAuthorize("@ss.hasPermi('agriculture:batch:edit')")
-    @Log(title = "分区", businessType = BusinessType.UPDATE)
+    @Log(title = "种植批次", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody AgricultureCropBatch agricultureCropBatch)
     {
@@ -103,10 +103,10 @@ public class AgricultureCropBatchController extends BaseController
     }
 
     /**
-     * 删除分区
+     * 删除种植批次
      */
     @PreAuthorize("@ss.hasPermi('agriculture:batch:remove')")
-    @Log(title = "分区", businessType = BusinessType.DELETE)
+    @Log(title = "种植批次", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{batchId}")
     @SeeRefreshData
     public AjaxResult remove(@PathVariable Long[] batchId)

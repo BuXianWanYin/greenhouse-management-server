@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * 批次任务Controller
- * @Author: zbb
- * @Date: 2025/5/28 22:18
+ *
+ * @author bxwy
+ * @date 2025-05-29
  */
 @RestController
 @RequestMapping("/agriculture/batchTask")
@@ -27,7 +28,7 @@ public class AgricultureBatchTaskController extends BaseController {
     private AgricultureBatchTaskService agricultureBatchTaskService;
 
     /**
-     * 查询批次任务按钮列表
+     * 查询批次任务列表
      */
     @PreAuthorize("@ss.hasPermi('agriculture:batchTask:list')")
     @GetMapping("/list")
@@ -37,7 +38,7 @@ public class AgricultureBatchTaskController extends BaseController {
         return getDataTable(agricultureBatchTaskService.selectBatchTaskList(agricultureBatchTask));
     }
     /**
-     * 获取批次任务按钮详细信息
+     * 获取批次任务详细信息
      */
     @PreAuthorize("@ss.hasPermi('agriculture:batchTask:query')")
     @GetMapping(value = "/{taskId}")
@@ -49,7 +50,7 @@ public class AgricultureBatchTaskController extends BaseController {
      * 删除批次任务
      */
     @PreAuthorize("@ss.hasPermi('agriculture:batchTask:remove')")
-    @Log(title = "分区", businessType = BusinessType.DELETE)
+    @Log(title = "批次任务", businessType = BusinessType.DELETE)
     @DeleteMapping("/{taskId}")
     @SeeRefreshData
     public AjaxResult remove(@PathVariable Long taskId)
@@ -68,7 +69,7 @@ public class AgricultureBatchTaskController extends BaseController {
         return toAjax(agricultureBatchTaskService.updateBatchTask(agricultureBatchTask));
     }
     /**
-     * 新增
+     * 新增批次任务
      */
     @PreAuthorize("@ss.hasPermi('agriculture:batchTask:add')")
     @Log(title = "批次任务", businessType = BusinessType.INSERT)
