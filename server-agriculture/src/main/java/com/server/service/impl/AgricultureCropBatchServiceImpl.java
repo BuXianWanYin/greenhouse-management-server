@@ -193,7 +193,7 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
         if (StringUtils.isNotEmpty(agricultureCropBatchDTO.getBatchName())) {
             queryWrapper.like(AgricultureCropBatch::getBatchName, agricultureCropBatchDTO.getBatchName());
         }
-        if (StringUtils.isNotEmpty(agricultureCropBatchDTO.getClassId())) {
+        if (agricultureCropBatchDTO.getClassId() != null) {
             queryWrapper.eq(AgricultureCropBatch::getClassId, agricultureCropBatchDTO.getClassId());
         }
         // 调用Mapper方法执行查询，并将Wrapper作为参数传递，让Mapper根据条件拼接SQL

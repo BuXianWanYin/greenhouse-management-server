@@ -1,3 +1,6 @@
 03:50:19.824 [http-nio-8080-exec-56] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
 03:50:19.833 [http-nio-8080-exec-61] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
 03:50:29.094 [schedule-pool-1] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
+04:21:23.160 [http-nio-8080-exec-17] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+04:21:41.281 [http-nio-8080-exec-18] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+04:21:41.290 [http-nio-8080-exec-19] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
