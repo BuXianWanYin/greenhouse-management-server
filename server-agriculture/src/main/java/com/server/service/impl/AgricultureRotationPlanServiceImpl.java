@@ -65,7 +65,10 @@ public class AgricultureRotationPlanServiceImpl extends ServiceImpl<AgricultureR
         if (agricultureRotationPlan.getRotationName() != null) {
             queryWrapper.like(AgricultureRotationPlan::getRotationName, agricultureRotationPlan.getRotationName());
         }
-        queryWrapper.eq(AgricultureRotationPlan::getDelFlag, "0");
+        // 只查询未删除的记录（del_flag = "0" 或 del_flag 为 NULL）
+        queryWrapper.and(wrapper -> wrapper.eq(AgricultureRotationPlan::getDelFlag, "0")
+                .or()
+                .isNull(AgricultureRotationPlan::getDelFlag));
         queryWrapper.orderByDesc(AgricultureRotationPlan::getCreateTime);
         return list(queryWrapper);
     }
