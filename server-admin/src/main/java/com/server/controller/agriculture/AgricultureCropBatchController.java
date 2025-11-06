@@ -22,6 +22,7 @@ import com.server.core.domain.AjaxResult;
 import com.server.enums.BusinessType;
 import com.server.domain.AgricultureCropBatch;
 import com.server.service.AgricultureCropBatchService;
+import com.server.service.AgricultureBatchTaskService;
 import com.server.utils.poi.ExcelUtil;
 
 /**
@@ -36,6 +37,9 @@ public class AgricultureCropBatchController extends BaseController
 {
     @Autowired
     private AgricultureCropBatchService agricultureCropBatchService;
+    
+    @Autowired
+    private AgricultureBatchTaskService agricultureBatchTaskService;
 
     /**
      * 查询批次列表
@@ -67,6 +71,16 @@ public class AgricultureCropBatchController extends BaseController
         List<AgricultureCropBatch> list = agricultureCropBatchService.selectAgricultureCropBatchList(agricultureCropBatch);
         ExcelUtil<AgricultureCropBatch> util = new ExcelUtil<AgricultureCropBatch>(AgricultureCropBatch.class);
         util.exportExcel(response, list, "种植批次数据");
+    }
+
+    /**
+     * 根据批次ID查询批次任务列表
+     */
+    @PreAuthorize("@ss.hasPermi('agriculture:batch:query')")
+    @GetMapping("/{batchId}/tasks")
+    public AjaxResult getBatchTasksList(@PathVariable("batchId") Long batchId)
+    {
+        return success(agricultureBatchTaskService.selectBatchTaskListByBatchId(batchId));
     }
 
     /**
@@ -107,10 +121,11 @@ public class AgricultureCropBatchController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('agriculture:batch:remove')")
     @Log(title = "种植批次", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{batchId}")
+    @DeleteMapping("/{batchIds}")
     @SeeRefreshData
-    public AjaxResult remove(@PathVariable Long[] batchId)
+    public AjaxResult remove(@PathVariable("batchIds") Long[] batchIds)
     {
-        return toAjax(agricultureCropBatchService.deleteAgricultureCropBatchByBatchIds(batchId));
+        return toAjax(agricultureCropBatchService.deleteAgricultureCropBatchByBatchIds(batchIds));
     }
+
 }

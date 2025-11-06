@@ -20,6 +20,7 @@ import com.server.domain.AgricultureAnnualPlan;
 import com.server.service.AgricultureAnnualPlanService;
 import com.server.utils.poi.ExcelUtil;
 import com.server.core.page.TableDataInfo;
+import com.server.domain.dto.AgricultureCropBatchDTO;
 
 /**
  * 年度种植规划Controller
@@ -100,6 +101,39 @@ public class AgricultureAnnualPlanController extends BaseController
     public AjaxResult remove(@PathVariable Long[] planIds)
     {
         return toAjax(agricultureAnnualPlanService.deleteAgricultureAnnualPlanByPlanIds(planIds));
+    }
+
+    /**
+     * 获取计划关联的批次列表
+     */
+    @PreAuthorize("@ss.hasPermi('agriculture:annualplan:query')")
+    @GetMapping("/{planId}/batches")
+    public AjaxResult getPlanBatches(@PathVariable("planId") Long planId)
+    {
+        List<AgricultureCropBatchDTO> batchList = agricultureAnnualPlanService.getPlanBatches(planId);
+        return success(batchList);
+    }
+
+    /**
+     * 将批次添加到计划
+     */
+    @PreAuthorize("@ss.hasPermi('agriculture:annualplan:edit')")
+    @Log(title = "年度种植规划", businessType = BusinessType.UPDATE)
+    @PostMapping("/{planId}/batches")
+    public AjaxResult addBatchToPlan(@PathVariable("planId") Long planId, @RequestBody Long[] batchIds)
+    {
+        return toAjax(agricultureAnnualPlanService.addBatchToPlan(planId, batchIds));
+    }
+
+    /**
+     * 从计划中移除批次
+     */
+    @PreAuthorize("@ss.hasPermi('agriculture:annualplan:edit')")
+    @Log(title = "年度种植规划", businessType = BusinessType.UPDATE)
+    @DeleteMapping("/{planId}/batches/{batchId}")
+    public AjaxResult removeBatchFromPlan(@PathVariable("planId") Long planId, @PathVariable("batchId") Long batchId)
+    {
+        return toAjax(agricultureAnnualPlanService.removeBatchFromPlan(planId, batchId));
     }
 }
 

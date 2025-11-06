@@ -2,10 +2,16 @@ package com.server.service.impl;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.server.domain.AgricultureCropBatch;
 import com.server.domain.AgricultureRotationPlan;
+import com.server.domain.dto.AgricultureCropBatchDTO;
 import com.server.mapper.AgricultureRotationPlanMapper;
+import com.server.service.AgricultureCropBatchService;
 import com.server.service.AgricultureRotationPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +27,9 @@ public class AgricultureRotationPlanServiceImpl extends ServiceImpl<AgricultureR
 {
     @Autowired
     private AgricultureRotationPlanMapper agricultureRotationPlanMapper;
+    
+    @Autowired
+    private AgricultureCropBatchService agricultureCropBatchService;
 
     /**
      * 查询轮作计划
@@ -107,6 +116,40 @@ public class AgricultureRotationPlanServiceImpl extends ServiceImpl<AgricultureR
     public int deleteAgricultureRotationPlanByRotationId(Long rotationId)
     {
         return removeById(rotationId) ? 1 : 0;
+    }
+
+    /**
+     * 获取轮作计划关联的批次列表
+     *
+     * @param rotationId 轮作计划ID
+     * @return 批次列表
+     */
+    @Override
+    public List<AgricultureCropBatchDTO> getRotationPlanBatches(Long rotationId)
+    {
+        // 通过rotation_plan_id查询批次
+        LambdaQueryWrapper<AgricultureCropBatch> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(AgricultureCropBatch::getRotationPlanId, rotationId);
+        List<AgricultureCropBatch> batchList = agricultureCropBatchService.list(queryWrapper);
+        
+        // 转换为DTO
+        return batchList.stream().map(batch -> {
+            AgricultureCropBatchDTO dto = new AgricultureCropBatchDTO();
+            dto.setBatchId(String.valueOf(batch.getBatchId()));
+            dto.setBatchName(batch.getBatchName());
+            dto.setClassId(batch.getClassId());
+            dto.setPastureId(batch.getPastureId());
+            dto.setStartTime(batch.getStartTime());
+            dto.setCropArea(batch.getCropArea() != null ? batch.getCropArea() : 0.0);
+            // 将Date转换为LocalDate
+            if (batch.getCreateTime() != null) {
+                LocalDate localDate = batch.getCreateTime().toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate();
+                dto.setCreateTime(localDate);
+            }
+            return dto;
+        }).collect(Collectors.toList());
     }
 }
 

@@ -17,6 +17,7 @@ import com.server.service.AgricultureTaskLogService;
 import com.server.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.server.mapper.AgricultureCropBatchMapper;
 import com.server.service.AgricultureCropBatchService;
 
@@ -152,30 +153,74 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
 
     /**
      * 批量删除种植批次
-     * 删除的同时将批次下的任务一起删掉，避免数据库过多不用的数据
+     * 删除的同时将批次下的任务和任务日志一起删掉，避免数据库过多不用的数据
      * @param batchId 需要删除的批次主键
      * @return 结果
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int deleteAgricultureCropBatchByBatchIds(Long[] batchId)
     {
-        LambdaQueryWrapper<AgricultureBatchTask> queryWrapper = new LambdaQueryWrapper<>();
-        //传给batch_id的参数是一个序列化的Java对象 如 Long[] 或 List<Long>）而不是单个 Long 类型的批次ID
-        queryWrapper.in(AgricultureBatchTask::getBatchId, Arrays.asList(batchId));
-        //AgricultureBatchTask的batchId 和 AgricultureCropBatch的batchId相等删除之后再删除批次
-        agricultureBatchTaskService.remove(queryWrapper);
+        // 1. 查询批次下的所有任务
+        LambdaQueryWrapper<AgricultureBatchTask> taskQueryWrapper = new LambdaQueryWrapper<>();
+        taskQueryWrapper.in(AgricultureBatchTask::getBatchId, Arrays.asList(batchId));
+        List<AgricultureBatchTask> batchTaskList = agricultureBatchTaskService.list(taskQueryWrapper);
+        
+        // 2. 提取任务ID列表
+        List<Long> taskIds = batchTaskList.stream()
+                .map(AgricultureBatchTask::getTaskId)
+                .collect(Collectors.toList());
+        
+        // 3. 删除任务日志（通过taskId）
+        if (!taskIds.isEmpty()) {
+            LambdaQueryWrapper<AgricultureTaskLog> logQueryWrapper = new LambdaQueryWrapper<>();
+            logQueryWrapper.in(AgricultureTaskLog::getTaskId, taskIds);
+            agricultureTaskLogService.remove(logQueryWrapper);
+        }
+        
+        // 4. 删除批次任务
+        if (!batchTaskList.isEmpty()) {
+            agricultureBatchTaskService.remove(taskQueryWrapper);
+        }
+        
+        // 5. 删除批次
         return removeByIds(Arrays.asList(batchId)) ? batchId.length : 0;
     }
 
     /**
      * 删除种植批次信息
+     * 删除的同时将批次下的任务和任务日志一起删掉，避免数据库过多不用的数据
      *
      * @param batchId 批次主键
      * @return 结果
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int deleteAgricultureCropBatchByBatchId(Long batchId)
     {
+        // 1. 查询批次下的所有任务
+        LambdaQueryWrapper<AgricultureBatchTask> taskQueryWrapper = new LambdaQueryWrapper<>();
+        taskQueryWrapper.eq(AgricultureBatchTask::getBatchId, batchId);
+        List<AgricultureBatchTask> batchTaskList = agricultureBatchTaskService.list(taskQueryWrapper);
+        
+        // 2. 提取任务ID列表
+        List<Long> taskIds = batchTaskList.stream()
+                .map(AgricultureBatchTask::getTaskId)
+                .collect(Collectors.toList());
+        
+        // 3. 删除任务日志（通过taskId）
+        if (!taskIds.isEmpty()) {
+            LambdaQueryWrapper<AgricultureTaskLog> logQueryWrapper = new LambdaQueryWrapper<>();
+            logQueryWrapper.in(AgricultureTaskLog::getTaskId, taskIds);
+            agricultureTaskLogService.remove(logQueryWrapper);
+        }
+        
+        // 4. 删除批次任务
+        if (!batchTaskList.isEmpty()) {
+            agricultureBatchTaskService.remove(taskQueryWrapper);
+        }
+        
+        // 5. 删除批次
         return removeById(batchId) ? 1 : 0;
     }
 

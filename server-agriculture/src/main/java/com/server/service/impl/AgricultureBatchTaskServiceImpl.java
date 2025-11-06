@@ -123,4 +123,19 @@ public class AgricultureBatchTaskServiceImpl extends ServiceImpl<AgricultureBatc
         agricultureBatchTask.setStatus("0"); // 默认未分配状态
         return save(agricultureBatchTask) ? 1 : 0;
     }
+
+    /**
+     * 根据批次ID查询批次任务列表
+     *
+     * @param batchId 批次ID
+     * @return 批次任务集合
+     */
+    @Override
+    public List<AgricultureBatchTask> selectBatchTaskListByBatchId(Long batchId) {
+        LambdaQueryWrapper<AgricultureBatchTask> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(AgricultureBatchTask::getBatchId, batchId)
+                .orderByAsc(AgricultureBatchTask::getOrderNum)
+                .orderByAsc(AgricultureBatchTask::getPlanStart);
+        return list(queryWrapper);
+    }
 }

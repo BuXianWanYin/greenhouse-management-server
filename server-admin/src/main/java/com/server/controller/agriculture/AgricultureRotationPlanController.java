@@ -20,6 +20,7 @@ import com.server.domain.AgricultureRotationPlan;
 import com.server.service.AgricultureRotationPlanService;
 import com.server.utils.poi.ExcelUtil;
 import com.server.core.page.TableDataInfo;
+import com.server.domain.dto.AgricultureCropBatchDTO;
 
 /**
  * 轮作计划Controller
@@ -100,6 +101,17 @@ public class AgricultureRotationPlanController extends BaseController
     public AjaxResult remove(@PathVariable Long[] rotationIds)
     {
         return toAjax(agricultureRotationPlanService.deleteAgricultureRotationPlanByRotationIds(rotationIds));
+    }
+
+    /**
+     * 获取轮作计划关联的批次列表
+     */
+    @PreAuthorize("@ss.hasPermi('agriculture:rotationplan:query')")
+    @GetMapping("/{rotationId}/batches")
+    public AjaxResult getRotationPlanBatches(@PathVariable("rotationId") Long rotationId)
+    {
+        List<AgricultureCropBatchDTO> batchList = agricultureRotationPlanService.getRotationPlanBatches(rotationId);
+        return success(batchList);
     }
 }
 

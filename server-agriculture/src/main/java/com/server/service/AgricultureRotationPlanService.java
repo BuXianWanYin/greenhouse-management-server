@@ -59,5 +59,13 @@ public interface AgricultureRotationPlanService extends IService<AgricultureRota
      * @return 结果
      */
     public int deleteAgricultureRotationPlanByRotationId(Long rotationId);
+
+    /**
+     * 获取轮作计划关联的批次列表
+     *
+     * @param rotationId 轮作计划ID
+     * @return 批次列表
+     */
+    public List<com.server.domain.dto.AgricultureCropBatchDTO> getRotationPlanBatches(Long rotationId);
 }
 

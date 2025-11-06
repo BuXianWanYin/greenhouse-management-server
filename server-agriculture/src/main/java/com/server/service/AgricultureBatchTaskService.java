@@ -52,4 +52,12 @@ public interface AgricultureBatchTaskService extends IService<AgricultureBatchTa
      * @return 结果
      */
     int insertBatchTask(AgricultureBatchTask agricultureBatchTask);
+
+    /**
+     * 根据批次ID查询批次任务列表
+     *
+     * @param batchId 批次ID
+     * @return 批次任务集合
+     */
+    List<AgricultureBatchTask> selectBatchTaskListByBatchId(Long batchId);
 }

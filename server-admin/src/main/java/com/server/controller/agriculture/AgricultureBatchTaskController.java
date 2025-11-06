@@ -80,4 +80,14 @@ public class AgricultureBatchTaskController extends BaseController {
         return toAjax(agricultureBatchTaskService.insertBatchTask(agricultureBatchTask));
     }
 
+    /**
+     * 根据批次ID查询批次任务列表
+     */
+    @PreAuthorize("@ss.hasPermi('agriculture:batchTask:list')")
+    @GetMapping("/batch/{batchId}")
+    public AjaxResult getBatchTasksByBatchId(@PathVariable("batchId") Long batchId)
+    {
+        return AjaxResult.success(agricultureBatchTaskService.selectBatchTaskListByBatchId(batchId));
+    }
+
 }

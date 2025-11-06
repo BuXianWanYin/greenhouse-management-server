@@ -59,5 +59,31 @@ public interface AgricultureAnnualPlanService extends IService<AgricultureAnnual
      * @return 结果
      */
     public int deleteAgricultureAnnualPlanByPlanId(Long planId);
+
+    /**
+     * 获取计划关联的批次列表
+     *
+     * @param planId 年度计划ID
+     * @return 批次列表
+     */
+    public List<com.server.domain.dto.AgricultureCropBatchDTO> getPlanBatches(Long planId);
+
+    /**
+     * 将批次添加到计划
+     *
+     * @param planId 年度计划ID
+     * @param batchIds 批次ID数组
+     * @return 结果
+     */
+    public int addBatchToPlan(Long planId, Long[] batchIds);
+
+    /**
+     * 从计划中移除批次
+     *
+     * @param planId 年度计划ID
+     * @param batchId 批次ID
+     * @return 结果
+     */
+    public int removeBatchFromPlan(Long planId, Long batchId);
 }
 

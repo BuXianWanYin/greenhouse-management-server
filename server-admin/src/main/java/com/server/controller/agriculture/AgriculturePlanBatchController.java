@@ -29,7 +29,7 @@ import com.server.core.page.TableDataInfo;
  */
 @RestController
 @RequestMapping("/agriculture/planbatch")
-public class AgriculturePlanBatchController extends BaseController
+public class    AgriculturePlanBatchController extends BaseController
 {
     @Autowired
     private AgriculturePlanBatchService agriculturePlanBatchService;
