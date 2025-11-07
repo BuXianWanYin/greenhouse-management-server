@@ -554,4 +554,30 @@ public class SysUserServiceImpl implements ISysUserService
     public SysUser selectUserByEmail(String email) {
         return userMapper.selectUserByEmail(email);
     }
+
+    /**
+     * 根据条件分页查询管理员用户列表（权限字符包含admin）
+     * 
+     * @param user 用户信息
+     * @return 用户信息集合信息
+     */
+    @Override
+    @DataScope(deptAlias = "d", userAlias = "u")
+    public List<SysUser> selectAdminUserList(SysUser user)
+    {
+        return userMapper.selectAdminUserList(user);
+    }
+
+    /**
+     * 根据条件分页查询普通员工用户列表（权限字符包含common或employee）
+     * 
+     * @param user 用户信息
+     * @return 用户信息集合信息
+     */
+    @Override
+    @DataScope(deptAlias = "d", userAlias = "u")
+    public List<SysUser> selectEmployeeUserList(SysUser user)
+    {
+        return userMapper.selectEmployeeUserList(user);
+    }
 }

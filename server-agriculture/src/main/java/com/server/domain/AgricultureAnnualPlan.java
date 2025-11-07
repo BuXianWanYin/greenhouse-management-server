@@ -58,8 +58,8 @@ public class AgricultureAnnualPlan extends BaseEntityPlus implements Serializabl
 
     /** 计划类型（annual=年度计划,seasonal=季节性计划） */
     @TableField(value = "plan_type")
-    @ApiModelProperty(value = "计划类型（annual=年度计划,seasonal=季节性计划）")
-    @Excel(name = "计划类型", readConverterExp = "annual=年度计划,seasonal=季节性计划")
+    @ApiModelProperty(value = "计划类型（annual=年度计划,seasonal=季度计划）")
+    @Excel(name = "计划类型", readConverterExp = "annual=年度计划,seasonal=季度计划")
     private String planType;
 
     /** 计划状态（0=草稿,1=已发布,2=执行中,3=已完成,4=已取消） */

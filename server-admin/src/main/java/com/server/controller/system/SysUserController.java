@@ -269,4 +269,30 @@ public class SysUserController extends BaseController
     {
         return success(deptService.selectDeptTreeList(dept));
     }
+
+    /**
+     * 获取管理员用户列表（权限字符包含admin）
+     */
+    @PreAuthorize("@ss.hasPermi('system:user:list')")
+    @GetMapping("/adminList")
+    @ApiOperation("获取管理员用户列表")
+    public TableDataInfo adminList(SysUser user)
+    {
+        startPage();
+        List<SysUser> list = userService.selectAdminUserList(user);
+        return getDataTable(list);
+    }
+
+    /**
+     * 获取普通员工用户列表（权限字符包含common或employee）
+     */
+    @PreAuthorize("@ss.hasPermi('system:user:list')")
+    @GetMapping("/employeeList")
+    @ApiOperation("获取普通员工用户列表")
+    public TableDataInfo employeeList(SysUser user)
+    {
+        startPage();
+        List<SysUser> list = userService.selectEmployeeUserList(user);
+        return getDataTable(list);
+    }
 }

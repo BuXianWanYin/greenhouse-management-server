@@ -211,4 +211,20 @@ public interface ISysUserService
      * @return 结果
      */
     SysUser selectUserByEmail(String email);
+
+    /**
+     * 根据条件分页查询管理员用户列表（权限字符包含admin）
+     * 
+     * @param user 用户信息
+     * @return 用户信息集合信息
+     */
+    public List<SysUser> selectAdminUserList(SysUser user);
+
+    /**
+     * 根据条件分页查询普通员工用户列表（权限字符包含common或employee）
+     * 
+     * @param user 用户信息
+     * @return 用户信息集合信息
+     */
+    public List<SysUser> selectEmployeeUserList(SysUser user);
 }

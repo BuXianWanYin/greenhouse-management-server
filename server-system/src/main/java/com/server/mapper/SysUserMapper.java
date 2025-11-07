@@ -133,4 +133,20 @@ public interface SysUserMapper
      * @return 结果
      */
     SysUser selectUserByEmail(String email);
+
+    /**
+     * 根据条件分页查询管理员用户列表（权限字符包含admin）
+     * 
+     * @param sysUser 用户信息
+     * @return 用户信息集合信息
+     */
+    public List<SysUser> selectAdminUserList(SysUser sysUser);
+
+    /**
+     * 根据条件分页查询普通员工用户列表（权限字符包含common或employee）
+     * 
+     * @param sysUser 用户信息
+     * @return 用户信息集合信息
+     */
+    public List<SysUser> selectEmployeeUserList(SysUser sysUser);
 }
