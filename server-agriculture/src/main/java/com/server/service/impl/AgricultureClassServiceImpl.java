@@ -50,8 +50,7 @@ public class AgricultureClassServiceImpl extends ServiceImpl<AgricultureClassMap
     public List<AgricultureClass> selectAgricultureClassList(AgricultureClass agricultureClass) {
         LambdaQueryWrapper<AgricultureClass> lambda = new QueryWrapper<AgricultureClass>().lambda();
         lambda
-                .like(StringUtils.isNotEmpty(agricultureClass.getClassName()), AgricultureClass::getClassName, agricultureClass.getClassName())
-                .like(StringUtils.isNotEmpty(agricultureClass.getClassTypeName()), AgricultureClass::getClassTypeName, agricultureClass.getClassTypeName());
+                .like(StringUtils.isNotEmpty(agricultureClass.getClassName()), AgricultureClass::getClassName, agricultureClass.getClassName());
         return agricultureClassMapper.selectList(lambda);
     }
 

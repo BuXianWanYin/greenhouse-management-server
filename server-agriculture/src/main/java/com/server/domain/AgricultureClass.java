@@ -37,11 +37,6 @@ public class AgricultureClass extends BaseEntityPlus implements Serializable {
     @ApiModelProperty(value = "种类名称")
     private String className;
 
-    @TableField(value = "class_type_name")
-    @ApiModelProperty(value = "种类类别名称")
-    private String classTypeName;
-
-
     @TableField(value = "class_image")
     @ApiModelProperty(value = "种类图片")
     private String classImage;
@@ -53,9 +48,5 @@ public class AgricultureClass extends BaseEntityPlus implements Serializable {
     @TableField(value = "status")
     @ApiModelProperty(value = "状态（0正常 1停用）")
     private String status;
-
-    @TableField(value = "order_num")
-    @ApiModelProperty(value = "排序")
-    private Long orderNum;
 
 }
