@@ -16,7 +16,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * 轮作计划明细实体类
+ * 种植计划明细实体类
  *
  * @author bxwy
  * @date 2025-11-05
@@ -26,9 +26,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@TableName(value = "agriculture_rotation_detail")
-@ApiModel(value = "AgricultureRotationDetail", description = "轮作计划明细表")
-public class AgricultureRotationDetail extends BaseEntityPlus implements Serializable {
+@TableName(value = "agriculture_plan_detail")
+@ApiModel(value = "AgriculturePlanDetail", description = "种植计划明细表")
+public class AgriculturePlanDetail extends BaseEntityPlus implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -38,11 +38,11 @@ public class AgricultureRotationDetail extends BaseEntityPlus implements Seriali
     @Excel(name = "明细ID")
     private Long detailId;
 
-    /** 轮作计划ID（关联agriculture_rotation_plan表） */
-    @TableField(value = "rotation_id")
-    @ApiModelProperty(value = "轮作计划ID（关联agriculture_rotation_plan表）")
-    @Excel(name = "轮作计划ID")
-    private Long rotationId;
+    /** 种植计划ID（关联agriculture_planting_plan表） */
+    @TableField(value = "plan_id")
+    @ApiModelProperty(value = "种植计划ID（关联agriculture_planting_plan表）")
+    @Excel(name = "种植计划ID")
+    private Long planId;
 
     /** 种质ID（关联agriculture_class表） */
     @TableField(value = "class_id")

@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.server.annotation.Log;
 import com.server.annotation.SeeRefreshData;
 import com.server.core.page.TableDataInfo;
-import com.server.domain.dto.AgricultureCropBatchDTO;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,9 +45,9 @@ public class AgricultureCropBatchController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('agriculture:batch:list')")
     @GetMapping("/list")
-    public TableDataInfo list(AgricultureCropBatchDTO agricultureCropBatchDTO){
+    public TableDataInfo list(AgricultureCropBatch agricultureCropBatch){
         startPage();
-        return getDataTable(agricultureCropBatchService.getCropBatchWithClassImages(agricultureCropBatchDTO));
+        return getDataTable(agricultureCropBatchService.getCropBatchWithClassImages(agricultureCropBatch));
     }
 
     /**

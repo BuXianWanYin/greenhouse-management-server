@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.server.domain.*;
-import com.server.domain.dto.AgricultureCropBatchDTO;
 import com.server.service.AgricultureBatchTaskService;
 import com.server.service.AgricultureJobService;
 import com.server.service.AgricultureTaskLogService;
@@ -63,7 +62,7 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
      * @return 批次列表
      */
     @Override
-    public List<AgricultureCropBatchDTO> selectBatchByPastureId(Long pastureId) {
+    public List<AgricultureCropBatch> selectBatchByPastureId(Long pastureId) {
         LambdaQueryWrapper<AgricultureCropBatch> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(AgricultureCropBatch::getPastureId, pastureId);
         return agricultureCropBatchMapper.selectCropBatchWithClassImages(queryWrapper);
@@ -262,19 +261,19 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
     /**
      * 根据条件查询作物批次信息，并包含相关的分类图片
      *
-     * @param agricultureCropBatchDTO 包含查询条件的DTO，如批次名称batchName
-     * @return 符合条件的作物批次DTO列表
+     * @param agricultureCropBatch 包含查询条件的实体，如批次名称batchName
+     * @return 符合条件的作物批次列表
      */
     @Override
-    public List<AgricultureCropBatchDTO> getCropBatchWithClassImages(AgricultureCropBatchDTO agricultureCropBatchDTO) {
+    public List<AgricultureCropBatch> getCropBatchWithClassImages(AgricultureCropBatch agricultureCropBatch) {
         // 创建LambdaQueryWrapper，用于构建查询条件，基于数据库实体类AgricultureCropBatch
         LambdaQueryWrapper<AgricultureCropBatch> queryWrapper = new LambdaQueryWrapper<>();
-        // 如果DTO中的批次名称不为空，则添加批次名称的模糊查询条件
-        if (StringUtils.isNotEmpty(agricultureCropBatchDTO.getBatchName())) {
-            queryWrapper.like(AgricultureCropBatch::getBatchName, agricultureCropBatchDTO.getBatchName());
+        // 如果批次名称不为空，则添加批次名称的模糊查询条件
+        if (StringUtils.isNotEmpty(agricultureCropBatch.getBatchName())) {
+            queryWrapper.like(AgricultureCropBatch::getBatchName, agricultureCropBatch.getBatchName());
         }
-        if (agricultureCropBatchDTO.getClassId() != null) {
-            queryWrapper.eq(AgricultureCropBatch::getClassId, agricultureCropBatchDTO.getClassId());
+        if (agricultureCropBatch.getClassId() != null) {
+            queryWrapper.eq(AgricultureCropBatch::getClassId, agricultureCropBatch.getClassId());
         }
         // 调用Mapper方法执行查询，并将Wrapper作为参数传递，让Mapper根据条件拼接SQL
         return agricultureCropBatchMapper.selectCropBatchWithClassImages(queryWrapper);

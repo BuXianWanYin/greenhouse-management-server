@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.server.domain.AgricultureCropBatch;
-import com.server.domain.dto.AgricultureCropBatchDTO;
 
 /**
  * 种植批次Service接口
@@ -28,7 +27,7 @@ public interface AgricultureCropBatchService extends IService<AgricultureCropBat
      * @param pastureId 温室ID
      * @return 批次列表
      */
-    List<AgricultureCropBatchDTO> selectBatchByPastureId(Long pastureId);
+    List<AgricultureCropBatch> selectBatchByPastureId(Long pastureId);
 
     /**
      * 导出批次列表
@@ -71,8 +70,9 @@ public interface AgricultureCropBatchService extends IService<AgricultureCropBat
     public int deleteAgricultureCropBatchByBatchId(Long batchId);
 
     /**
-     * 链表返回
-     * @return
+     * 根据条件查询作物批次信息，并包含相关的分类图片
+     * @param agricultureCropBatch 查询条件
+     * @return 符合条件的作物批次列表
      */
-    List<AgricultureCropBatchDTO> getCropBatchWithClassImages(AgricultureCropBatchDTO agricultureCropBatchDTO);
+    List<AgricultureCropBatch> getCropBatchWithClassImages(AgricultureCropBatch agricultureCropBatch);
 }

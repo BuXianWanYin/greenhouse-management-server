@@ -51,9 +51,9 @@ public class AgricultureCropBatch implements Serializable {
     @ApiModelProperty(value="季节类型（spring=春季,summer=夏季,autumn=秋季,winter=冬季）")
     private String seasonType;
 
-    @TableField(value="rotation_plan_id")
-    @ApiModelProperty(value="轮作计划ID（关联agriculture_rotation_plan表）")
-    private Long rotationPlanId;
+    @TableField(value="plan_id")
+    @ApiModelProperty(value="种植计划ID（关联agriculture_planting_plan表）")
+    private Long planId;
 
     @TableField(value="planting_density")
     @ApiModelProperty(value="种植密度（株/亩）")
@@ -64,20 +64,6 @@ public class AgricultureCropBatch implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime expectedHarvestTime;
-
-    @TableField(value="current_growth_stage")
-    @ApiModelProperty(value="当前生长阶段（seedling=幼苗期,growth=生长期,flowering=开花期,fruiting=结果期,mature=成熟期）")
-    private String currentGrowthStage;
-
-    @TableField(value="growth_stage_start_time")
-    @ApiModelProperty(value="当前生长阶段开始时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime growthStageStartTime;
-
-    @TableField(value="total_growth_days")
-    @ApiModelProperty(value="总生长天数")
-    private Integer totalGrowthDays;
 
     @TableField(value="actual_harvest_time")
     @ApiModelProperty(value="实际收获时间")
@@ -138,4 +124,19 @@ public class AgricultureCropBatch implements Serializable {
     @TableField(value="harvest")
     @ApiModelProperty(value="收获标志(0代表已收获，1代表未收获)")
     private String harvest;
+
+    /** 种质图片（关联字段，不存储到数据库） */
+    @TableField(exist = false)
+    @ApiModelProperty(value = "种质图片")
+    private String classImage;
+
+    /** 种质名称（关联字段，不存储到数据库） */
+    @TableField(exist = false)
+    @ApiModelProperty(value = "种质名称")
+    private String className;
+
+    /** 负责人昵称（关联字段，不存储到数据库） */
+    @TableField(exist = false)
+    @ApiModelProperty(value = "负责人昵称")
+    private String nickName;
 }

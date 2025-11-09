@@ -1,19 +1,19 @@
 package com.server.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.server.domain.AgricultureRotationPlan;
+import com.server.domain.AgriculturePlantingPlan;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
- * 轮作计划Mapper接口
+ * 种植计划Mapper接口
  *
  * @author bxwu
  * @date 2025-11-05
  */
 @Repository
 @Mapper
-public interface AgricultureRotationPlanMapper extends BaseMapper<AgricultureRotationPlan>
+public interface AgriculturePlantingPlanMapper extends BaseMapper<AgriculturePlantingPlan>
 {
 
 }

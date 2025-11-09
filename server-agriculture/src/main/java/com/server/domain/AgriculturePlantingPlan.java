@@ -16,7 +16,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * 年度种植规划实体类
+ * 种植计划实体类
  *
  * @author bxwy
  * @date 2025-11-05
@@ -26,23 +26,17 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@TableName(value = "agriculture_annual_plan")
-@ApiModel(value = "AgricultureAnnualPlan", description = "年度种植规划表")
-public class AgricultureAnnualPlan extends BaseEntityPlus implements Serializable {
+@TableName(value = "agriculture_planting_plan")
+@ApiModel(value = "AgriculturePlantingPlan", description = "种植计划表")
+public class AgriculturePlantingPlan extends BaseEntityPlus implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /** 计划ID */
+    /** 种植计划ID */
     @TableId(value = "plan_id", type = IdType.AUTO)
-    @ApiModelProperty(value = "计划ID")
-    @Excel(name = "计划ID")
+    @ApiModelProperty(value = "种植计划ID")
+    @Excel(name = "种植计划ID")
     private Long planId;
-
-    /** 计划年份 */
-    @TableField(value = "plan_year")
-    @ApiModelProperty(value = "计划年份")
-    @Excel(name = "计划年份")
-    private Integer planYear;
 
     /** 计划名称 */
     @TableField(value = "plan_name")
@@ -50,22 +44,40 @@ public class AgricultureAnnualPlan extends BaseEntityPlus implements Serializabl
     @Excel(name = "计划名称")
     private String planName;
 
-    /** 温室ID（关联agriculture_pasture表，NULL表示全温室） */
+    /** 计划年份 */
+    @TableField(value = "plan_year")
+    @ApiModelProperty(value = "计划年份")
+    @Excel(name = "计划年份")
+    private Integer planYear;
+
+    /** 计划类型（annual=年度计划,seasonal=季节性计划,rotation=轮作计划） */
+    @TableField(value = "plan_type")
+    @ApiModelProperty(value = "计划类型（annual=年度计划,seasonal=季度计划,rotation=轮作计划）")
+    @Excel(name = "计划类型", readConverterExp = "annual=年度计划,seasonal=季度计划,rotation=轮作计划")
+    private String planType;
+
+    /** 温室ID（关联agriculture_pasture表） */
     @TableField(value = "pasture_id")
-    @ApiModelProperty(value = "温室ID（关联agriculture_pasture表，NULL表示全温室）")
+    @ApiModelProperty(value = "温室ID（关联agriculture_pasture表）")
     @Excel(name = "温室ID")
     private Long pastureId;
 
-    /** 计划类型（annual=年度计划,seasonal=季节性计划） */
-    @TableField(value = "plan_type")
-    @ApiModelProperty(value = "计划类型（annual=年度计划,seasonal=季度计划）")
-    @Excel(name = "计划类型", readConverterExp = "annual=年度计划,seasonal=季度计划")
-    private String planType;
+    /** 轮作周期（年，仅用于轮作计划） */
+    @TableField(value = "rotation_cycle")
+    @ApiModelProperty(value = "轮作周期（年，仅用于轮作计划）")
+    @Excel(name = "轮作周期（年）")
+    private Integer rotationCycle;
 
-    /** 计划状态（0=草稿,1=已发布,2=执行中,3=已完成,4=已取消） */
+    /** 计划描述 */
+    @TableField(value = "plan_description")
+    @ApiModelProperty(value = "计划描述")
+    @Excel(name = "计划描述")
+    private String planDescription;
+
+    /** 计划状态（0=未开始,1=执行中,2=已完成,3=已取消） */
     @TableField(value = "plan_status")
-    @ApiModelProperty(value = "计划状态（0=草稿,1=已发布,2=执行中,3=已完成,4=已取消）")
-    @Excel(name = "计划状态", readConverterExp = "0=草稿,1=已发布,2=执行中,3=已完成,4=已取消")
+    @ApiModelProperty(value = "计划状态（0=未开始,1=执行中,2=已完成,3=已取消）")
+    @Excel(name = "计划状态", readConverterExp = "0=未开始,1=执行中,2=已完成,3=已取消")
     private String planStatus;
 
     /** 计划开始日期 */
@@ -89,12 +101,6 @@ public class AgricultureAnnualPlan extends BaseEntityPlus implements Serializabl
     @ApiModelProperty(value = "计划总面积（亩）")
     @Excel(name = "计划总面积（亩）")
     private Double totalArea;
-
-    /** 计划描述 */
-    @TableField(value = "plan_description")
-    @ApiModelProperty(value = "计划描述")
-    @Excel(name = "计划描述")
-    private String planDescription;
 
     /** 删除标志（0代表存在 2代表删除） */
     @TableField(value = "del_flag")
