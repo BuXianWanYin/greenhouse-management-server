@@ -1,6 +1,5 @@
 package com.server.utils;
 
-import com.server.properties.AiLocalProperties;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -26,8 +25,14 @@ public class HttpUtils {
 
     private static Logger logger = LoggerFactory.getLogger(HttpUtils.class);
 
+    // 默认超时时间：30秒
+    private static final int DEFAULT_TIMEOUT = 30000;
+
     private static RequestConfig config = RequestConfig.custom()
-            .setConnectTimeout(AiLocalProperties.getTimeout()).build();
+            .setConnectTimeout(DEFAULT_TIMEOUT)
+            .setSocketTimeout(DEFAULT_TIMEOUT)
+            .setConnectionRequestTimeout(DEFAULT_TIMEOUT)
+            .build();
 
     /**
      * 发送POST方式请求

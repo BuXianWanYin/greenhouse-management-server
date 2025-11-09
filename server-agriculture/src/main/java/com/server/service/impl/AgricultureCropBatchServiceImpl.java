@@ -89,7 +89,9 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
     @Override
     public int insertAgricultureCropBatch(AgricultureCropBatch agricultureCropBatch)
     {
-
+        // 清空前端可能传入的创建时间和更新时间，由 MyMetaObjectHandler 自动填充
+        agricultureCropBatch.setCreateTime(null);
+        agricultureCropBatch.setUpdateTime(null);
         // 先插入批次，以获取自增主键
         int result = agricultureCropBatchMapper.insert(agricultureCropBatch);
         // 成功插入后，agricultureCropBatch.getBatchId() 将会持有数据库生成的ID
@@ -116,25 +118,13 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
                     
                     // 根据负责人ID查询负责人姓名（从系统用户表获取nickName，直接使用Mapper避免分页限制）
                     if (agricultureCropBatch.getResponsiblePersonId() != null) {
-                        try {
-                            // 直接使用Mapper查询，避免Service层的分页限制
-                            SysUser user = sysUserMapper.selectUserById(agricultureCropBatch.getResponsiblePersonId());
-                            if (user != null && user.getNickName() != null && !user.getNickName().trim().isEmpty()) {
-                                // 检查用户是否被删除（del_flag = "2"）
-                                if (user.getDelFlag() == null || !"2".equals(user.getDelFlag())) {
-                                    agricultureBatchTask.setResponsiblePersonName(user.getNickName());
-                                } else {
-                                    // 用户已被删除，记录日志
-                                    System.out.println("警告：批次负责人ID=" + agricultureCropBatch.getResponsiblePersonId() + " 对应的用户已被删除");
-                                }
-                            } else {
-                                // 如果查询不到用户或用户昵称为空，记录日志
-                                System.out.println("警告：批次负责人ID=" + agricultureCropBatch.getResponsiblePersonId() + " 查询不到用户信息或用户昵称为空");
+                        // 直接使用Mapper查询，避免Service层的分页限制
+                        SysUser user = sysUserMapper.selectUserById(agricultureCropBatch.getResponsiblePersonId());
+                        if (user != null && user.getNickName() != null && !user.getNickName().trim().isEmpty()) {
+                            // 检查用户是否被删除（del_flag = "2"）
+                            if (user.getDelFlag() == null || !"2".equals(user.getDelFlag())) {
+                                agricultureBatchTask.setResponsiblePersonName(user.getNickName());
                             }
-                        } catch (Exception e) {
-                            // 查询用户信息时出错，记录日志但不影响批次任务创建
-                            System.err.println("查询负责人信息失败，负责人ID=" + agricultureCropBatch.getResponsiblePersonId() + "，错误：" + e.getMessage());
-                            e.printStackTrace();
                         }
                     }
                     

@@ -2,6 +2,8 @@ package com.server.domain;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.server.json.LocalDateTimeDeserializer;
 import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -10,7 +12,6 @@ import lombok.AllArgsConstructor;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -61,13 +62,15 @@ public class AgricultureCropBatch implements Serializable {
 
     @TableField(value="expected_harvest_time")
     @ApiModelProperty(value="预期收获时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime expectedHarvestTime;
 
     @TableField(value="actual_harvest_time")
     @ApiModelProperty(value="实际收获时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime actualHarvestTime;
 
@@ -102,20 +105,20 @@ public class AgricultureCropBatch implements Serializable {
     private String createBy;
 
     @TableField(value = "create_time", fill = FieldFill.INSERT)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "创建时间")
-    private Date createTime;
+    private LocalDateTime createTime;
 
     @TableField(value = "update_by", fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty(value = "修改人ID")
     private String updateBy;
 
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "修改时间")
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     @TableField(value = "remark")
     @ApiModelProperty(value = "备注")

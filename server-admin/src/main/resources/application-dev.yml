@@ -88,23 +88,6 @@ rabbitmq:
   # 消息接收超时时间（单位：毫秒）
   timeout: 5000
 
-# Ollama AI模型配置
-ollama:
-  # Ollama服务基础URL
-  base-url: http://192.168.31.37:11434
-  # 使用的AI模型名称
-  model-name: qwen3:32b
-  # 模型温度参数（控制随机性，0-1之间）
-  temperature: 0.8
-  # 请求超时时间（单位：秒）
-  timeout: 180
-  # 是否启用思考模式
-  think: false
-  # 在线模型服务URL
-  online-url: http://192.168.31.170:11434
-  # 在线模型名称
-  online-model: qwen3:8b
-
 # 串口通信配置
 serial:
   # 串口名称
@@ -124,3 +107,16 @@ codepath:
 online:
   # 开发环境禁用实时模型控制
   enabled: false
+
+# DeepSeek API配置
+deepseek:
+  # DeepSeek API基础URL
+  apiUrl: https://api.deepseek.com/v1/chat/completions
+  # DeepSeek API密钥（请替换为您的实际API密钥）
+  apiKey: YOUR_DEEPSEEK_API_KEY
+  # 使用的模型名称
+  model: deepseek-chat
+  # 请求超时时间（毫秒）
+  timeout: 60000
+  # 温度参数（控制随机性，0-2之间）
+  temperature: 0.7
