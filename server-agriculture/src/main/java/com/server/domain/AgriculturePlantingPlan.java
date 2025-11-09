@@ -56,6 +56,12 @@ public class AgriculturePlantingPlan extends BaseEntityPlus implements Serializa
     @Excel(name = "计划类型", readConverterExp = "annual=年度计划,seasonal=季度计划,rotation=轮作计划")
     private String planType;
 
+    /** 父计划ID（关联agriculture_planting_plan表，年度计划的parent_plan_id为NULL，季度计划的parent_plan_id指向所属的年度计划） */
+    @TableField(value = "parent_plan_id")
+    @ApiModelProperty(value = "父计划ID（年度计划为NULL，季度计划指向所属的年度计划ID）")
+    @Excel(name = "父计划ID")
+    private Long parentPlanId;
+
     /** 温室ID（关联agriculture_pasture表） */
     @TableField(value = "pasture_id")
     @ApiModelProperty(value = "温室ID（关联agriculture_pasture表）")

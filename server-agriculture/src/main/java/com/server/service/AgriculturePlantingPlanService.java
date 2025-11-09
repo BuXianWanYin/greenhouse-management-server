@@ -86,5 +86,12 @@ public interface AgriculturePlantingPlanService extends IService<AgriculturePlan
      * @return 结果
      */
     public int removeBatchFromPlan(Long planId, Long batchId);
+
+    /**
+     * 根据季度计划状态更新年度计划状态
+     * 
+     * @param parentPlanId 年度计划ID
+     */
+    public void updateAnnualPlanStatusBySeasonalPlans(Long parentPlanId);
 }
 

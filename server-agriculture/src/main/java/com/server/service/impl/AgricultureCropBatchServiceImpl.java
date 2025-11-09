@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.server.domain.*;
 import com.server.service.AgricultureBatchTaskService;
@@ -172,7 +173,18 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
     @Override
     public int updateAgricultureCropBatch(AgricultureCropBatch agricultureCropBatch)
     {
-        return updateById(agricultureCropBatch) ? 1 : 0;
+        // 先使用 updateById 更新其他字段（会忽略 null 值）
+        int result = updateById(agricultureCropBatch) ? 1 : 0;
+        
+        // 如果 season_type 为 null，需要单独更新（因为 updateById 会忽略 null 值）
+        if (agricultureCropBatch.getSeasonType() == null) {
+            LambdaUpdateWrapper<AgricultureCropBatch> updateWrapper = new LambdaUpdateWrapper<>();
+            updateWrapper.eq(AgricultureCropBatch::getBatchId, agricultureCropBatch.getBatchId())
+                    .set(AgricultureCropBatch::getSeasonType, null);
+            update(updateWrapper);
+        }
+        
+        return result;
     }
 
     /**
