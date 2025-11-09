@@ -37,10 +37,10 @@ public class AgricultureCostEmployee implements Serializable
     @ApiModelProperty(value = "任务ID")
     private Long taskId;
 
-    /** 雇员ID */
-    @TableField(value = "employee_id")
-    @ApiModelProperty(value = "雇员ID")
-    private Long employeeId;
+    /** 用户ID（关联sys_user表） */
+    @TableField(value = "user_id")
+    @ApiModelProperty(value = "用户ID（关联sys_user表）")
+    private Long userId;
 
     /** 工时 */
     @TableField(value = "working_hours")

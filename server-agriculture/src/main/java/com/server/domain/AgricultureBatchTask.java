@@ -119,12 +119,6 @@ public class AgricultureBatchTask extends BaseEntity {
     @Excel(name = "任务状态", readConverterExp = "0=未分配,1=已分配,2=进行中,3=已完成")
     private String status;
 
-    /** 排序 */
-    @TableField(value = "order_num")
-    @ApiModelProperty(value = "排序")
-    @Excel(name = "排序")
-    private Long orderNum;
-
     /** 删除标志（0代表存在 2代表删除） */
     @TableField(value = "del_flag")
     @ApiModelProperty(value = "删除标志（0代表存在 2代表删除）")

@@ -62,8 +62,9 @@ public class AgricultureBatchTaskServiceImpl extends ServiceImpl<AgricultureBatc
                 .ge(agricultureBatchTask.getPlanStart() != null, AgricultureBatchTask::getPlanStart, agricultureBatchTask.getPlanStart())
                 // 如果 planFinish 不为空，添加小于等于的范围查询条件（已补全为 23:59:59）
                 .le(planFinishDate != null, AgricultureBatchTask::getPlanFinish, planFinishDate)
-                // 设置结果集按照 orderNum 字段升序排序
-                .orderByAsc(AgricultureBatchTask::getOrderNum);
+                // 设置结果集按照 planStart 字段升序排序，然后按 taskId 排序
+                .orderByAsc(AgricultureBatchTask::getPlanStart)
+                .orderByAsc(AgricultureBatchTask::getTaskId);
         // 日志输出查询参数，便于调试
         log.info("Query parameters: {}", agricultureBatchTask);
         // 执行查询，获取结果列表
@@ -134,8 +135,8 @@ public class AgricultureBatchTaskServiceImpl extends ServiceImpl<AgricultureBatc
     public List<AgricultureBatchTask> selectBatchTaskListByBatchId(Long batchId) {
         LambdaQueryWrapper<AgricultureBatchTask> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(AgricultureBatchTask::getBatchId, batchId)
-                .orderByAsc(AgricultureBatchTask::getOrderNum)
-                .orderByAsc(AgricultureBatchTask::getPlanStart);
+                .orderByAsc(AgricultureBatchTask::getPlanStart)
+                .orderByAsc(AgricultureBatchTask::getTaskId);
         return list(queryWrapper);
     }
 }

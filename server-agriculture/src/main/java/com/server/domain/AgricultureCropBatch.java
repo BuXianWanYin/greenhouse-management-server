@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -94,15 +95,13 @@ public class AgricultureCropBatch implements Serializable {
 
     @TableField(value="start_time")
     @ApiModelProperty(value="开始时间")
-    private LocalDateTime startTime;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate startTime;
 
     @TableField(value="status")
     @ApiModelProperty(value="状态")
     private String status;
-
-    @TableField(value="order_num")
-    @ApiModelProperty(value="排序")
-    private Long orderNum;
 
     @TableField(value="del_flag")
     @ApiModelProperty(value="删除标志（0代表存在 2代表删除）")

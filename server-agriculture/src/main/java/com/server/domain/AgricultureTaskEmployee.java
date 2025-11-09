@@ -5,10 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import com.server.annotation.Excel;
-import com.server.core.domain.BaseEntity;
 
 import java.io.Serializable;
 
@@ -33,10 +29,15 @@ public class AgricultureTaskEmployee implements Serializable
     @ApiModelProperty(value = "任务ID")
     private Long taskId;
 
-    /** 员工ID */
-    @TableField(value = "employee_id")
-    @ApiModelProperty(value = "员工ID")
-    private Long employeeId;
+    /** 用户ID（关联sys_user表） */
+    @TableField(value = "user_id")
+    @ApiModelProperty(value = "用户ID（关联sys_user表）")
+    private Long userId;
+
+    /** 用户姓名（用于显示，不存储到数据库） */
+    @TableField(exist = false)
+    @ApiModelProperty(value = "用户姓名")
+    private String userName;
 
     /** 状态 */
     @TableField(value = "status")

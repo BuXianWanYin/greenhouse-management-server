@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -142,7 +143,10 @@ public class AgricultureRotationPlanServiceImpl extends ServiceImpl<AgricultureR
             dto.setBatchName(batch.getBatchName());
             dto.setClassId(batch.getClassId());
             dto.setPastureId(batch.getPastureId());
-            dto.setStartTime(batch.getStartTime());
+            // 将 LocalDate 转换为 LocalDateTime（当天的 00:00:00）
+            if (batch.getStartTime() != null) {
+                dto.setStartTime(batch.getStartTime().atStartOfDay());
+            }
             dto.setCropArea(batch.getCropArea() != null ? batch.getCropArea() : 0.0);
             // 将Date转换为LocalDate
             if (batch.getCreateTime() != null) {

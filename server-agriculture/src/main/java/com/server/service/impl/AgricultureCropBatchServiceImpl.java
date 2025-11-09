@@ -1,5 +1,6 @@
 package com.server.service.impl;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Arrays;
@@ -14,6 +15,8 @@ import com.server.domain.dto.AgricultureCropBatchDTO;
 import com.server.service.AgricultureBatchTaskService;
 import com.server.service.AgricultureJobService;
 import com.server.service.AgricultureTaskLogService;
+import com.server.core.domain.entity.SysUser;
+import com.server.mapper.SysUserMapper;
 import com.server.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +41,8 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
     private AgricultureBatchTaskService agricultureBatchTaskService;
     @Autowired
     private AgricultureTaskLogService agricultureTaskLogService;
+    @Autowired
+    private SysUserMapper sysUserMapper;
 
     /**
      * 查询种植批次
@@ -89,41 +94,71 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
         // 先插入批次，以获取自增主键
         int result = agricultureCropBatchMapper.insert(agricultureCropBatch);
         // 成功插入后，agricultureCropBatch.getBatchId() 将会持有数据库生成的ID
-        if (result > 0) {
-            // 查询种质的标准作业
-            List<AgricultureJob> jobList = null;
-            if (agricultureCropBatch.getClassId() != null) {
-                AgricultureJob job = new AgricultureJob();
-                job.setClassId(agricultureCropBatch.getClassId());
-                jobList = agricultureJobService.selectAgricultureJobList(job);
-            }
+        if (result > 0 && agricultureCropBatch.getClassId() != null) {
+            // 根据批次所属的种质ID，查询该种质对应的标准作业流程
+            AgricultureJob job = new AgricultureJob();
+            job.setClassId(agricultureCropBatch.getClassId());
+            List<AgricultureJob> jobList = agricultureJobService.selectAgricultureJobList(job);
 
-            // 去重（如果有必要，可以根据jobId去重）
-            if (jobList != null) {
-                jobList = jobList.stream().distinct().collect(Collectors.toList());
-            }
+            // 过滤掉停用的作业（status = "1"），只保留正常状态的作业（status = "0"）
+            if (jobList != null && !jobList.isEmpty()) {
+                jobList = jobList.stream()
+                        .filter(j -> "0".equals(j.getStatus())) // 只保留正常状态的作业
+                        .distinct() // 去重
+                        .collect(Collectors.toList());
 
-            // 遍历插入任务
-            if (jobList != null) {
+                // 遍历作业流程，为每个作业创建批次任务
                 for (AgricultureJob sj : jobList) {
                     AgricultureBatchTask agricultureBatchTask = new AgricultureBatchTask();
                     //设置批次任务的相关信息
                     agricultureBatchTask.setBatchId(agricultureCropBatch.getBatchId());
                     agricultureBatchTask.setResponsiblePersonId(agricultureCropBatch.getResponsiblePersonId());
                     agricultureBatchTask.setTaskName(sj.getJobName());
-                    // 根据周期单位设置乘数（0:天, 1:周）
-                    int mult = sj.getCycleUnit().equals("0")? 1 : 7;
-                    LocalDateTime startTime = agricultureCropBatch.getStartTime();
-                    // 如果批次开始时间为空，则默认为当前时间
-                    if (startTime == null) {
-                        startTime = LocalDateTime.now();
+                    
+                    // 根据负责人ID查询负责人姓名（从系统用户表获取nickName，直接使用Mapper避免分页限制）
+                    if (agricultureCropBatch.getResponsiblePersonId() != null) {
+                        try {
+                            // 直接使用Mapper查询，避免Service层的分页限制
+                            SysUser user = sysUserMapper.selectUserById(agricultureCropBatch.getResponsiblePersonId());
+                            if (user != null && user.getNickName() != null && !user.getNickName().trim().isEmpty()) {
+                                // 检查用户是否被删除（del_flag = "2"）
+                                if (user.getDelFlag() == null || !"2".equals(user.getDelFlag())) {
+                                    agricultureBatchTask.setResponsiblePersonName(user.getNickName());
+                                } else {
+                                    // 用户已被删除，记录日志
+                                    System.out.println("警告：批次负责人ID=" + agricultureCropBatch.getResponsiblePersonId() + " 对应的用户已被删除");
+                                }
+                            } else {
+                                // 如果查询不到用户或用户昵称为空，记录日志
+                                System.out.println("警告：批次负责人ID=" + agricultureCropBatch.getResponsiblePersonId() + " 查询不到用户信息或用户昵称为空");
+                            }
+                        } catch (Exception e) {
+                            // 查询用户信息时出错，记录日志但不影响批次任务创建
+                            System.err.println("查询负责人信息失败，负责人ID=" + agricultureCropBatch.getResponsiblePersonId() + "，错误：" + e.getMessage());
+                            e.printStackTrace();
+                        }
                     }
-                    // 计算计划开始时间
+                    
+                    // 计算计划开始和结束日期：
+                    // 1. 根据作业的周期单位（cycleUnit）设置乘数：0=周（乘数7），1=天（乘数1）
+                    // 2. 计划开始时间 = 批次开始时间 + 作业起始时间（job_start * 乘数）
+                    // 3. 计划完成时间 = 批次开始时间 + 作业结束时间（job_finish * 乘数）
+                    int mult = sj.getCycleUnit().equals("0") ? 7 : 1; // 0=周，1=天
+                    LocalDate startDate = agricultureCropBatch.getStartTime();
+                    // 如果批次开始时间为空，则默认为当前日期
+                    if (startDate == null) {
+                        startDate = LocalDate.now();
+                    }
+                    // 将 LocalDate 转换为 LocalDateTime（当天的 00:00:00）用于计算
+                    LocalDateTime startTime = startDate.atStartOfDay();
+                    // 计算计划开始时间：批次开始时间 + 作业起始时间（转换为天数）
                     LocalDateTime planStartDateTime = startTime.plusDays(sj.getJobStart() * mult);
                     agricultureBatchTask.setPlanStart(Date.from(planStartDateTime.atZone(ZoneId.systemDefault()).toInstant()));
-                    // 计算计划完成时间
+                    // 计算计划完成时间：批次开始时间 + 作业结束时间（转换为天数）
                     LocalDateTime planFinishDateTime = startTime.plusDays(sj.getJobFinish() * mult);
                     agricultureBatchTask.setPlanFinish(Date.from(planFinishDateTime.atZone(ZoneId.systemDefault()).toInstant()));
+                    // 设置任务状态为未分配（0）
+                    agricultureBatchTask.setStatus("0");
                     // 插入批次任务到数据库
                     agricultureBatchTaskService.insertBatchTask(agricultureBatchTask);
                     //创建任务日志

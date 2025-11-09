@@ -95,8 +95,8 @@ public class AgricultureJobServiceImpl extends ServiceImpl<AgricultureJobMapper,
         if (StringUtils.isNotEmpty((String) redisCache.getCacheObject(key))){
             throw new ServiceException(Constants.AI_NOT_REPEAT_SUBMIT_MESSAGE);
         }
-        String prompt = String.format("你是一位经验丰富的农业专家，请提供%s%s种类生长过程中各个阶段的名称（中文）和周期。cycUnit 0表示天单位 1表示周单位",
-                agricultureClass.getClassTypeName(), agricultureClass.getClassName());
+        String prompt = String.format("你是一位经验丰富的农业专家，请提供%s种类生长过程中各个阶段的名称（中文）和周期。cycUnit 0表示天单位 1表示周单位",
+                agricultureClass.getClassName());
         AiMessageVO aiMessageVO = AiMessageVO.builder()
                 .id(agricultureClass.getClassId())
                 .prompt(prompt)
