@@ -56,6 +56,10 @@ public class AgricultureCropBatch implements Serializable {
     @ApiModelProperty(value="种植计划ID（关联agriculture_planting_plan表）")
     private Long planId;
 
+    @TableField(value="detail_id")
+    @ApiModelProperty(value="轮作计划明细ID（关联agriculture_plan_detail表，仅用于轮作计划）")
+    private Long detailId;
+
     @TableField(value="planting_density")
     @ApiModelProperty(value="种植密度（株/亩）")
     private Double plantingDensity;

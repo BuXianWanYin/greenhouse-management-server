@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.server.domain.AgricultureBatchTask;
 import com.server.mapper.AgricultureBatchTaskMapper;
 import com.server.service.AgricultureBatchTaskService;
+import com.server.service.PlanDateUpdateService;
 import com.server.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class AgricultureBatchTaskServiceImpl extends ServiceImpl<AgricultureBatc
 
     @Autowired
     private AgricultureBatchTaskMapper batchTaskServiceMapper;
+    
+    @Autowired
+    private PlanDateUpdateService planDateUpdateService;
 
     /**
      * 查询批次任务列表
@@ -95,7 +99,23 @@ public class AgricultureBatchTaskServiceImpl extends ServiceImpl<AgricultureBatc
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int deleteAgricultureCropBatchByBatchIds(Long taskId) {
-        return removeById(taskId) ? 1 : 0;
+        // 删除前，先获取任务信息，用于更新计划日期
+        AgricultureBatchTask task = getById(taskId);
+        Long batchId = task != null ? task.getBatchId() : null;
+        
+        int result = removeById(taskId) ? 1 : 0;
+        
+        // 删除后，更新相关计划的实际日期
+        if (result > 0 && batchId != null) {
+            try {
+                planDateUpdateService.updatePlanDatesByBatchTask(batchId);
+            } catch (Exception e) {
+                log.error("更新计划实际日期失败，批次ID: {}", batchId, e);
+                // 不抛出异常，避免影响主流程
+            }
+        }
+        
+        return result;
     }
 
     /**
@@ -107,8 +127,51 @@ public class AgricultureBatchTaskServiceImpl extends ServiceImpl<AgricultureBatc
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int updateBatchTask(AgricultureBatchTask agricultureBatchTask) {
+        // 获取修改前的任务信息，用于判断是否需要更新计划日期
+        AgricultureBatchTask oldTask = null;
+        if (agricultureBatchTask.getTaskId() != null) {
+            oldTask = getById(agricultureBatchTask.getTaskId());
+        }
+        
         agricultureBatchTask.setUpdateTime(new Date());
-        return updateById(agricultureBatchTask) ? 1 : 0;
+        int result = updateById(agricultureBatchTask) ? 1 : 0;
+        
+        // 如果实际开始或结束日期发生变化，更新相关计划的实际日期
+        if (result > 0 && agricultureBatchTask.getBatchId() != null) {
+            boolean needUpdate = false;
+            if (oldTask != null) {
+                // 检查实际日期是否发生变化
+                Date oldActualStart = oldTask.getActualStart();
+                Date newActualStart = agricultureBatchTask.getActualStart();
+                Date oldActualFinish = oldTask.getActualFinish();
+                Date newActualFinish = agricultureBatchTask.getActualFinish();
+                
+                if ((oldActualStart == null && newActualStart != null) ||
+                    (oldActualStart != null && newActualStart == null) ||
+                    (oldActualStart != null && newActualStart != null && !oldActualStart.equals(newActualStart)) ||
+                    (oldActualFinish == null && newActualFinish != null) ||
+                    (oldActualFinish != null && newActualFinish == null) ||
+                    (oldActualFinish != null && newActualFinish != null && !oldActualFinish.equals(newActualFinish))) {
+                    needUpdate = true;
+                }
+            } else {
+                // 新增任务，如果有实际日期，需要更新
+                if (agricultureBatchTask.getActualStart() != null || agricultureBatchTask.getActualFinish() != null) {
+                    needUpdate = true;
+                }
+            }
+            
+            if (needUpdate) {
+                try {
+                    planDateUpdateService.updatePlanDatesByBatchTask(agricultureBatchTask.getBatchId());
+                } catch (Exception e) {
+                    log.error("更新计划实际日期失败，批次ID: {}", agricultureBatchTask.getBatchId(), e);
+                    // 不抛出异常，避免影响主流程
+                }
+            }
+        }
+        
+        return result;
     }
 
     /**
@@ -122,7 +185,20 @@ public class AgricultureBatchTaskServiceImpl extends ServiceImpl<AgricultureBatc
     public int insertBatchTask(AgricultureBatchTask agricultureBatchTask) {
         agricultureBatchTask.setCreateTime(new Date());
         agricultureBatchTask.setStatus("0"); // 默认未分配状态
-        return save(agricultureBatchTask) ? 1 : 0;
+        int result = save(agricultureBatchTask) ? 1 : 0;
+        
+        // 如果新增的任务有实际日期，更新相关计划的实际日期
+        if (result > 0 && agricultureBatchTask.getBatchId() != null &&
+            (agricultureBatchTask.getActualStart() != null || agricultureBatchTask.getActualFinish() != null)) {
+            try {
+                planDateUpdateService.updatePlanDatesByBatchTask(agricultureBatchTask.getBatchId());
+            } catch (Exception e) {
+                log.error("更新计划实际日期失败，批次ID: {}", agricultureBatchTask.getBatchId(), e);
+                // 不抛出异常，避免影响主流程
+            }
+        }
+        
+        return result;
     }
 
     /**

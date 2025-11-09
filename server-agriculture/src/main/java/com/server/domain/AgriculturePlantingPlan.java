@@ -56,6 +56,12 @@ public class AgriculturePlantingPlan extends BaseEntityPlus implements Serializa
     @Excel(name = "计划类型", readConverterExp = "annual=年度计划,seasonal=季度计划,rotation=轮作计划")
     private String planType;
 
+    /** 季节类型（spring=春季,summer=夏季,autumn=秋季,winter=冬季，仅用于季度计划） */
+    @TableField(value = "season_type")
+    @ApiModelProperty(value = "季节类型（spring=春季,summer=夏季,autumn=秋季,winter=冬季，仅用于季度计划）")
+    @Excel(name = "季节类型", readConverterExp = "spring=春季,summer=夏季,autumn=秋季,winter=冬季")
+    private String seasonType;
+
     /** 父计划ID（关联agriculture_planting_plan表，年度计划的parent_plan_id为NULL，季度计划的parent_plan_id指向所属的年度计划） */
     @TableField(value = "parent_plan_id")
     @ApiModelProperty(value = "父计划ID（年度计划为NULL，季度计划指向所属的年度计划ID）")
@@ -101,6 +107,22 @@ public class AgriculturePlantingPlan extends BaseEntityPlus implements Serializa
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Excel(name = "计划结束日期", width = 30, dateFormat = "yyyy-MM-dd")
     private LocalDate endDate;
+
+    /** 实际开始日期（自动计算） */
+    @TableField(value = "actual_start_date")
+    @ApiModelProperty(value = "实际开始日期（自动计算）")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Excel(name = "实际开始日期", width = 30, dateFormat = "yyyy-MM-dd")
+    private LocalDate actualStartDate;
+
+    /** 实际结束日期（自动计算） */
+    @TableField(value = "actual_end_date")
+    @ApiModelProperty(value = "实际结束日期（自动计算）")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Excel(name = "实际结束日期", width = 30, dateFormat = "yyyy-MM-dd")
+    private LocalDate actualEndDate;
 
     /** 计划总面积（亩） */
     @TableField(value = "total_area")

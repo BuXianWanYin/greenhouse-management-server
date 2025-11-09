@@ -5,12 +5,18 @@ import java.util.List;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.server.domain.AgricultureCropBatch;
+import com.server.domain.AgriculturePlanDetail;
 import com.server.domain.AgriculturePlantingPlan;
 import com.server.mapper.AgriculturePlantingPlanMapper;
+import com.server.exception.ServiceException;
 import com.server.service.AgricultureCropBatchService;
+import com.server.service.AgriculturePlanDetailService;
 import com.server.service.AgriculturePlantingPlanService;
+import com.server.service.PlanDateUpdateService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 种植计划Service业务层处理
@@ -18,6 +24,7 @@ import org.springframework.stereotype.Service;
  * @author bxwu
  * @date 2025-11-05
  */
+@Slf4j
 @Service
 public class AgriculturePlantingPlanServiceImpl extends ServiceImpl<AgriculturePlantingPlanMapper, AgriculturePlantingPlan> implements AgriculturePlantingPlanService
 {
@@ -26,6 +33,12 @@ public class AgriculturePlantingPlanServiceImpl extends ServiceImpl<AgricultureP
     
     @Autowired
     private AgricultureCropBatchService agricultureCropBatchService;
+    
+    @Autowired
+    private PlanDateUpdateService planDateUpdateService;
+    
+    @Autowired
+    private AgriculturePlanDetailService agriculturePlanDetailService;
 
     /**
      * 查询种植计划
@@ -98,9 +111,10 @@ public class AgriculturePlantingPlanServiceImpl extends ServiceImpl<AgricultureP
      * @return 结果
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int updateAgriculturePlantingPlan(AgriculturePlantingPlan agriculturePlantingPlan)
     {
-        // 获取修改前的计划信息，用于判断是否需要更新父计划状态
+        // 获取修改前的计划信息，用于判断是否需要更新父计划状态和日期
         AgriculturePlantingPlan oldPlan = null;
         if (agriculturePlantingPlan.getPlanId() != null) {
             oldPlan = getById(agriculturePlantingPlan.getPlanId());
@@ -108,18 +122,48 @@ public class AgriculturePlantingPlanServiceImpl extends ServiceImpl<AgricultureP
         
         int result = updateById(agriculturePlantingPlan) ? 1 : 0;
         
-        // 如果是季度计划，更新父年度计划状态
+        // 如果是季度计划，更新父年度计划状态和日期
         if (result > 0) {
             Long parentPlanId = agriculturePlantingPlan.getParentPlanId();
-            // 如果父计划ID发生变化，需要更新新旧两个父计划的状态
+            // 如果父计划ID发生变化，需要更新新旧两个父计划的状态和日期
             if (oldPlan != null && oldPlan.getParentPlanId() != null 
                     && !oldPlan.getParentPlanId().equals(parentPlanId)) {
                 // 更新旧父计划状态
                 updateAnnualPlanStatusBySeasonalPlans(oldPlan.getParentPlanId());
+                // 更新旧父计划日期
+                try {
+                    planDateUpdateService.updateAnnualPlanActualDates(oldPlan.getParentPlanId());
+                } catch (Exception e) {
+                    log.error("更新年度计划实际日期失败，计划ID: {}", oldPlan.getParentPlanId(), e);
+                }
             }
             if (parentPlanId != null) {
                 // 更新新父计划状态
                 updateAnnualPlanStatusBySeasonalPlans(parentPlanId);
+                // 更新新父计划日期
+                try {
+                    planDateUpdateService.updateAnnualPlanActualDates(parentPlanId);
+                } catch (Exception e) {
+                    log.error("更新年度计划实际日期失败，计划ID: {}", parentPlanId, e);
+                }
+            }
+            
+            // 如果是季度计划，更新其实际日期（基于关联批次的任务）
+            if ("seasonal".equals(agriculturePlantingPlan.getPlanType())) {
+                try {
+                    planDateUpdateService.updateSeasonalPlanActualDates(agriculturePlantingPlan.getPlanId());
+                } catch (Exception e) {
+                    log.error("更新季度计划实际日期失败，计划ID: {}", agriculturePlantingPlan.getPlanId(), e);
+                }
+            }
+            
+            // 如果是轮作计划，更新其实际日期（基于关联明细）
+            if ("rotation".equals(agriculturePlantingPlan.getPlanType())) {
+                try {
+                    planDateUpdateService.updateRotationPlanActualDates(agriculturePlantingPlan.getPlanId());
+                } catch (Exception e) {
+                    log.error("更新轮作计划实际日期失败，计划ID: {}", agriculturePlantingPlan.getPlanId(), e);
+                }
             }
         }
         
@@ -133,21 +177,38 @@ public class AgriculturePlantingPlanServiceImpl extends ServiceImpl<AgricultureP
      * @return 结果
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int deleteAgriculturePlantingPlanByPlanIds(Long[] planIds)
     {
-        // 删除前，先获取所有要删除的计划信息，用于更新父计划状态
+        // 删除前，先获取所有要删除的计划信息，用于校验和更新父计划状态和日期
         List<AgriculturePlantingPlan> plansToDelete = listByIds(Arrays.asList(planIds));
+        
+        // 删除前校验：检查是否有关联批次
+        if (plansToDelete != null) {
+            for (AgriculturePlantingPlan plan : plansToDelete) {
+                checkPlanHasBatches(plan);
+            }
+        }
         
         int result = removeByIds(Arrays.asList(planIds)) ? planIds.length : 0;
         
-        // 删除后，更新相关年度计划状态
+        // 删除后，更新相关年度计划状态和日期
         if (result > 0 && plansToDelete != null) {
             // 收集所有需要更新的父计划ID（去重）
             plansToDelete.stream()
                     .filter(plan -> plan.getParentPlanId() != null)
                     .map(AgriculturePlantingPlan::getParentPlanId)
                     .distinct()
-                    .forEach(this::updateAnnualPlanStatusBySeasonalPlans);
+                    .forEach(parentPlanId -> {
+                        // 更新父计划状态
+                        updateAnnualPlanStatusBySeasonalPlans(parentPlanId);
+                        // 更新父计划日期
+                        try {
+                            planDateUpdateService.updateAnnualPlanActualDates(parentPlanId);
+                        } catch (Exception e) {
+                            log.error("更新年度计划实际日期失败，计划ID: {}", parentPlanId, e);
+                        }
+                    });
         }
         
         return result;
@@ -160,17 +221,31 @@ public class AgriculturePlantingPlanServiceImpl extends ServiceImpl<AgricultureP
      * @return 结果
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int deleteAgriculturePlantingPlanByPlanId(Long planId)
     {
-        // 删除前，先获取计划信息，用于更新父计划状态
+        // 删除前，先获取计划信息，用于校验和更新父计划状态和日期
         AgriculturePlantingPlan plan = getById(planId);
-        Long parentPlanId = plan != null ? plan.getParentPlanId() : null;
+        if (plan == null) {
+            throw new RuntimeException("计划不存在，ID: " + planId);
+        }
         
+        // 删除前校验：检查是否有关联批次
+        checkPlanHasBatches(plan);
+        
+        Long parentPlanId = plan.getParentPlanId();
         int result = removeById(planId) ? 1 : 0;
         
-        // 删除后，如果是季度计划，更新父年度计划状态
+        // 删除后，如果是季度计划，更新父年度计划状态和日期
         if (result > 0 && parentPlanId != null) {
+            // 更新父计划状态
             updateAnnualPlanStatusBySeasonalPlans(parentPlanId);
+            // 更新父计划日期
+            try {
+                planDateUpdateService.updateAnnualPlanActualDates(parentPlanId);
+            } catch (Exception e) {
+                log.error("更新年度计划实际日期失败，计划ID: {}", parentPlanId, e);
+            }
         }
         
         return result;
@@ -321,6 +396,87 @@ public class AgriculturePlantingPlanServiceImpl extends ServiceImpl<AgricultureP
         if (!newStatus.equals(annualPlan.getPlanStatus())) {
             annualPlan.setPlanStatus(newStatus);
             updateById(annualPlan);
+        }
+    }
+
+    /**
+     * 检查计划是否有关联批次
+     * 如果有关联批次，抛出异常，不允许删除
+     *
+     * @param plan 种植计划
+     * @throws ServiceException 如果计划有关联批次
+     */
+    private void checkPlanHasBatches(AgriculturePlantingPlan plan) {
+        if (plan == null) {
+            return;
+        }
+
+        String planType = plan.getPlanType();
+        Long planId = plan.getPlanId();
+
+        if ("annual".equals(planType)) {
+            // 年度计划：检查其下是否有季度计划，如果有，检查这些季度计划是否有关联批次
+            LambdaQueryWrapper<AgriculturePlantingPlan> queryWrapper = new LambdaQueryWrapper<>();
+            queryWrapper.eq(AgriculturePlantingPlan::getParentPlanId, planId)
+                    .eq(AgriculturePlantingPlan::getPlanType, "seasonal")
+                    .and(wrapper -> wrapper.eq(AgriculturePlantingPlan::getDelFlag, "0")
+                            .or()
+                            .isNull(AgriculturePlantingPlan::getDelFlag));
+            List<AgriculturePlantingPlan> seasonalPlans = list(queryWrapper);
+
+            if (seasonalPlans != null && !seasonalPlans.isEmpty()) {
+                // 检查每个季度计划是否有关联批次
+                for (AgriculturePlantingPlan seasonalPlan : seasonalPlans) {
+                    LambdaQueryWrapper<AgricultureCropBatch> batchQuery = new LambdaQueryWrapper<>();
+                    batchQuery.eq(AgricultureCropBatch::getPlanId, seasonalPlan.getPlanId())
+                            .and(wrapper -> wrapper.eq(AgricultureCropBatch::getDelFlag, "0")
+                                    .or()
+                                    .isNull(AgricultureCropBatch::getDelFlag));
+                    long batchCount = agricultureCropBatchService.count(batchQuery);
+                    if (batchCount > 0) {
+                        throw new ServiceException(
+                                String.format("年度计划【%s】下存在季度计划【%s】有关联批次，无法删除", 
+                                        plan.getPlanName(), seasonalPlan.getPlanName()));
+                    }
+                }
+            }
+        } else if ("seasonal".equals(planType)) {
+            // 季度计划：检查是否有关联批次
+            LambdaQueryWrapper<AgricultureCropBatch> batchQuery = new LambdaQueryWrapper<>();
+            batchQuery.eq(AgricultureCropBatch::getPlanId, planId)
+                    .and(wrapper -> wrapper.eq(AgricultureCropBatch::getDelFlag, "0")
+                            .or()
+                            .isNull(AgricultureCropBatch::getDelFlag));
+            long batchCount = agricultureCropBatchService.count(batchQuery);
+            if (batchCount > 0) {
+                throw new ServiceException(
+                        String.format("季度计划【%s】有关联批次，无法删除", plan.getPlanName()));
+            }
+        } else if ("rotation".equals(planType)) {
+            // 轮作计划：检查其下是否有明细，如果有，检查这些明细是否有关联批次
+            LambdaQueryWrapper<AgriculturePlanDetail> detailQuery = new LambdaQueryWrapper<>();
+            detailQuery.eq(AgriculturePlanDetail::getPlanId, planId);
+            List<AgriculturePlanDetail> details = agriculturePlanDetailService.list(detailQuery);
+
+            if (details != null && !details.isEmpty()) {
+                // 检查每个明细是否有关联批次
+                for (AgriculturePlanDetail detail : details) {
+                    if (detail.getClassId() != null && detail.getSeasonType() != null) {
+                        LambdaQueryWrapper<AgricultureCropBatch> batchQuery = new LambdaQueryWrapper<>();
+                        batchQuery.eq(AgricultureCropBatch::getClassId, detail.getClassId())
+                                .eq(AgricultureCropBatch::getSeasonType, detail.getSeasonType())
+                                .and(wrapper -> wrapper.eq(AgricultureCropBatch::getDelFlag, "0")
+                                        .or()
+                                        .isNull(AgricultureCropBatch::getDelFlag));
+                        long batchCount = agricultureCropBatchService.count(batchQuery);
+                        if (batchCount > 0) {
+                            throw new ServiceException(
+                                    String.format("轮作计划【%s】下存在明细【种质ID:%d, 季节:%s】有关联批次，无法删除", 
+                                            plan.getPlanName(), detail.getClassId(), detail.getSeasonType()));
+                        }
+                    }
+                }
+            }
         }
     }
 }

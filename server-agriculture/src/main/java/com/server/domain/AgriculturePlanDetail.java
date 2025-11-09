@@ -27,7 +27,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @TableName(value = "agriculture_plan_detail")
-@ApiModel(value = "AgriculturePlanDetail", description = "种植计划明细表")
+@ApiModel(value = "AgriculturePlanDetail", description = "轮作计划明细表")
 public class AgriculturePlanDetail extends BaseEntityPlus implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -89,5 +89,21 @@ public class AgriculturePlanDetail extends BaseEntityPlus implements Serializabl
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Excel(name = "预期结束日期", width = 30, dateFormat = "yyyy-MM-dd")
     private LocalDate expectedEndDate;
+
+    /** 实际开始日期 */
+    @TableField(value = "actual_start_date")
+    @ApiModelProperty(value = "实际开始日期")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Excel(name = "实际开始日期", width = 30, dateFormat = "yyyy-MM-dd")
+    private LocalDate actualStartDate;
+
+    /** 实际结束日期 */
+    @TableField(value = "actual_end_date")
+    @ApiModelProperty(value = "实际结束日期")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Excel(name = "实际结束日期", width = 30, dateFormat = "yyyy-MM-dd")
+    private LocalDate actualEndDate;
 }
 

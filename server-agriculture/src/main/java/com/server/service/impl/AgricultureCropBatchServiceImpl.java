@@ -15,9 +15,13 @@ import com.server.domain.*;
 import com.server.service.AgricultureBatchTaskService;
 import com.server.service.AgricultureJobService;
 import com.server.service.AgricultureTaskLogService;
+import com.server.service.AgriculturePlantingPlanService;
+import com.server.service.AgriculturePlanDetailService;
+import com.server.exception.ServiceException;
 import com.server.core.domain.entity.SysUser;
 import com.server.mapper.SysUserMapper;
 import com.server.utils.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +34,7 @@ import com.server.service.AgricultureCropBatchService;
  * @author bxwy
  * @date 2025-09-28
  */
+@Slf4j
 @Service
 public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCropBatchMapper, AgricultureCropBatch> implements AgricultureCropBatchService
 {
@@ -43,6 +48,10 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
     private AgricultureTaskLogService agricultureTaskLogService;
     @Autowired
     private SysUserMapper sysUserMapper;
+    @Autowired
+    private AgriculturePlantingPlanService agriculturePlantingPlanService;
+    @Autowired
+    private AgriculturePlanDetailService agriculturePlanDetailService;
 
     /**
      * 查询种植批次
@@ -88,8 +97,12 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
      * @return 结果
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int insertAgricultureCropBatch(AgricultureCropBatch agricultureCropBatch)
     {
+        // 验证批次时间范围
+        validateBatchTimeRange(agricultureCropBatch);
+        
         // 清空前端可能传入的创建时间和更新时间，由 MyMetaObjectHandler 自动填充
         agricultureCropBatch.setCreateTime(null);
         agricultureCropBatch.setUpdateTime(null);
@@ -171,8 +184,35 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
      * @return 结果
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int updateAgricultureCropBatch(AgricultureCropBatch agricultureCropBatch)
     {
+        // 获取修改前的批次信息，用于判断是否需要重新验证
+        AgricultureCropBatch oldBatch = null;
+        if (agricultureCropBatch.getBatchId() != null) {
+            oldBatch = getById(agricultureCropBatch.getBatchId());
+        }
+        
+        // 如果时间相关字段或计划关联发生变化，需要重新验证
+        boolean needValidate = false;
+        if (oldBatch != null) {
+            // 检查时间字段是否变化
+            if (!java.util.Objects.equals(agricultureCropBatch.getStartTime(), oldBatch.getStartTime()) ||
+                !java.util.Objects.equals(agricultureCropBatch.getExpectedHarvestTime(), oldBatch.getExpectedHarvestTime()) ||
+                !java.util.Objects.equals(agricultureCropBatch.getPlanId(), oldBatch.getPlanId()) ||
+                !java.util.Objects.equals(agricultureCropBatch.getDetailId(), oldBatch.getDetailId())) {
+                needValidate = true;
+            }
+        } else {
+            // 新增或无法获取旧数据，需要验证
+            needValidate = true;
+        }
+        
+        if (needValidate) {
+            // 验证批次时间范围
+            validateBatchTimeRange(agricultureCropBatch);
+        }
+        
         // 先使用 updateById 更新其他字段（会忽略 null 值）
         int result = updateById(agricultureCropBatch) ? 1 : 0;
         
@@ -279,5 +319,132 @@ public class AgricultureCropBatchServiceImpl extends ServiceImpl<AgricultureCrop
         }
         // 调用Mapper方法执行查询，并将Wrapper作为参数传递，让Mapper根据条件拼接SQL
         return agricultureCropBatchMapper.selectCropBatchWithClassImages(queryWrapper);
+    }
+
+    /**
+     * 验证批次时间范围
+     * 验证批次的时间是否在关联计划的允许范围内
+     *
+     * @param batch 种植批次
+     * @throws ServiceException 如果验证失败
+     */
+    private void validateBatchTimeRange(AgricultureCropBatch batch) {
+        if (batch == null) {
+            return;
+        }
+
+        LocalDate batchStartTime = batch.getStartTime();
+        LocalDateTime batchExpectedHarvestTime = batch.getExpectedHarvestTime();
+
+        // 1. 基础验证：预计收获时间不能早于开始时间
+        if (batchStartTime != null && batchExpectedHarvestTime != null) {
+            LocalDate expectedHarvestDate = batchExpectedHarvestTime.toLocalDate();
+            if (expectedHarvestDate.isBefore(batchStartTime)) {
+                throw new ServiceException(
+                        String.format("批次预计收获时间（%s）不能早于开始时间（%s）", 
+                                expectedHarvestDate, batchStartTime));
+            }
+        }
+
+        // 2. 如果批次关联了种植计划（planId 不为空），验证时间范围
+        if (batch.getPlanId() != null) {
+            validateBatchTimeWithPlantingPlan(batch);
+        }
+        // 3. 如果批次关联了轮作计划明细（detailId 不为空），验证时间范围
+        else if (batch.getDetailId() != null) {
+            validateBatchTimeWithRotationPlan(batch);
+        }
+    }
+
+    /**
+     * 验证批次时间与种植计划的时间范围
+     *
+     * @param batch 种植批次
+     * @throws ServiceException 如果验证失败
+     */
+    private void validateBatchTimeWithPlantingPlan(AgricultureCropBatch batch) {
+        // 查询种植计划信息
+        AgriculturePlantingPlan plan = agriculturePlantingPlanService.getById(batch.getPlanId());
+        if (plan == null) {
+            throw new ServiceException("关联的种植计划不存在，计划ID: " + batch.getPlanId());
+        }
+
+        LocalDate batchStartTime = batch.getStartTime();
+        LocalDateTime batchExpectedHarvestTime = batch.getExpectedHarvestTime();
+        LocalDate planStartDate = plan.getStartDate();
+        LocalDate planEndDate = plan.getEndDate();
+
+        // 验证批次的开始时间不能早于计划的开始日期
+        if (batchStartTime != null && planStartDate != null) {
+            if (batchStartTime.isBefore(planStartDate)) {
+                throw new ServiceException(
+                        String.format("批次开始时间（%s）不能早于计划【%s】的开始时间（%s）", 
+                                batchStartTime, plan.getPlanName(), planStartDate));
+            }
+        }
+
+        // 验证批次的预计收获时间不能晚于计划的结束日期
+        if (batchExpectedHarvestTime != null && planEndDate != null) {
+            LocalDate expectedHarvestDate = batchExpectedHarvestTime.toLocalDate();
+            if (expectedHarvestDate.isAfter(planEndDate)) {
+                throw new ServiceException(
+                        String.format("批次预计收获时间（%s）不能晚于计划【%s】的结束时间（%s）", 
+                                expectedHarvestDate, plan.getPlanName(), planEndDate));
+            }
+        }
+
+        // 如果计划类型是季度计划，额外验证批次的季节类型是否与计划的季节类型匹配
+        if ("seasonal".equals(plan.getPlanType())) {
+            String planSeasonType = plan.getSeasonType();
+            String batchSeasonType = batch.getSeasonType();
+            if (planSeasonType != null && batchSeasonType != null && !planSeasonType.equals(batchSeasonType)) {
+                throw new ServiceException(
+                        String.format("批次季节类型（%s）与季度计划【%s】的季节类型（%s）不匹配", 
+                                batchSeasonType, plan.getPlanName(), planSeasonType));
+            }
+        }
+    }
+
+    /**
+     * 验证批次时间与轮作计划的时间范围
+     *
+     * @param batch 种植批次
+     * @throws ServiceException 如果验证失败
+     */
+    private void validateBatchTimeWithRotationPlan(AgricultureCropBatch batch) {
+        // 直接通过 detail_id 查询轮作计划明细
+        if (batch.getDetailId() == null) {
+            throw new ServiceException("批次关联轮作计划时，轮作计划明细ID不能为空");
+        }
+
+        AgriculturePlanDetail detail = agriculturePlanDetailService.getById(batch.getDetailId());
+
+        if (detail == null) {
+            throw new ServiceException("关联的轮作计划明细不存在，明细ID: " + batch.getDetailId());
+        }
+
+        LocalDate batchStartTime = batch.getStartTime();
+        LocalDateTime batchExpectedHarvestTime = batch.getExpectedHarvestTime();
+        LocalDate detailExpectedStartDate = detail.getExpectedStartDate();
+        LocalDate detailExpectedEndDate = detail.getExpectedEndDate();
+        
+        // 验证批次的开始时间不能早于轮作计划明细的预期开始日期
+        if (batchStartTime != null && detailExpectedStartDate != null) {
+            if (batchStartTime.isBefore(detailExpectedStartDate)) {
+                throw new ServiceException(
+                        String.format("批次开始时间（%s）不能早于轮作计划明细的预期开始时间（%s）", 
+                                batchStartTime, detailExpectedStartDate));
+            }
+        }
+
+        // 验证批次的预计收获时间不能晚于轮作计划明细的预期结束日期
+        if (batchExpectedHarvestTime != null && detailExpectedEndDate != null) {
+            LocalDate expectedHarvestDate = batchExpectedHarvestTime.toLocalDate();
+            if (expectedHarvestDate.isAfter(detailExpectedEndDate)) {
+                throw new ServiceException(
+                        String.format("批次预计收获时间（%s）不能晚于轮作计划明细的预期结束时间（%s）", 
+                                expectedHarvestDate, detailExpectedEndDate));
+            }
+        }
     }
 }
