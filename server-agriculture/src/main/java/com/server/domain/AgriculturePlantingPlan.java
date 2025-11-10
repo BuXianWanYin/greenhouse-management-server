@@ -74,6 +74,12 @@ public class AgriculturePlantingPlan extends BaseEntityPlus implements Serializa
     @Excel(name = "温室ID")
     private Long pastureId;
 
+    /** 种质ID（关联agriculture_class表） */
+    @TableField(value = "class_id")
+    @ApiModelProperty(value = "种质ID（关联agriculture_class表）")
+    @Excel(name = "种质ID")
+    private Long classId;
+
     /** 轮作周期（年，仅用于轮作计划） */
     @TableField(value = "rotation_cycle")
     @ApiModelProperty(value = "轮作周期（年，仅用于轮作计划）")
@@ -129,6 +135,11 @@ public class AgriculturePlantingPlan extends BaseEntityPlus implements Serializa
     @ApiModelProperty(value = "计划总面积（亩）")
     @Excel(name = "计划总面积（亩）")
     private Double totalArea;
+
+    @TableField(value = "planting_density")
+    @ApiModelProperty(value = "种植密度（株/亩）")
+    @Excel(name = "种植密度（株/亩）")
+    private Double plantingDensity;
 
     /** 删除标志（0代表存在 2代表删除） */
     @TableField(value = "del_flag")

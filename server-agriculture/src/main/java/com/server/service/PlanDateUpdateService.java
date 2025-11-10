@@ -45,5 +45,13 @@ public interface PlanDateUpdateService {
      * @param planId 轮作计划ID
      */
     void updateRotationPlanActualDates(Long planId);
+    
+    /**
+     * 更新批次状态和关联计划状态
+     * 当批次任务开始后，更新批次状态为"进行中"，并更新关联计划状态
+     * 
+     * @param batchId 批次ID
+     */
+    void updateBatchAndPlanStatus(Long batchId);
 }
 
