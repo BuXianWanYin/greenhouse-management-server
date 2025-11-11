@@ -58,10 +58,10 @@ CREATE TABLE `agriculture_resource_usage` (
   `update_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
   `del_flag` char(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
   PRIMARY KEY (`usage_id`) USING BTREE,
-  KEY `idx_resource_id` (`resource_id`) USING BTREE,
+  KEY `idx_resource_id` (`resource_id`) USING BTREE,  
   KEY `idx_batch_id` (`batch_id`) USING BTREE,
   KEY `idx_task_id` (`task_id`) USING BTREE,
-  CONSTRAINT `fk_usage_resource` FOREIGN KEY (`resource_id`) REFERENCES `agriculture_resource` (`resource_id`) ON DELETE RESTRICT
+  CONSTRAINT `fk_usage_resource` FOREIGN KEY (`resource_id`) REFERENCES `agriculture_resource` (`resource_id`) ON DELETE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '农资使用记录表' ROW_FORMAT = DYNAMIC;
 
 SET FOREIGN_KEY_CHECKS = 1;

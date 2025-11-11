@@ -60,5 +60,13 @@ public interface AgricultureResourceUsageService extends IService<AgricultureRes
      * @return 使用记录列表
      */
     List<AgricultureResourceUsage> selectByTaskId(Long taskId);
+
+    /**
+     * 归还机械类型农资
+     * 
+     * @param usageId 使用记录ID
+     * @return 结果
+     */
+    int returnAgricultureResource(Long usageId);
 }
 

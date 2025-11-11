@@ -73,7 +73,7 @@ public class AgricultureResourceUsage implements Serializable {
     private String remark;
 
     @TableField(value = "status")
-    @ApiModelProperty(value = "状态(0正常,1已撤销)")
+    @ApiModelProperty(value = "状态(0正常/已归还,1已撤销,2使用中)")
     private String status;
 
     @TableField(value = "order_num")

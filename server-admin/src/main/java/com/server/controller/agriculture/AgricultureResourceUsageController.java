@@ -70,14 +70,18 @@ public class AgricultureResourceUsageController extends BaseController {
     }
 
     /**
-     * 新增农资使用记录（自动扣减库存）
+     * 新增农资使用记录（自动扣减/增加库存）
      */
     @Log(title = "农资使用管理", businessType = BusinessType.INSERT)
     @PostMapping
     @SeeRefreshData(seeMessageType = SeeMessageType.DATA)
     @ApiOperation("新增农资使用记录")
     public AjaxResult add(@RequestBody AgricultureResourceUsage agricultureResourceUsage) {
-        return toAjax(agricultureResourceUsageService.addAgricultureResourceUsage(agricultureResourceUsage));
+        try {
+            return toAjax(agricultureResourceUsageService.addAgricultureResourceUsage(agricultureResourceUsage));
+        } catch (RuntimeException e) {
+            return error(e.getMessage());
+        }
     }
 
     /**
@@ -92,6 +96,22 @@ public class AgricultureResourceUsageController extends BaseController {
     }
 
     /**
+     * 归还机械类型农资
+     */
+    @Log(title = "农资使用管理", businessType = BusinessType.UPDATE)
+    @PutMapping("/return/{usageId}")
+    @SeeRefreshData(seeMessageType = SeeMessageType.DATA)
+    @ApiOperation("归还机械类型农资")
+    public AjaxResult returnResource(@PathVariable("usageId") Long usageId) {
+        try {
+            int result = agricultureResourceUsageService.returnAgricultureResource(usageId);
+            return toAjax(result);
+        } catch (RuntimeException e) {
+            return error(e.getMessage());
+        }
+    }
+
+    /**
      * 删除农资使用记录
      */
     @Log(title = "农资使用管理", businessType = BusinessType.DELETE)
@@ -99,7 +119,11 @@ public class AgricultureResourceUsageController extends BaseController {
     @SeeRefreshData(seeMessageType = SeeMessageType.DATA)
     @ApiOperation("删除农资使用记录")
     public AjaxResult remove(@PathVariable Long[] usageIds) {
-        return toAjax(agricultureResourceUsageService.removeByIds(java.util.Arrays.asList(usageIds)));
+        try {
+            return toAjax(agricultureResourceUsageService.removeByIds(java.util.Arrays.asList(usageIds)));
+        } catch (RuntimeException e) {
+            return error(e.getMessage());
+        }
     }
 
     /**
