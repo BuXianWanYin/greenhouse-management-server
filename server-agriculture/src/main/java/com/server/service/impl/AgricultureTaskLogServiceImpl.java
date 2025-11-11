@@ -46,6 +46,14 @@ public class AgricultureTaskLogServiceImpl extends ServiceImpl<AgricultureTaskLo
     public List<AgricultureTaskLog> selectAgricultureTaskLogList(AgricultureTaskLog agricultureTaskLog)
     {
         LambdaQueryWrapper<AgricultureTaskLog> lambdaQueryWrapper = new QueryWrapper<AgricultureTaskLog>().lambda();
+        // 如果传入了taskId，则按taskId查询
+        if (agricultureTaskLog != null && agricultureTaskLog.getTaskId() != null) {
+            lambdaQueryWrapper.eq(AgricultureTaskLog::getTaskId, agricultureTaskLog.getTaskId());
+        }
+        // 过滤已删除的记录
+        lambdaQueryWrapper.eq(AgricultureTaskLog::getDelFlag, "0");
+        // 按创建时间倒序排列，最新的日志在前面
+        lambdaQueryWrapper.orderByDesc(AgricultureTaskLog::getCreateTime);
         return agricultureTaskLogMapper.selectList(lambdaQueryWrapper);
     }
 

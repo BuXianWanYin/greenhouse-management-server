@@ -48,6 +48,20 @@ public class AgricultureTaskLogController extends BaseController
     }
 
     /**
+     * 根据任务ID查询批次任务日志列表
+     */
+    @PreAuthorize("@ss.hasPermi('agriculture:log:list')")
+    @GetMapping("/task/{taskId}")
+    public TableDataInfo listByTaskId(@PathVariable("taskId") Long taskId)
+    {
+        startPage();
+        AgricultureTaskLog agricultureTaskLog = new AgricultureTaskLog();
+        agricultureTaskLog.setTaskId(taskId);
+        List<AgricultureTaskLog> list = agricultureTaskLogService.selectAgricultureTaskLogList(agricultureTaskLog);
+        return getDataTable(list);
+    }
+
+    /**
      * 导出批次任务日志列表
      */
     @PreAuthorize("@ss.hasPermi('agriculture:log:export')")
