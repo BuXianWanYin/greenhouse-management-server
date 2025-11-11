@@ -1,15 +1,9 @@
 package com.server.controller.agriculture;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletRequest;
 
-import com.server.annotation.SeeRefreshData;
 import com.server.domain.dto.AgriculturePartitionFoodPageDTO;
-import com.server.domain.vo.TraceabilityDetailVO;
-import com.server.enums.SeeMessageType;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,34 +42,6 @@ public class AgriculturePartitionFoodController extends BaseController
         return getDataTable(agriculturePartitionFoodService.selectagriculturePartitionFoodList(agriculturePartitionFood));
     }
 
-    /**
-     * 根据溯源码查询溯源详情信息（批次、温室、批次任务、环境数据等）
-     */
-    @ApiOperation("根据溯源码查询溯源详情信息")
-    @GetMapping("/traceDetail")
-    @SeeRefreshData
-    @CrossOrigin(originPatterns = "*", allowCredentials = "false") // 溯源不需要凭证
-    public AjaxResult getTraceabilityDetail(
-        @RequestParam("traceId") String traceId,
-        @RequestParam(value = "firstTraceTime", required = false) String firstTraceTimeStr,
-        HttpServletRequest request) {
-        String queryIp = getClientIpAddress(request);
-        String userAgent = request.getHeader("User-Agent");
-        String queryType = "web";
-
-        Date firstTraceTime = null;
-        if (firstTraceTimeStr != null && !firstTraceTimeStr.isEmpty()) {
-            try {
-                firstTraceTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(firstTraceTimeStr);
-            } catch (Exception e) {
-                return error("firstTraceTime 格式错误，应为 yyyy-MM-dd HH:mm:ss");
-            }
-        }
-
-        // 传递 firstTraceTime 到 Service
-        TraceabilityDetailVO vo = agriculturePartitionFoodService.getTraceabilityDetailById(traceId, queryIp, userAgent, queryType, firstTraceTime);
-        return success(vo);
-    }
     /**
      * 导出采摘食品列表
      */
@@ -143,20 +109,4 @@ public class AgriculturePartitionFoodController extends BaseController
         return getDataTable(list);
     }
 
-    /**
-     * 获取客户端真实IP地址
-     */
-    private String getClientIpAddress(HttpServletRequest request) {
-        String xForwardedFor = request.getHeader("X-Forwarded-For");
-        if (xForwardedFor != null && !xForwardedFor.isEmpty() && !"unknown".equalsIgnoreCase(xForwardedFor)) {
-            return xForwardedFor.split(",")[0];
-        }
-        
-        String xRealIp = request.getHeader("X-Real-IP");
-        if (xRealIp != null && !xRealIp.isEmpty() && !"unknown".equalsIgnoreCase(xRealIp)) {
-            return xRealIp;
-        }
-        
-        return request.getRemoteAddr();
-    }
 }

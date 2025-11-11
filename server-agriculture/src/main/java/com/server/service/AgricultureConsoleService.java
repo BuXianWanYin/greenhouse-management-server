@@ -1,6 +1,5 @@
 package com.server.service;
 
-import com.server.domain.AgricultureTraceabilityLog;
 import com.server.domain.vo.AgricultureConsoleVO;
 
 import java.util.List;

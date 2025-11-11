@@ -34,7 +34,7 @@ public class AgricultureJob extends BaseEntityPlus implements Serializable {
     private Long jobId;
 
     @TableField(value = "class_id")
-    @ApiModelProperty(value = "种类ID")
+    @ApiModelProperty(value = "种质ID")
     private Long classId;
 
     @TableField(value = "job_name")
