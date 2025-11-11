@@ -155,6 +155,13 @@ public class PlanDateUpdateServiceImpl implements PlanDateUpdateService {
         // 如果批次状态发生变化，更新关联计划的状态
         if (statusChanged) {
             updateRelatedPlanStatus(batch);
+            
+            // 批次绑定的就是轮作计划明细（通过 detailId 关联），在状态更新后重新更新明细的实际日期
+            // 这样可以确保当所有任务完成时，明细的 actualEndDate 被正确更新
+            if (batch.getDetailId() != null) {
+                log.info("批次 {} 绑定轮作计划明细 {}，状态已变化，重新更新明细的实际日期", batchId, batch.getDetailId());
+                updatePlanDetailActualDates(batch.getDetailId());
+            }
         }
 
         log.info("完成批次 {} 的状态和关联计划状态更新，最终状态: {}", batchId, batch.getStatus());
@@ -705,14 +712,70 @@ public class PlanDateUpdateServiceImpl implements PlanDateUpdateService {
         // 更新轮作计划明细的实际日期
         planDetailService.updateById(detail);
 
-        // 3. 检查轮作计划是否应该结束：如果所有明细都已完成，更新轮作计划的实际结束日期和状态
+        // 3. 同步更新轮作计划的实际日期和状态
         if (detail.getPlanId() != null) {
+            // 更新轮作计划的实际开始日期（当明细开始后）
+            checkAndUpdateRotationPlanStartDate(detail.getPlanId());
+            // 更新轮作计划的实际结束日期（当所有明细都完成后）
             checkAndUpdateRotationPlanEndDate(detail.getPlanId());
             // 更新轮作计划状态
             updateRotationPlanStatusByDetails(detail.getPlanId());
         }
 
         log.info("完成轮作计划明细 {} 的实际日期更新: {} - {}", detailId, detail.getActualStartDate(), detail.getActualEndDate());
+    }
+
+    /**
+     * 检查并更新轮作计划的实际开始日期
+     * 当某个明细开始后，更新轮作计划的实际开始日期为所有明细中最早的开始日期
+     *
+     * @param planId 轮作计划ID
+     */
+    private void checkAndUpdateRotationPlanStartDate(Long planId) {
+        if (planId == null) {
+            return;
+        }
+
+        log.info("检查轮作计划 {} 是否应该更新开始日期", planId);
+
+        // 查询轮作计划
+        AgriculturePlantingPlan plan = plantingPlanService.getById(planId);
+        if (plan == null || !"rotation".equals(plan.getPlanType())) {
+            log.warn("计划 {} 不存在或不是轮作计划", planId);
+            return;
+        }
+
+        // 查询该轮作计划下的所有明细
+        LambdaQueryWrapper<AgriculturePlanDetail> detailQuery = new LambdaQueryWrapper<>();
+        detailQuery.eq(AgriculturePlanDetail::getPlanId, planId);
+        List<AgriculturePlanDetail> details = planDetailService.list(detailQuery);
+
+        if (details == null || details.isEmpty()) {
+            log.info("轮作计划 {} 没有明细", planId);
+            return;
+        }
+
+        // 收集所有明细的实际开始日期，取最早的
+        LocalDate minStartDate = null;
+        for (AgriculturePlanDetail detail : details) {
+            if (detail.getActualStartDate() != null) {
+                minStartDate = updateMinLocalDate(detail.getActualStartDate(), minStartDate);
+            }
+        }
+        
+        // 如果找到了最早的开始日期，更新轮作计划的实际开始日期
+        if (minStartDate != null) {
+            // 如果轮作计划还没有开始日期，或者新的开始日期更早，则更新
+            if (plan.getActualStartDate() == null || minStartDate.isBefore(plan.getActualStartDate())) {
+                log.info("轮作计划 {} 下的明细已开始，更新轮作计划的实际开始日期: {} -> {}", 
+                        planId, plan.getActualStartDate(), minStartDate);
+                plan.setActualStartDate(minStartDate);
+                plantingPlanService.updateById(plan);
+            } else {
+                log.debug("轮作计划 {} 已有开始日期 {}，新日期 {} 不更早，不更新", 
+                        planId, plan.getActualStartDate(), minStartDate);
+            }
+        }
     }
 
     /**

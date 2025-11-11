@@ -164,6 +164,7 @@ public class AgricultureBatchTaskServiceImpl extends ServiceImpl<AgricultureBatc
             log.info("开始检查是否需要更新计划日期和状态，批次ID: {}", batchId);
             boolean needUpdate = false;
             boolean actualStartChanged = false;
+            boolean statusChanged = false;
             
             if (oldTask != null) {
                 // 检查实际日期是否发生变化
@@ -171,9 +172,12 @@ public class AgricultureBatchTaskServiceImpl extends ServiceImpl<AgricultureBatc
                 Date newActualStart = agricultureBatchTask.getActualStart();
                 Date oldActualFinish = oldTask.getActualFinish();
                 Date newActualFinish = agricultureBatchTask.getActualFinish();
+                String oldStatus = oldTask.getStatus();
+                String newStatus = agricultureBatchTask.getStatus();
                 
                 log.info("比较日期变化 - 旧开始日期: {}, 新开始日期: {}", oldActualStart, newActualStart);
                 log.info("比较日期变化 - 旧结束日期: {}, 新结束日期: {}", oldActualFinish, newActualFinish);
+                log.info("比较状态变化 - 旧状态: {}, 新状态: {}", oldStatus, newStatus);
                 
                 // 检查实际开始日期是否从null变为有值（任务开始）
                 if (oldActualStart == null && newActualStart != null) {
@@ -182,9 +186,22 @@ public class AgricultureBatchTaskServiceImpl extends ServiceImpl<AgricultureBatc
                     log.info("✓ 实际开始日期从null变为有值，标记为需要更新状态");
                 }
                 
+                // 检查任务状态是否变为已完成（3）
+                if (!"3".equals(oldStatus) && "3".equals(newStatus)) {
+                    statusChanged = true;
+                    needUpdate = true;
+                    log.info("✓ 任务状态变为已完成（3），标记为需要更新状态");
+                }
+                
+                // 检查实际结束日期是否从null变为有值（任务完成）
+                if (oldActualFinish == null && newActualFinish != null) {
+                    statusChanged = true;
+                    needUpdate = true;
+                    log.info("✓ 实际结束日期从null变为有值，标记为需要更新状态");
+                }
+                
                 if ((oldActualStart != null && newActualStart == null) ||
                     (oldActualStart != null && newActualStart != null && !oldActualStart.equals(newActualStart)) ||
-                    (oldActualFinish == null && newActualFinish != null) ||
                     (oldActualFinish != null && newActualFinish == null) ||
                     (oldActualFinish != null && newActualFinish != null && !oldActualFinish.equals(newActualFinish))) {
                     needUpdate = true;
@@ -197,12 +214,17 @@ public class AgricultureBatchTaskServiceImpl extends ServiceImpl<AgricultureBatc
                         actualStartChanged = true;
                         log.info("✓ 新增任务有实际开始日期，标记为需要更新状态");
                     }
+                    if (agricultureBatchTask.getActualFinish() != null || "3".equals(agricultureBatchTask.getStatus())) {
+                        statusChanged = true;
+                        log.info("✓ 新增任务有实际结束日期或已完成状态，标记为需要更新状态");
+                    }
                     needUpdate = true;
                     log.info("✓ 新增任务有实际日期，标记为需要更新");
                 }
             }
             
-            log.info("是否需要更新: {}, 实际开始日期是否变化: {}", needUpdate, actualStartChanged);
+            log.info("是否需要更新: {}, 实际开始日期是否变化: {}, 状态是否变化: {}", 
+                    needUpdate, actualStartChanged, statusChanged);
             
             if (needUpdate) {
                 try {
@@ -210,17 +232,19 @@ public class AgricultureBatchTaskServiceImpl extends ServiceImpl<AgricultureBatc
                     log.info("========== 更新批次 {} 的计划实际日期 ==========", batchId);
                     planDateUpdateService.updatePlanDatesByBatchTask(batchId);
                     
-                    // 如果实际开始日期从null变为有值，更新批次状态和关联计划状态
-                    if (actualStartChanged) {
-                        log.info("========== 批次任务 {} 开始，更新批次 {} 状态和关联计划状态 ==========", 
+                    // 如果实际开始日期从null变为有值，或者任务状态/结束日期发生变化，更新批次状态和关联计划状态
+                    if (actualStartChanged || statusChanged) {
+                        log.info("========== 批次任务 {} 状态变化（开始或完成），更新批次 {} 状态和关联计划状态 ==========", 
                                 agricultureBatchTask.getTaskId(), batchId);
                         // 重新查询任务，确保获取到最新的数据
                         AgricultureBatchTask updatedTask = getById(agricultureBatchTask.getTaskId());
-                        if (updatedTask != null && updatedTask.getActualStart() != null) {
-                            log.info("确认任务 {} 已更新，actual_start: {}", updatedTask.getTaskId(), updatedTask.getActualStart());
+                        if (updatedTask != null) {
+                            log.info("确认任务 {} 已更新，status: {}, actual_start: {}, actual_finish: {}", 
+                                    updatedTask.getTaskId(), updatedTask.getStatus(), 
+                                    updatedTask.getActualStart(), updatedTask.getActualFinish());
                             planDateUpdateService.updateBatchAndPlanStatus(batchId);
                         } else {
-                            log.warn("任务 {} 更新后查询不到或 actual_start 仍为 null", agricultureBatchTask.getTaskId());
+                            log.warn("任务 {} 更新后查询不到", agricultureBatchTask.getTaskId());
                         }
                     }
                 } catch (Exception e) {

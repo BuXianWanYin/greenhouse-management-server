@@ -2,6 +2,7 @@ package com.server.service.impl;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.server.domain.AgricultureCropBatch;
@@ -415,7 +416,7 @@ public class AgriculturePlantingPlanServiceImpl extends ServiceImpl<AgricultureP
         Long planId = plan.getPlanId();
 
         if ("annual".equals(planType)) {
-            // 年度计划：检查其下是否有季度计划，如果有，检查这些季度计划是否有关联批次
+            // 年度计划：检查其下是否有季度计划，如果有，不允许删除
             LambdaQueryWrapper<AgriculturePlantingPlan> queryWrapper = new LambdaQueryWrapper<>();
             queryWrapper.eq(AgriculturePlantingPlan::getParentPlanId, planId)
                     .eq(AgriculturePlantingPlan::getPlanType, "seasonal")
@@ -425,20 +426,13 @@ public class AgriculturePlantingPlanServiceImpl extends ServiceImpl<AgricultureP
             List<AgriculturePlantingPlan> seasonalPlans = list(queryWrapper);
 
             if (seasonalPlans != null && !seasonalPlans.isEmpty()) {
-                // 检查每个季度计划是否有关联批次
-                for (AgriculturePlantingPlan seasonalPlan : seasonalPlans) {
-                    LambdaQueryWrapper<AgricultureCropBatch> batchQuery = new LambdaQueryWrapper<>();
-                    batchQuery.eq(AgricultureCropBatch::getPlanId, seasonalPlan.getPlanId())
-                            .and(wrapper -> wrapper.eq(AgricultureCropBatch::getDelFlag, "0")
-                                    .or()
-                                    .isNull(AgricultureCropBatch::getDelFlag));
-                    long batchCount = agricultureCropBatchService.count(batchQuery);
-                    if (batchCount > 0) {
-                        throw new ServiceException(
-                                String.format("年度计划【%s】下存在季度计划【%s】有关联批次，无法删除", 
-                                        plan.getPlanName(), seasonalPlan.getPlanName()));
-                    }
-                }
+                // 如果有季度计划，不允许删除年度计划
+                String seasonalPlanNames = seasonalPlans.stream()
+                        .map(AgriculturePlantingPlan::getPlanName)
+                        .collect(Collectors.joining("、"));
+                throw new ServiceException(
+                        String.format("年度计划【%s】下存在季度计划【%s】，无法删除。请先删除所有季度计划", 
+                                plan.getPlanName(), seasonalPlanNames));
             }
         } else if ("seasonal".equals(planType)) {
             // 季度计划：检查是否有关联批次
