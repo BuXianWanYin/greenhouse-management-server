@@ -10,7 +10,6 @@ import com.server.constant.RabbitMQConstant;
 import com.server.core.redis.RedisCache;
 import com.server.domain.AgricultureClass;
 import com.server.domain.vo.AiMessageVO;
-import com.server.enums.ClassType;
 import com.server.exception.ServiceException;
 import com.server.mapper.AgricultureClassMapper;
 import com.server.service.AgricultureClassService;
