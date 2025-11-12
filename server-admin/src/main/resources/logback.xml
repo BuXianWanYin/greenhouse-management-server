@@ -76,6 +76,11 @@
     <logger name="com.token" level="info" />
     <!-- Spring日志级别控制  -->
     <logger name="org.springframework" level="warn" />
+    <!-- MyBatis Plus日志级别控制，关闭控制台打印 -->
+    <logger name="com.baomidou.mybatisplus" level="warn" />
+    <logger name="org.apache.ibatis" level="warn" />
+    <!-- MyBatis Mapper接口日志级别控制，关闭SQL日志打印 -->
+    <logger name="com.server.mapper" level="warn" />
 
     <root level="info">
         <appender-ref ref="console" />

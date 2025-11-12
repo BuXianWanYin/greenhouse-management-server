@@ -1,6 +1,7 @@
 package com.server.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
@@ -8,7 +9,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -18,7 +18,7 @@ import java.util.Date;
 public class AgriculturePartitionFood implements Serializable {
 
     @ApiModelProperty(value = "id-溯源码", example = "123")
-    @TableField(value = "id")
+    @TableId(value = "id")
     private String id;
 
     @ApiModelProperty(value = "批次id", example = "123", required = true)

@@ -42,6 +42,8 @@ logging:
   level:
     # 项目包日志级别（debug：开发环境，info：生产环境）
     com.server: debug
+    # MyBatis Mapper接口日志级别，关闭SQL日志打印
+    com.server.mapper: warn
     # Spring框架日志级别
     org.springframework: warn
 
@@ -158,8 +160,8 @@ mybatis-plus:
   mapperLocations: classpath*:mapper/**/*Mapper.xml
   # MyBatis配置
   configuration:
-    # SQL日志实现类（开发环境使用控制台输出）
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # SQL日志实现类（已关闭控制台输出，使用slf4j日志框架）
+    # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     # 是否开启驼峰命名转换（下划线转驼峰）
     map-underscore-to-camel-case: true
   # 全局配置

@@ -68,12 +68,16 @@ public class AgricultureDataProcessingServiceImpl implements AgricultureDataProc
                 return;
             }
             switch (type) {
-                case "air" -> processAirData(context);
-                case "soil" -> processSoilData(context);
-                default -> {
+                case "air":
+                    processAirData(context);
+                    break;
+                case "soil":
+                    processSoilData(context);
+                    break;
+                default:
                     log.warn("未知数据类型: {}, 设备ID: {}, 仅发送到MQTT，不保存到数据库。解析后的数据: {}", type, context.deviceId(), parsedData);
                     sendRawDataToMqtt(context, parsedData, type);
-                }
+                    break;
             }
         } catch (Exception e) {
             log.error("处理并存储已解析的数据失败", e);
@@ -210,12 +214,36 @@ public class AgricultureDataProcessingServiceImpl implements AgricultureDataProc
     /**
      * 数据处理上下文
      */
-    private record DataProcessingContext(
-        Map<String, Object> parsedData,
-        Long deviceId,
-        AgricultureDeviceMqttConfig config,
-        String topic
-    ) {}
+    private static class DataProcessingContext {
+        private final Map<String, Object> parsedData;
+        private final Long deviceId;
+        private final AgricultureDeviceMqttConfig config;
+        private final String topic;
+
+        public DataProcessingContext(Map<String, Object> parsedData, Long deviceId, 
+                                     AgricultureDeviceMqttConfig config, String topic) {
+            this.parsedData = parsedData;
+            this.deviceId = deviceId;
+            this.config = config;
+            this.topic = topic;
+        }
+
+        public Map<String, Object> parsedData() {
+            return parsedData;
+        }
+
+        public Long deviceId() {
+            return deviceId;
+        }
+
+        public AgricultureDeviceMqttConfig config() {
+            return config;
+        }
+
+        public String topic() {
+            return topic;
+        }
+    }
 
     /**
      * 根据传入的Map数据，创建一个空气传感器数据实体对象。
