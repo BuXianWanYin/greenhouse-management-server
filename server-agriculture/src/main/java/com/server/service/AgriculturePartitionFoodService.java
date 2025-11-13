@@ -63,9 +63,4 @@ public interface AgriculturePartitionFoodService extends IService<AgriculturePar
      */
     public int deleteagriculturePartitionFoodById(String id);
 
-    /**
-     * 新增采摘 生成二维码展示
-     */
-    List<AgriculturePartitionFood> fy(AgriculturePartitionFoodPageDTO baseDTO);
-
 }

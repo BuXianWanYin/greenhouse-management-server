@@ -1,38 +1,53 @@
-11:26:53.873 [schedule-pool-2] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
-11:26:58.033 [http-nio-8080-exec-41] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=null, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-11:26:58.039 [http-nio-8080-exec-41] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 5
-11:42:21.652 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-11:42:26.595 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
-11:42:26.600 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 134176 (D:\0.bishe\QGJ\greenhouse-management-server\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-server)
-11:42:26.600 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
-11:42:28.771 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
-11:42:28.772 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
-11:42:28.772 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
-11:42:28.928 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
-11:42:29.913 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
-11:42:33.645 [main] INFO  c.s.s.SerialPortService - [init,36] - 正在初始化串口服务...
-11:42:33.646 [main] INFO  c.s.s.SerialPortService - [connect,41] - 正在尝试连接串口: COM5，波特率: 9600
-11:42:33.959 [main] INFO  c.s.s.SerialPortService - [connect,46] - 成功打开串口: COM5
-11:42:33.967 [main] INFO  c.s.s.SerialPortService - [disconnect,57] - 成功关闭串口: COM5
-11:42:33.974 [main] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
-11:42:33.980 [main] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
-11:42:34.102 [main] INFO  o.a.c.c.StandardService - [log,173] - Stopping service [Tomcat]
-11:43:04.662 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
-11:43:04.668 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 41936 (D:\0.bishe\QGJ\greenhouse-management-server\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-server)
-11:43:04.668 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
-11:43:06.757 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
-11:43:06.758 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
-11:43:06.759 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
-11:43:06.897 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
-11:43:07.886 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
-11:43:11.248 [main] INFO  c.s.s.SerialPortService - [init,36] - 正在初始化串口服务...
-11:43:11.248 [main] INFO  c.s.s.SerialPortService - [connect,41] - 正在尝试连接串口: COM5，波特率: 9600
-11:43:11.286 [main] INFO  c.s.s.SerialPortService - [connect,46] - 成功打开串口: COM5
-11:43:11.459 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
-11:43:11.471 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-11:43:11.471 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
-11:43:11.473 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
-11:43:11.473 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+08:18:17.963 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+08:18:18.063 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+08:18:18.108 [http-nio-8080-exec-2] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+08:19:13.880 [http-nio-8080-exec-5] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+08:19:14.097 [http-nio-8080-exec-6] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+08:19:14.102 [http-nio-8080-exec-7] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+08:19:18.114 [schedule-pool-1] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
+08:36:15.078 [http-nio-8080-exec-78] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+08:46:37.685 [http-nio-8080-exec-2] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+08:48:02.753 [http-nio-8080-exec-25] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=null, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
+08:48:02.765 [http-nio-8080-exec-25] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 3
+08:49:07.423 [http-nio-8080-exec-43] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=null, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
+08:49:07.426 [http-nio-8080-exec-43] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 3
+08:49:46.267 [http-nio-8080-exec-51] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+09:43:48.261 [schedule-pool-1] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
+09:44:32.856 [http-nio-8080-exec-100] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=null, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
+09:44:32.860 [http-nio-8080-exec-100] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 3
+10:14:13.340 [schedule-pool-3] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
+10:18:11.121 [http-nio-8080-exec-54] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+11:28:12.808 [http-nio-8080-exec-51] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+11:28:15.337 [http-nio-8080-exec-50] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+11:28:15.720 [http-nio-8080-exec-53] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+11:28:15.723 [http-nio-8080-exec-56] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+11:28:18.903 [schedule-pool-2] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
+11:29:16.711 [http-nio-8080-exec-70] INFO  c.s.h.MyMetaObjectHandler - [insertFill,18] - start insert fill ....
+11:35:25.229 [http-nio-8080-exec-33] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+11:35:40.513 [schedule-pool-4] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
+11:37:16.964 [schedule-pool-1] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[buxianwanyin][Register][注册成功]
+11:37:23.991 [schedule-pool-5] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
+13:01:09.872 [http-nio-8080-exec-69] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+13:01:20.590 [http-nio-8080-exec-72] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
+13:01:21.016 [http-nio-8080-exec-74] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
+13:01:21.019 [http-nio-8080-exec-75] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+13:01:30.211 [http-nio-8080-exec-80] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+13:01:57.481 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
+13:01:57.486 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 28860 (D:\0.bishe\greenhouse-management\greenhouse-management-server\server-admin\target\classes started by bxwy in D:\0.bishe\greenhouse-management\greenhouse-management-server)
+13:01:57.487 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
+13:02:00.469 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
+13:02:00.473 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+13:02:00.473 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
+13:02:00.638 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+13:02:01.845 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
+13:02:05.841 [main] INFO  c.s.s.SerialPortService - [init,36] - 正在初始化串口服务...
+13:02:05.841 [main] INFO  c.s.s.SerialPortService - [connect,41] - 正在尝试连接串口: COM5，波特率: 9600
+13:02:06.039 [main] INFO  c.s.s.SerialPortService - [connect,49] - 可用串口: [COM5]
+13:02:06.304 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+13:02:06.323 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+13:02:06.323 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+13:02:06.325 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
+13:02:06.326 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
   Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -40,264 +55,18 @@
   Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
   Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
-11:43:11.474 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-11:43:11.474 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
-11:43:11.474 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@708f4d81
-11:43:13.151 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
-11:43:13.273 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-11:43:13.333 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:43:13.338 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:43:13.355 [http-nio-8080-exec-4] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:43:13.370 [http-nio-8080-exec-11] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:43:13.385 [http-nio-8080-exec-8] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:43:13.402 [http-nio-8080-exec-10] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:43:13.416 [http-nio-8080-exec-12] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:43:13.431 [http-nio-8080-exec-14] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:43:13.447 [http-nio-8080-exec-16] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:43:13.462 [http-nio-8080-exec-18] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:43:13.604 [http-nio-8080-exec-19] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:43:13.845 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
-11:43:13.859 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 9.518 seconds (JVM running for 10.174)
-11:43:13.897 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,91] - 启动传感器通信流程，查询到 2 个传感器设备
-11:43:13.898 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,109] - 传感器通信流程启动完成，成功启动 2 个采集任务
-11:43:13.907 [main] INFO  c.s.t.HeartbeatScheduledTask - [startHeartbeatTasks,94] - 启动心跳任务，检查到 2 个设备需要发送心跳
-11:43:13.908 [main] INFO  c.s.t.HeartbeatScheduledTask - [startHeartbeatTasks,107] - 心跳任务启动完成，共启动 2 个设备的心跳任务
-11:43:14.307 [Serial-Command-Executor] INFO  c.s.c.DynamicMqttClientFactoryManager - [createClientFactoryWithConfig,117] - 创建MQTT客户端工厂: broker=tcp://43.139.89.73:1883, username=bxwy
-11:43:14.331 [Serial-Command-Executor] INFO  c.s.s.i.AgricultureAgricultureDynamicMqttServiceImpl - [lambda$getOrCreateMessageHandler$0,168] - 创建动态MQTT MessageHandler: deviceId=58, broker=tcp://43.139.89.73:1883, clientId=dynamic_mqtt_58_f77517ca
-11:43:14.729 [http-nio-8080-exec-20] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:45:53.192 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-11:46:00.184 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
-11:46:00.191 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 133620 (D:\0.bishe\QGJ\greenhouse-management-server\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-server)
-11:46:00.191 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
-11:46:02.211 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
-11:46:02.212 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
-11:46:02.212 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
-11:46:02.337 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
-11:46:03.245 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
-11:46:06.448 [main] INFO  c.s.s.SerialPortService - [init,36] - 正在初始化串口服务...
-11:46:06.448 [main] INFO  c.s.s.SerialPortService - [connect,41] - 正在尝试连接串口: COM5，波特率: 9600
-11:46:06.485 [main] INFO  c.s.s.SerialPortService - [connect,46] - 成功打开串口: COM5
-11:46:06.493 [main] INFO  c.s.s.SerialPortService - [disconnect,57] - 成功关闭串口: COM5
-11:46:06.500 [main] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
-11:46:06.504 [main] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
-11:46:06.622 [main] INFO  o.a.c.c.StandardService - [log,173] - Stopping service [Tomcat]
-11:47:06.259 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
-11:47:06.264 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 32372 (D:\0.bishe\QGJ\greenhouse-management-server\server-admin\target\classes started by bxwy in D:\0.bishe\QGJ\greenhouse-management-server)
-11:47:06.265 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
-11:47:08.388 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
-11:47:08.390 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
-11:47:08.390 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
-11:47:08.519 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
-11:47:09.405 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
-11:47:13.049 [main] INFO  c.s.s.SerialPortService - [init,36] - 正在初始化串口服务...
-11:47:13.050 [main] INFO  c.s.s.SerialPortService - [connect,41] - 正在尝试连接串口: COM5，波特率: 9600
-11:47:13.089 [main] INFO  c.s.s.SerialPortService - [connect,46] - 成功打开串口: COM5
-11:47:13.252 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
-11:47:13.263 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-11:47:13.263 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
-11:47:13.264 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
-11:47:13.265 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
-  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
-  NOT STARTED.
-  Currently in standby mode.
-  Number of jobs executed: 0
-  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
-  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
-
-11:47:13.265 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-11:47:13.265 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
-11:47:13.265 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@16a83016
-11:47:14.874 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
-11:47:15.088 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-11:47:15.150 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:47:15.161 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:47:15.177 [http-nio-8080-exec-4] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:47:15.192 [http-nio-8080-exec-6] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:47:15.207 [http-nio-8080-exec-8] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:47:15.223 [http-nio-8080-exec-18] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:47:15.239 [http-nio-8080-exec-12] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:47:15.256 [http-nio-8080-exec-14] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:47:15.269 [http-nio-8080-exec-16] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:47:15.285 [http-nio-8080-exec-10] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:47:15.642 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
-11:47:15.657 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 9.696 seconds (JVM running for 10.37)
-11:47:15.698 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,91] - 启动传感器通信流程，查询到 2 个传感器设备
-11:47:15.698 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,109] - 传感器通信流程启动完成，成功启动 2 个采集任务
-11:47:15.707 [main] INFO  c.s.t.HeartbeatScheduledTask - [startHeartbeatTasks,94] - 启动心跳任务，检查到 2 个设备需要发送心跳
-11:47:15.708 [main] INFO  c.s.t.HeartbeatScheduledTask - [startHeartbeatTasks,107] - 心跳任务启动完成，共启动 2 个设备的心跳任务
-11:47:16.041 [Serial-Command-Executor] INFO  c.s.c.DynamicMqttClientFactoryManager - [createClientFactoryWithConfig,117] - 创建MQTT客户端工厂: broker=tcp://43.139.89.73:1883, username=bxwy
-11:47:16.059 [Serial-Command-Executor] INFO  c.s.s.i.AgricultureAgricultureDynamicMqttServiceImpl - [lambda$0,168] - 创建动态MQTT MessageHandler: deviceId=58, broker=tcp://43.139.89.73:1883, clientId=dynamic_mqtt_58_7680a385
-11:47:16.733 [http-nio-8080-exec-19] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-11:47:17.434 [http-nio-8080-exec-26] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-12:07:56.314 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-12:22:48.970 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
-12:22:48.980 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 34224 (D:\0.bishe\greenhouse-management\greenhouse-management-server\server-admin\target\classes started by bxwy in D:\0.bishe\greenhouse-management\greenhouse-management-server)
-12:22:48.981 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
-12:22:51.409 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
-12:22:51.410 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
-12:22:51.411 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
-12:22:51.550 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
-12:22:52.564 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
-12:22:55.188 [main] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
-12:22:55.194 [main] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
-12:22:55.318 [main] INFO  o.a.c.c.StandardService - [log,173] - Stopping service [Tomcat]
-12:23:02.905 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.5.Final
-12:23:02.913 [main] INFO  c.s.ServerApplication - [logStarting,55] - Starting ServerApplication using Java 17.0.14 on bxwy with PID 34652 (D:\0.bishe\greenhouse-management\greenhouse-management-server\server-admin\target\classes started by bxwy in D:\0.bishe\greenhouse-management\greenhouse-management-server)
-12:23:02.914 [main] INFO  c.s.ServerApplication - [logStartupProfileInfo,686] - The following 2 profiles are active: "dev", "druid"
-12:23:05.091 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8080"]
-12:23:05.092 [main] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
-12:23:05.092 [main] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.102]
-12:23:05.227 [main] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
-12:23:06.130 [main] INFO  c.a.d.p.DruidDataSource - [init,1002] - {dataSource-1} inited
-12:23:09.391 [main] INFO  c.s.s.SerialPortService - [init,36] - 正在初始化串口服务...
-12:23:09.391 [main] INFO  c.s.s.SerialPortService - [connect,41] - 正在尝试连接串口: COM5，波特率: 9600
-12:23:09.536 [main] INFO  c.s.s.SerialPortService - [connect,46] - 成功打开串口: COM5
-12:23:09.717 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
-12:23:09.731 [main] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-12:23:09.732 [main] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
-12:23:09.732 [main] INFO  o.q.s.RAMJobStore - [initialize,155] - RAMJobStore initialized.
-12:23:09.733 [main] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
-  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
-  NOT STARTED.
-  Currently in standby mode.
-  Number of jobs executed: 0
-  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
-  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
-
-12:23:09.733 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-12:23:09.733 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
-12:23:09.733 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@2e3c5ecc
-12:23:11.354 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
-12:23:11.603 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-12:23:11.670 [http-nio-8080-exec-2] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-12:23:11.670 [http-nio-8080-exec-1] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-12:23:11.682 [http-nio-8080-exec-9] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-12:23:11.699 [http-nio-8080-exec-11] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-12:23:11.714 [http-nio-8080-exec-7] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-12:23:12.045 [main] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler quartzScheduler_$_NON_CLUSTERED started.
-12:23:12.057 [main] INFO  c.s.ServerApplication - [logStarted,61] - Started ServerApplication in 9.516 seconds (JVM running for 10.193)
-12:23:12.093 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,91] - 启动传感器通信流程，查询到 2 个传感器设备
-12:23:12.094 [main] INFO  c.s.s.SensorCommunicationService - [startSensorCommunication,109] - 传感器通信流程启动完成，成功启动 2 个采集任务
-12:23:12.102 [main] INFO  c.s.t.HeartbeatScheduledTask - [startHeartbeatTasks,94] - 启动心跳任务，检查到 2 个设备需要发送心跳
-12:23:12.103 [main] INFO  c.s.t.HeartbeatScheduledTask - [startHeartbeatTasks,107] - 心跳任务启动完成，共启动 2 个设备的心跳任务
-12:23:12.461 [Serial-Command-Executor] INFO  c.s.c.DynamicMqttClientFactoryManager - [createClientFactoryWithConfig,117] - 创建MQTT客户端工厂: broker=tcp://43.139.89.73:1883, username=bxwy
-12:23:12.480 [Serial-Command-Executor] INFO  c.s.s.i.AgricultureAgricultureDynamicMqttServiceImpl - [lambda$getOrCreateMessageHandler$0,168] - 创建动态MQTT MessageHandler: deviceId=58, broker=tcp://43.139.89.73:1883, clientId=dynamic_mqtt_58_54dc48a5
-12:23:13.502 [http-nio-8080-exec-8] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-12:23:15.165 [http-nio-8080-exec-10] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-12:23:15.165 [http-nio-8080-exec-5] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-12:23:15.165 [http-nio-8080-exec-4] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-12:23:15.165 [http-nio-8080-exec-14] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-12:23:15.165 [http-nio-8080-exec-13] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-12:23:15.165 [http-nio-8080-exec-12] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-12:23:15.378 [http-nio-8080-exec-15] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-12:23:15.486 [http-nio-8080-exec-15] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-12:23:18.056 [schedule-pool-1] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
-12:23:29.278 [http-nio-8080-exec-27] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=null, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-12:23:29.296 [http-nio-8080-exec-27] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 5
-12:23:59.948 [http-nio-8080-exec-47] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=null, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-12:23:59.952 [http-nio-8080-exec-47] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 5
-13:16:17.883 [http-nio-8080-exec-62] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-13:16:18.257 [http-nio-8080-exec-63] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-13:16:18.261 [http-nio-8080-exec-65] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:16:20.729 [schedule-pool-1] INFO  sys-user - [run,56] - [127.0.0.1]内网IP[admin][Success][登录成功]
-13:17:22.560 [http-nio-8080-exec-76] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:33:19.352 [http-nio-8080-exec-95] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:35:33.406 [http-nio-8080-exec-78] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:36:17.324 [http-nio-8080-exec-91] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:37:33.089 [http-nio-8080-exec-33] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:37:40.676 [http-nio-8080-exec-34] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:38:08.046 [http-nio-8080-exec-28] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:38:20.169 [http-nio-8080-exec-45] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-13:38:20.173 [http-nio-8080-exec-45] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-13:38:25.357 [http-nio-8080-exec-54] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:38:38.893 [http-nio-8080-exec-48] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:39:01.931 [http-nio-8080-exec-51] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:39:33.464 [http-nio-8080-exec-53] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:39:54.414 [http-nio-8080-exec-56] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:40:07.847 [http-nio-8080-exec-57] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:40:09.966 [http-nio-8080-exec-58] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:40:42.557 [http-nio-8080-exec-59] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:42:17.179 [http-nio-8080-exec-67] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:42:24.603 [http-nio-8080-exec-66] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:42:50.233 [http-nio-8080-exec-68] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:43:21.932 [http-nio-8080-exec-69] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:43:33.365 [http-nio-8080-exec-71] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:43:51.535 [http-nio-8080-exec-73] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:45:07.633 [http-nio-8080-exec-77] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:45:09.088 [http-nio-8080-exec-78] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-13:45:18.155 [http-nio-8080-exec-80] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-13:45:18.159 [http-nio-8080-exec-81] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:45:34.491 [http-nio-8080-exec-85] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:49:14.018 [http-nio-8080-exec-27] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-13:49:14.021 [http-nio-8080-exec-27] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-13:49:16.154 [http-nio-8080-exec-37] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-13:49:16.156 [http-nio-8080-exec-37] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-13:52:34.168 [http-nio-8080-exec-48] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-13:52:34.171 [http-nio-8080-exec-48] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-13:54:03.193 [http-nio-8080-exec-61] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-13:54:04.564 [http-nio-8080-exec-65] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-13:54:04.570 [http-nio-8080-exec-63] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:54:06.773 [http-nio-8080-exec-72] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-13:54:06.777 [http-nio-8080-exec-72] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-13:54:11.475 [http-nio-8080-exec-70] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-13:54:11.479 [http-nio-8080-exec-70] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-13:54:37.264 [http-nio-8080-exec-71] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-13:54:37.268 [http-nio-8080-exec-71] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-13:55:49.584 [http-nio-8080-exec-75] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-13:56:49.212 [http-nio-8080-exec-93] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-13:56:49.216 [http-nio-8080-exec-93] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-13:58:30.533 [http-nio-8080-exec-9] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-13:58:30.537 [http-nio-8080-exec-9] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-13:58:37.840 [http-nio-8080-exec-16] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-13:58:37.844 [http-nio-8080-exec-16] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-13:59:54.639 [http-nio-8080-exec-27] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-13:59:54.642 [http-nio-8080-exec-27] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-14:01:53.251 [http-nio-8080-exec-50] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-14:01:57.863 [http-nio-8080-exec-53] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-14:01:57.874 [http-nio-8080-exec-49] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-14:07:58.931 [http-nio-8080-exec-72] INFO  c.s.w.MqSocketServer - [onClose,31] - RabbitMQ客户端连接断开:admin
-14:08:10.409 [http-nio-8080-exec-70] INFO  c.s.w.MqSocketServer - [onOpen,25] - RabbitMQ客户端：admin建立连接
-14:08:10.419 [http-nio-8080-exec-69] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-14:08:27.812 [http-nio-8080-exec-76] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-14:08:32.586 [http-nio-8080-exec-87] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-14:08:32.590 [http-nio-8080-exec-87] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-14:08:47.063 [http-nio-8080-exec-96] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-14:08:47.067 [http-nio-8080-exec-96] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-14:08:52.191 [http-nio-8080-exec-5] INFO  c.s.h.MyMetaObjectHandler - [insertFill,18] - start insert fill ....
-14:08:52.196 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,130] - ========== 开始更新批次任务 ==========
-14:08:52.196 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,131] - 批次任务ID: 28, 批次ID: null
-14:08:52.197 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,132] - 实际开始日期: null, 实际结束日期: null
-14:08:52.201 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,139] - 原任务信息 - 实际开始日期: Wed Nov 12 00:00:00 CST 2025, 实际结束日期: Wed Dec 17 00:00:00 CST 2025, 批次ID: 14
-14:08:52.201 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,143] - 前端未传递批次ID，从数据库查询结果中获取: 14
-14:08:52.206 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,153] - 批次任务更新结果: 1
-14:08:52.206 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,164] - 开始检查是否需要更新计划日期和状态，批次ID: 14
-14:08:52.206 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,178] - 比较日期变化 - 旧开始日期: Wed Nov 12 00:00:00 CST 2025, 新开始日期: null
-14:08:52.206 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,179] - 比较日期变化 - 旧结束日期: Wed Dec 17 00:00:00 CST 2025, 新结束日期: null
-14:08:52.206 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,180] - 比较状态变化 - 旧状态: 3, 新状态: null
-14:08:52.206 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,208] - ✓ 实际日期发生变化，标记为需要更新
-14:08:52.207 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,226] - 是否需要更新: true, 实际开始日期是否变化: false, 状态是否变化: false
-14:08:52.207 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,232] - ========== 更新批次 14 的计划实际日期 ==========
-14:08:52.210 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updatePlanDatesByBatchTask,50] - 开始更新批次 14 相关的计划实际日期
-14:08:52.212 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateSeasonalPlanIfNeeded,963] - 批次 14 关联季度计划 12，更新季度计划实际日期
-14:08:52.213 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateSeasonalPlanActualDates,481] - 开始更新季度计划 12 的实际日期
-14:08:52.219 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateSeasonalPlanActualDates,529] - 季度计划 12 任务统计: 总数=2, 已完成=2, 最早开始日期=2025-11-12, 最晚结束日期=2026-03-31
-14:08:52.220 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateSeasonalPlanActualDates,537] - 季度计划 12 下所有批次的所有任务都已完成（2/2），更新结束日期: 2026-03-31
-14:08:52.220 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updatePlanActualDates,916] - 计划 12 已有结束日期 2026-03-31，新日期 2026-03-31 不更晚，不更新
-14:08:52.220 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateSeasonalPlanActualDates,553] - 季度计划 12 有父年度计划 11，更新年度计划实际日期
-14:08:52.220 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateAnnualPlanActualDates,571] - 开始更新年度计划 11 的实际日期
-14:08:52.226 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateAnnualPlanActualDates,600] - 年度计划 11 开始检查季度计划完成情况，共有 2 个季度计划
-14:08:52.227 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateAnnualPlanActualDates,605] - 季度计划 冬季 (planId: 12) - 实际开始日期: 2025-11-12, 实际结束日期: 2026-03-31
-14:08:52.227 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateAnnualPlanActualDates,612] - 季度计划 12 已完成，当前最晚结束日期: 2026-03-31
-14:08:52.227 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateAnnualPlanActualDates,605] - 季度计划 春季 (planId: 13) - 实际开始日期: null, 实际结束日期: null
-14:08:52.227 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateAnnualPlanActualDates,614] - 季度计划 13 未完成（actualEndDate 为 null）
-14:08:52.227 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateAnnualPlanActualDates,618] - 年度计划 11 季度计划完成统计: 1/2 已完成，最晚结束日期: 2026-03-31
-14:08:52.227 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateAnnualPlanActualDates,629] - ✗ 年度计划 11 季度计划未全部完成（1/2），暂不更新结束日期。最晚结束日期: 2026-03-31
-14:08:52.227 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateAnnualPlanActualDates,640] - 完成年度计划 11 的实际日期更新: 2025-11-12 - 2026-03-31
-14:08:52.227 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updateSeasonalPlanActualDates,557] - 完成季度计划 12 的实际日期更新: 2025-11-12 - 2026-03-31
-14:08:52.227 [http-nio-8080-exec-13] INFO  c.s.s.i.PlanDateUpdateServiceImpl - [updatePlanDatesByBatchTask,65] - 完成批次 14 相关的计划实际日期更新
-14:08:52.228 [http-nio-8080-exec-13] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [updateBatchTask,262] - ========== 批次任务更新完成 ==========
-14:08:52.244 [http-nio-8080-exec-13] INFO  c.s.sse.SseServer - [sendToAllMessage,74] - 消息id:AGRICULTURE 推送成功:{agriculture=[AgricultureConsoleVO(label=农场温室, value=1, change=+0%, icon=&#xe632, classType=null, traceCode= , queryTime=null, foodType=null), AgricultureConsoleVO(label=农场批次, value=3, change=+0%, icon=&#xe66b, classType=null, traceCode= , queryTime=null, foodType=null), AgricultureConsoleVO(label=农场种类, value=1, change=+0%, icon=&#xe60a, classType=null, traceCode= , queryTime=null, foodType=null), AgricultureConsoleVO(label=农场面积, value=500, change=+0%, icon=&#xe6dc, classType=null, traceCode= , queryTime=null, foodType=null)], batchTask=[AgricultureConsoleVO(label=未分配, value=1, change=+0%, icon=&#xe7d9, classType=bg-primary, traceCode= , queryTime=null, foodType=null), AgricultureConsoleVO(label=已分配, value=0, change=+0%, icon=&#xe712, classType=bg-warning, traceCode= , queryTime=null, foodType=null), AgricultureConsoleVO(label=进行中, value=0, change=+0%, icon=&#xe77f, classType=bg-error, traceCode= , queryTime=null, foodType=null), AgricultureConsoleVO(label=已完成, value=4, change=+0%, icon=&#xe70f, classType=bg-success, traceCode= , queryTime=null, foodType=null)], traceTotal={}}
-14:08:59.244 [http-nio-8080-exec-23] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,73] - Query parameters: AgricultureBatchTask(taskId=null, batchId=14, taskName=null, responsiblePersonId=null, responsiblePersonName=null, planStart=null, planFinish=null, actualStart=null, actualFinish=null, taskDetail=null, taskImages=null, taskVideos=null, status=null, delFlag=null, searchValue=null, params=null, remark=null)
-14:08:59.247 [http-nio-8080-exec-23] INFO  c.s.s.i.AgricultureBatchTaskServiceImpl - [selectBatchTaskList,77] - Query result size: 2
-14:18:31.114 [http-nio-8080-exec-52] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
-14:20:56.056 [http-nio-8080-exec-51] INFO  c.s.sse.SseServer - [createSse,59] - [AGRICULTURE]创建sse连接成功！
+13:02:06.326 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+13:02:06.326 [main] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+13:02:06.327 [main] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@6ce7d6ab
+13:02:08.390 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8080"]
+13:02:08.409 [main] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+13:02:08.409 [main] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+13:02:08.410 [main] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+13:02:08.410 [main] INFO  c.s.s.SensorCommunicationService - [destroy,75] - 正在关闭传感器通信服务...
+13:02:08.412 [main] INFO  c.s.s.SensorCommunicationService - [destroy,81] - 传感器通信服务已关闭
+13:02:08.418 [main] INFO  c.a.d.p.DruidDataSource - [close,2204] - {dataSource-1} closing ...
+13:02:08.429 [main] INFO  c.a.d.p.DruidDataSource - [close,2277] - {dataSource-1} closed
+13:02:08.574 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Pausing ProtocolHandler ["http-nio-8080"]
+13:02:08.575 [main] INFO  o.a.c.c.StandardService - [log,173] - Stopping service [Tomcat]
+13:02:08.584 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Stopping ProtocolHandler ["http-nio-8080"]
+13:02:08.586 [main] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Destroying ProtocolHandler ["http-nio-8080"]

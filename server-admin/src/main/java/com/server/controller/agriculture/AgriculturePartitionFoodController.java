@@ -98,15 +98,5 @@ public class AgriculturePartitionFoodController extends BaseController
         return toAjax(agriculturePartitionFoodService.deleteagriculturePartitionFoodByIds(ids));
     }
 
-    /**
-     * 新增采摘 生成二维码展示
-     */
-    @ApiOperation("分页列表")
-    @GetMapping(value = "/page")
-    public TableDataInfo page(AgriculturePartitionFoodPageDTO baseDTO) {
-        startPage();
-        List<AgriculturePartitionFood> list = agriculturePartitionFoodService.fy(baseDTO);
-        return getDataTable(list);
-    }
 
 }
